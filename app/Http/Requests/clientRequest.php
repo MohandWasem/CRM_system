@@ -27,7 +27,7 @@ class clientRequest extends FormRequest
             "email"=>"required|email",
             "telephone"=>"required|numeric",
             "mobile"=>"required|numeric",
-            "message"=>"required|string",
+            "notes"=>"required|string",
         ];
     }
 }

@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string("telephone");
             $table->string("mobile");
             $table->string("notes");
+            $table->string("coming_from");
+            $table->foreignId("user_id")->constrained("users")->OnDelete('cascade');
+            $table->enum("status",[0,1]);
+            $table->string("activity",150);
             $table->timestamps();
         });
     }

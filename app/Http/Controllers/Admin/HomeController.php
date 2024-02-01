@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\client;
+use App\Models\activity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\clientRequest;
@@ -12,13 +14,17 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $id=1;
         $clients=client::all();
-        return view("admin.admin",compact('clients'));
+         $info=client::all();   
+         return view("admin.admin",compact('clients','id','info',));
     }
 
     public function add()
     {
-        return view('admin.add');
+        $priv=User::all();
+        $act=activity::all();
+        return view('admin.add',compact('priv','act'));
     }
 
     public function info(clientRequest $request)
@@ -29,15 +35,21 @@ class HomeController extends Controller
             "email"=>$request->input("email"),
             "telephone"=>$request->input("telephone"),
             "mobile"=>$request->input("mobile"),
-            "notes"=>$request->input("message")
+            "notes"=>$request->input("notes"),
+            "coming_from"=>$request->input("coming_from"),
+            "user_id"=>$request->input("user_id"),
+            "status"=>$request->input("status"),
+            "activity"=>$request->input("activity_name"),
+            
           ]);
           return redirect()->route('index')->with("success","Client has been added successfully");
     }
 
     public function edit($id)
     {
+        $act=activity::all();
         $clients=client::findOrfail($id);
-        return view("admin.edit",compact("clients"));
+        return view("admin.edit",compact("clients","act"));
     }
 
     public function update(Request $req , $id)
@@ -48,7 +60,12 @@ class HomeController extends Controller
             "email"=>$req->input("email"),
             "telephone"=>$req->input("telephone"),
             "mobile"=>$req->input("mobile"),
-            "notes"=>$req->input("message")
+            "notes"=>$req->input("notes"),
+            "coming_from"=>$req->input("coming_from"),
+            "user_id"=>$req->input("user_id"),
+            "status"=>$req->input("status"),
+            "activity"=>$req->input("activity_name"),
+            
         ]);
         return redirect()->route('index');
     }

@@ -11,7 +11,7 @@
                     <div class="alert alert-success">
                          {{Session::get('success')}}</div>
                     @endif
-                    <table class="table table-bordered">
+                    <table class="table table-bordered ">
                       <thead>
                         <tr>
                           <th> id </th>
@@ -29,7 +29,7 @@
                         @forelse ($clients as $clients )
                           
                         <tr class="table-info">
-                          <td>{{$clients->id}}</td>
+                          <td>{{$id++}}</td>
                           <td>{{$clients->comapny_name}}</td>
                           <td>{{$clients->contact_person}}</td>
                           <td>{{$clients->email}}</td>
@@ -48,6 +48,46 @@
                             <input type="submit" class="btn btn-danger" value="delete">
                             </form>
                           </td>
+                         
+                        @empty
+                          
+                        @endforelse
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-lg-12 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">information</h4>
+                    
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th> created_at </th>
+                          <th> updated_at </th>
+                          <th> who_add </th>
+                          <th> coming_from </th>
+                          <th> client_status </th>
+                          <th> activity </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        @forelse ($info as $info )
+                          
+                        <tr class="table-info">
+                          <td>{{$info->created_at}}</td>
+                          <td>{{$info->updated_at}}</td>
+                          <td>{{$info->user_id?"admin":""}}</td>
+                          <td>{{$info->coming_from}}</td>
+                          <td>{{$info->status==1?"Active":"Inactive"}}</td>
+                          <td>{{$info->activity}}</td>
+                        
                         @empty
                           
                         @endforelse
