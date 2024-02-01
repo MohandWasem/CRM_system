@@ -32,12 +32,13 @@ class DocumentController extends Controller
         $filename=md5(uniqid()).".".$extension;
         $path='uploads/document/';
         $file->move($path, $filename);
+        document::create([
+         "file_name"=>$request->input("file_name"),
+         "document_file"=>$path.$filename,
+         ]);
     }
     
-    document::create([
-    "file_name"=>$request->input("file_name"),
-    "document_file"=>$path,$file,
-    ]);
+    
     
     return redirect()->route("document");
    }

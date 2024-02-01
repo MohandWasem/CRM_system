@@ -24,7 +24,11 @@
                        <tr class="table-info">
                          <td>{{$id++}}</td>
                          <td>{{$doc->file_name}}</td>
-                         <td>{{$doc->document_file}}</td>
+                         <td>
+                          <a href="{{asset($doc->document_file)}}">Show file</a>
+                          
+                        </td>
+                         
                       
                        @empty
                          
