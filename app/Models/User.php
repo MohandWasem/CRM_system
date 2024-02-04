@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function client()
     {
-        return $this->hasMany(client::class,"id","user_id");
+        return $this->belongsTo(client::class,"user_id","id");
     }
 }

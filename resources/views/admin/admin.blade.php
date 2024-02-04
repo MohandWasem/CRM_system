@@ -74,6 +74,8 @@
                           <th> coming_from </th>
                           <th> client_status </th>
                           <th> activity </th>
+                          <th> File name </th>
+                          <th> Documents </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -87,6 +89,23 @@
                           <td>{{$info->coming_from}}</td>
                           <td>{{$info->status==1?"Active":"Inactive"}}</td>
                           <td>{{$info->activity}}</td>
+                          <td>
+                            @forelse ($info->documents as $doc )
+                              
+                            {{$doc->file_name}}
+                            @empty
+                              
+                            @endforelse
+                          </td>
+                          <td>
+                          @forelse ($info->documents as $doc )
+                              
+                          <a href="{{asset($doc->document_file)}}">Show file</a>
+                              @empty
+                                
+                              @endforelse
+                          </td>
+                          
                         
                         @empty
                           

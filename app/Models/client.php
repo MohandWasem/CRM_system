@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\document;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,8 +17,15 @@ class client extends Model
       ,"status","activity"
     ];
    
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class,"id","user_id");
+        return $this->hasMany(User::class,"id","user_id");
     }
+
+    public function documents()
+    {
+        return $this->hasMany(document::class,"document_id","id");
+    }
+
+
 }

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("document_id")->constrained("clients")->OnDelete('cascade');
             $table->string("file_name");
             $table->string("document_file");
             $table->timestamps();

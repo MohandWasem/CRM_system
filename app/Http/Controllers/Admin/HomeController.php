@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\client;
 use App\Models\activity;
+use App\Models\document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\clientRequest;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,7 @@ class HomeController extends Controller
     {
         $id=1;
         $clients=client::all();
-         $info=client::all();   
+        $info=client::with("documents")->get();
          return view("admin.admin",compact('clients','id','info',));
     }
 
@@ -29,7 +30,7 @@ class HomeController extends Controller
 
     public function info(clientRequest $request)
     {
-          client::create([
+         $pro=client::create([
             "comapny_name"=>$request->input("companyname"),
             "contact_person"=>$request->input("contactperson"),
             "email"=>$request->input("email"),
@@ -42,6 +43,18 @@ class HomeController extends Controller
             "activity"=>$request->input("activity_name"),
             
           ]);
+          if($request->has('file')){
+            $file=$request->file('file');
+            $extension=$file->getClientOriginalName();
+            $filename=md5(uniqid()).".".$extension;
+            $path='uploads/document/';
+            $file->move($path, $filename);
+            document::create([
+             "document_id"=>$pro->id,
+             "file_name"=>$request->input("file_name"),
+             "document_file"=>$path.$filename,
+             ]);
+            }
           return redirect()->route('index')->with("success","Client has been added successfully");
     }
 
@@ -49,31 +62,67 @@ class HomeController extends Controller
     {
         $act=activity::all();
         $clients=client::findOrfail($id);
-        return view("admin.edit",compact("clients","act"));
+        $data=document::where('document_id',$id)->get('file_name');
+          return view("admin.edit",compact("clients","act","data"));
     }
 
     public function update(Request $req , $id)
     {
-        client::where("id",$id)->update([
-            "comapny_name"=>$req->input("companyname"),
-            "contact_person"=>$req->input("contactperson"),
-            "email"=>$req->input("email"),
-            "telephone"=>$req->input("telephone"),
-            "mobile"=>$req->input("mobile"),
-            "notes"=>$req->input("notes"),
-            "coming_from"=>$req->input("coming_from"),
-            "user_id"=>$req->input("user_id"),
-            "status"=>$req->input("status"),
-            "activity"=>$req->input("activity_name"),
+        $update=client::findOrFail($id);
+         $cat=document::where('document_id',$id)->first();
+
+         
+         $update->update([
+             "comapny_name"=>$req->input("companyname"),
+             "contact_person"=>$req->input("contactperson"),
+             "email"=>$req->input("email"),
+             "telephone"=>$req->input("telephone"),
+             "mobile"=>$req->input("mobile"),
+             "notes"=>$req->input("notes"),
+             "coming_from"=>$req->input("coming_from"),
+             "user_id"=>$req->input("user_id"),
+             "status"=>$req->input("status"),
+             "activity"=>$req->input("activity_name"),
+             
+             
+            ]);
             
-        ]);
-        return redirect()->route('index');
+            if($req->hasfile('file')){
+              if(File::exists($cat->document_file)){
+                File::delete($cat->document_file);
+              }
+               $file=$req->file('file');
+               $extension=$file->getClientOriginalName();
+               $filename=md5(uniqid()).".".$extension;
+               $path='uploads/document/';
+               $file->move($path, $filename);
+               $cat->file_name = $req->file_name ;
+               $cat->document_file = $path.$filename ;
+               $cat->save();
+
+                        
+   
+            }
+
+            return redirect()->route('index');
     }
 
     public function delete($id)
     {
-        client::where("id",$id)->delete();
-        return redirect()->route("index");
+      
+       $client=client::where("id",$id)->with('documents')->first();
+          foreach ($client->documents as $cat) {
+           
+            if(File::exists($cat->document_file)){
+              File::delete($cat->document_file);
+            }
+            $cat->delete();
+
+          }
+
+          $client->delete();
+      
+      return redirect()->route("index");
 
     }
 
