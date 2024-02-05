@@ -11371,7 +11371,17 @@ code {
   .stretch-card > .card {
     width: 100%;
     min-width: 100%; }
-
+    .table-hover tbody tr:hover {
+      color: #454d55;
+      background-color: rgba(255, 255, 255, 0.075); }
+ @media (max-width: 575.98px) {
+   .table-responsive-sm {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; }
+      .table-responsive-sm > .table-bordered {
+         border: 0; } }
 @media (min-width: 576px) {
   .border-right-sm {
     border-right: 1px solid #ebedf2; } }

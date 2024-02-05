@@ -6,21 +6,22 @@
 <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Persons</h4>
+                    <h4 class="card-title">Clients</h4>
                     @if(Session::has('success'))
                     <div class="alert alert-success">
                          {{Session::get('success')}}</div>
                     @endif
-                    <table class="table table-bordered ">
+                    <div class="table-responsive">
+                    <table class="table table-bordered table-responsive-sm table-hover ">
                       <thead>
-                        <tr>
+                        <tr class="table-responsive-sm">
                           <th> id </th>
-                          <th> company name </th>
-                          <th> contact person </th>
-                          <th> email </th>
-                          <th> telephone </th>
-                          <th> mobile </th>
-                          <th> notes </th>
+                          <th> Company Name </th>
+                          <th> Contact Person </th>
+                          <th> Email </th>
+                          <th> Telephone </th>
+                          <th> Mobile </th>
+                          <th> Notes </th>
                           <th> Action </th>
                         </tr>
                       </thead>
@@ -28,7 +29,7 @@
                         
                         @forelse ($clients as $clients )
                           
-                        <tr class="table-info">
+                        <tr class="table-info table-responsive-sm">
                           <td>{{$id++}}</td>
                           <td>{{$clients->comapny_name}}</td>
                           <td>{{$clients->contact_person}}</td>
@@ -55,6 +56,7 @@
                     
                       </tbody>
                     </table>
+                   </div>
                   </div>
                 </div>
               </div>
@@ -63,18 +65,18 @@
               <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">information</h4>
-                    
+                    <h4 class="card-title">Information</h4>
+                    <div class="table-responsive">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
-                          <th> created_at </th>
-                          <th> updated_at </th>
-                          <th> who_add </th>
-                          <th> coming_from </th>
-                          <th> client_status </th>
-                          <th> activity </th>
-                          <th> File name </th>
+                          <th> Created_at </th>
+                          <th> Updated_at </th>
+                          <th> Who_Add </th>
+                          <th> Coming_From </th>
+                          <th> Client_Status </th>
+                          <th> Activity </th>
+                          <th> File Name </th>
                           <th> Documents </th>
                         </tr>
                       </thead>
@@ -113,6 +115,7 @@
                     
                       </tbody>
                     </table>
+                   </div> 
                   </div>
                 </div>
               </div>
