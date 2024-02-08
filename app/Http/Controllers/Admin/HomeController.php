@@ -9,6 +9,7 @@ use App\Models\document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\clientRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller

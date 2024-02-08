@@ -41,6 +41,13 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('request')}}">
+                <span class="menu-title">Requests</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- partial -->

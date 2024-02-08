@@ -78,7 +78,7 @@
                           <label for="exampleSelectGender">activity</label>
                           <select class="form-control" name="activity_name" id="exampleSelectGender">
                           @forelse($act as $act )
-                            <option value="{{$act->activity_name}}">{{$act->activity_name}}</option>
+                            <option value="{{$act->activity_name}}" @selected($act->activity_name==$act->activity_name)>{{$act->activity_name}}</option>
                             @empty
                            @endforelse
                           </select>

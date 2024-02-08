@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\ActivtyController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\RequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::controller(loginController::class)->group(function(){
 
 // ------------- Activity-----------\\
 
-Route::controller(ActivtyController::class)->group(function(){
+Route::controller(ActivtyController::class)->middleware('AuthAdmin')->group(function(){
   Route::get("activty","activty")->name("activty");
   Route::get("add_act","add_act")->name("activty/add_act");
   Route::post("insert_act","insert_act")->name("activty/insert_act");
@@ -50,8 +51,19 @@ Route::controller(ActivtyController::class)->group(function(){
 
 // ------------- Document-----------\\
 
-Route::controller(DocumentController::class)->group(function(){
+Route::controller(DocumentController::class)->middleware('AuthAdmin')->group(function(){
   Route::get("document","index")->name("document");
   Route::get("document/add","shows")->name("document/add");
   Route::post("document/insert","doc_insert")->name("document/insert");
+});
+
+// ------------- Request-----------\\
+
+Route::controller(RequestController::class)->middleware('AuthAdmin')->group(function(){
+  Route::get("request","index")->name("request");
+  Route::get("request/add","show")->name("request/add");
+  Route::post("request/insert","info")->name("request/insert");
+  Route::post("request/edit/{id}","edit")->name("request/edit");
+  Route::post("request/update/{id}","update")->name("request/update");
+  Route::post("request/delete/{id}","delete")->name("request/delete");
 });
