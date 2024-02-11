@@ -46,15 +46,17 @@ class HomeController extends Controller
           ]);
           if($request->has('file')){
             $file=$request->file('file');
-            $extension=$file->getClientOriginalName();
-            $filename=md5(uniqid()).".".$extension;
-            $path='uploads/document/';
-            $file->move($path, $filename);
-            document::create([
-             "document_id"=>$pro->id,
-             "file_name"=>$request->input("file_name"),
-             "document_file"=>$path.$filename,
-             ]);
+            foreach ($file as  $file) {
+              $extension=$file->getClientOriginalName();
+              $filename=md5(uniqid()).".".$extension;
+              $path='uploads/document/';
+              $file->move($path, $filename);
+               document::create([
+               "document_id"=>$pro->id,
+               "file_name"=>$request->input("file_name"),
+               "document_file"=>$path.$filename,
+               ]);
+            }
             }
           return redirect()->route('index')->with("success","Client has been added successfully");
     }

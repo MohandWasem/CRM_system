@@ -15,7 +15,7 @@
                 <table class="table table-bordered table-responsive-sm table-hover ">
                   <thead>
                     <tr class="table-responsive-sm">
-                      <th> Request_id </th>
+                      <th> Serial_Request </th>
                       <th> Client Name </th>
                       <th> Shipment Direction </th>
                       <th> Shipment Type </th>

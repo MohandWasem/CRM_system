@@ -29,8 +29,8 @@ class clientRequest extends FormRequest
             "mobile"=>"required|numeric",
             "notes"=>"required|string",
             "coming_from"=>"required",
-            "file_name"=>"required|string",
-            "file"=>"mimes:png,jpg,pdf,jpeg,webp|required"
+            "file_name"=>"string",
+            // "file"=>"mimes:png,jpg,pdf,jpeg,webp|required"
         ];
     }
 }

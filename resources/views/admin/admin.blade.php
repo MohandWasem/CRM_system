@@ -15,7 +15,7 @@
                     <table class="table table-bordered table-responsive-sm table-hover ">
                       <thead>
                         <tr class="table-responsive-sm">
-                          <th> id </th>
+                          <th> Serial_Client </th>
                           <th> Company Name </th>
                           <th> Contact Person </th>
                           <th> Email </th>
@@ -30,7 +30,7 @@
                         @forelse ($clients as $clients )
                           
                         <tr class="table-info table-responsive-sm">
-                          <td>{{$id++}}</td>
+                          <td>{{$clients->serial_client}}</td>
                           <td>{{$clients->comapny_name}}</td>
                           <td>{{$clients->contact_person}}</td>
                           <td>{{$clients->email}}</td>

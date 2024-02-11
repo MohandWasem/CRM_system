@@ -3,6 +3,7 @@
 @section("content")
 
 
+<!-- <a href="{{route('document/add')}}" class="btn btn-gradient-info btn-fw">Add Documents</a> -->
 
 <div class="col-lg-12 stretch-card">
                 <div class="card">
@@ -22,7 +23,7 @@
                        @forelse ( $doc as $doc )
                          
                        <tr class="table-info">
-                         <td>{{$id++}}</td>
+                         <td>{{$doc->serial_document}}</td>
                          <td>{{$doc->file_name}}</td>
                          <td>
                           <a href="{{asset($doc->document_file)}}">Show file</a>

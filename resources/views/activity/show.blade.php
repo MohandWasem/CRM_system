@@ -15,7 +15,7 @@
                     <table class="table table-bordered ">
                       <thead>
                         <tr>
-                          <th> id </th>
+                          <th> Serial_Activity </th>
                           <th> Activity name </th>
                           <th> created_at </th>
                         </tr>
@@ -25,7 +25,7 @@
                         @forelse ($activity as $activity )
                           
                         <tr class="table-info">
-                          <td>{{$id++}}</td>
+                          <td>{{$activity->serial_activity}}</td>
                           <td>{{$activity->activity_name}}</td>
                           <td>{{$activity->created_at}}</td>
                       

@@ -93,7 +93,7 @@
 
 <div class="form-group">
 <label>Document File</label>
-<input type="file" name="file" class="file-upload-default" multiple>
+<input type="file" name="file[]" class="file-upload-default" multiple>
 <div class="input-group col-xs-12">
 <input type="text" class="form-control file-upload-info"  placeholder="Upload File">
 <span class="input-group-append">

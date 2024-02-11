@@ -27,5 +27,13 @@ class client extends Model
         return $this->hasMany(document::class,"document_id","id");
     }
 
+    protected $appends = ['serial_client'];
+
+    public function getSerialClientAttribute()
+    {
+        return $Serial_Client= ('CL'.'-'. + $this->id);
+
+    }
+
 
 }

@@ -14,8 +14,15 @@ class document extends Model
 ];
 
 
-public function client()
+  public function client()
     {
         return $this->belongsTo(client::class,"id","document_id");
+    }
+
+    protected $appends = ['serial_document'];
+
+    public function getSerialDocumentAttribute()
+    {
+        return $Serial_Document= ('DOC'.'-'. + $this->id);
     }
 }
