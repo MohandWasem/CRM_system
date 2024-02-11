@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\ActivtyController;
-use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\RequestController;
+use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Setup\ParameterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// ------------- Client -----------\\
 Route::controller(HomeController::class)->middleware('AuthAdmin')->group(function(){
   Route::get('index','index')->name('index');
   Route::get('add','add')->name('index/add');
@@ -66,4 +69,11 @@ Route::controller(RequestController::class)->middleware('AuthAdmin')->group(func
   Route::post("request/edit/{id}","edit")->name("request/edit");
   Route::post("request/update/{id}","update")->name("request/update");
   Route::post("request/delete/{id}","delete")->name("request/delete");
+});
+
+
+// ------------- Parameters -----------\\
+
+Route::controller(ParameterController::class)->group(function(){
+Route::get('parameter','index')->name('parameter');
 });

@@ -43,7 +43,7 @@
 @endforelse
 
 </select>
-@error("client_name")<div style="color:red;">{{$message}}</div>@enderror
+@error("shipment_type")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
 

@@ -24,8 +24,8 @@ class Request extends Model
 
     public function getSerialNumberAttribute()
     {
-        $shipmentDir = $this->shipment_direction? 'im' : 'ex';
-        $shipmentType = $this->type? $this->type->slug : '';
+        $shipmentDir = $this->shipment_direction? 'IM' : 'EX';
+        $shipmentType = $this->type? $this->type->type : '';
 
         return $shipmentDir .'-'. $shipmentType .'-'. (24000 + $this->id);
     }

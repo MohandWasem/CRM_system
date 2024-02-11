@@ -27,7 +27,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="{{asset('admin/images/logo.svg')}}">
+                  <img src="{{asset('admin/images/company.png')}}">
                 </div>
                 <h4>Hello! let's get started</h4>
 
@@ -49,11 +49,8 @@
                     <input type="submit" value="SIGN IN" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input"> Keep me signed in </label>
-                    </div>
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
+                   
+                    <a href="#" class="auth-link text-black m-2">Forgot password?</a>
                   </div>
                   
                 </form>
