@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\client;
-use App\Models\Document;
+use App\Models\document;
 use Illuminate\Http\Request;
 use App\Models\Client_Document;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class DocumentController extends Controller
    public function index()
    {
     $id=1;
-    $Documents=Document::get();
+    $Documents=document::get();
      return view ("document.show",compact('id','Documents'));
    }
 
@@ -39,7 +39,7 @@ class DocumentController extends Controller
               $path='uploads/document/';
               $file->move($path, $filename);
             }
-            Document::create([
+            document::create([
              "client_name"=>$request->input("client_name"),
              "file_name"=>$request->input("file_name"),
              "document_file"=>$path.$filename,
@@ -54,13 +54,13 @@ class DocumentController extends Controller
    public function edit($id)
    {
       $Client=client::get();
-      $Documents=Document::findOrfail($id);
+      $Documents=document::findOrfail($id);
       return view('document.edit',compact('Client','Documents'));
    }
 
    public function update(Request $request , $id)
    {
-      $Documents=Document::findOrfail($id);
+      $Documents=document::findOrfail($id);
       $cat=document::where('id',$id)->first();
 
       $Documents->update([
@@ -87,7 +87,7 @@ class DocumentController extends Controller
 
    public function delete($id)
    {
-      $client=Document::where("id",$id)->get('document_file');
+      $client=document::where("id",$id)->get('document_file');
           foreach ($client as $cat) {
            
             if(File::exists($cat->document_file)){
@@ -97,8 +97,8 @@ class DocumentController extends Controller
 
           }
 
-         
-          $mo=Document::where('id',$id)->first();
+         //  $client->delete();
+          $mo=document::where('id',$id)->first();
           $mo->delete();
 
        return redirect()->route('document');

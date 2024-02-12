@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\client;
 use App\Models\activity;
-use App\Models\Document;
+use App\Models\document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\clientRequest;
@@ -24,7 +24,7 @@ class HomeController extends Controller
 
     public function document($id)
     {
-        $documents=Document::where('id',$id)->get("document_file");
+        $documents=document::where('id',$id)->get("document_file");
         return view ('admin.document',compact('documents'));
     }
 
@@ -71,14 +71,14 @@ class HomeController extends Controller
     {
         $act=activity::all();
         $clients=client::findOrfail($id);
-        $data=document::where('document_id',$id)->get('file_name');
-          return view("admin.edit",compact("clients","act","data"));
+        // $data=document::where('document_id',$id)->get('file_name');
+          return view("admin.edit",compact("clients","act"));
     }
 
     public function update(Request $req , $id)
     {
         $update=client::findOrFail($id);
-         $cat=document::where('document_id',$id)->first();
+        //  $cat=document::where('document_id',$id)->first();
 
          
          $update->update([
