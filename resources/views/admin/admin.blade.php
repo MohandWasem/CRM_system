@@ -22,6 +22,7 @@
                           <th> Telephone </th>
                           <th> Mobile </th>
                           <th> Notes </th>
+                          <th> Documents </th>
                           <th> Action </th>
                         </tr>
                       </thead>
@@ -37,6 +38,7 @@
                           <td>{{$clients->telephone}}</td>
                           <td>{{$clients->mobile}}</td>
                           <td>{{$clients->notes}}</td>
+                          <td><a href="{{route('Home/documents',$clients->id)}}">view Documents</a></td>
                           <td>
                           <form action="{{route('index/edit',$clients->id)}}" method="post">
                               @csrf
@@ -76,8 +78,6 @@
                           <th> Coming_From </th>
                           <th> Client_Status </th>
                           <th> Activity </th>
-                          <th> File Name </th>
-                          <th> Documents </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -91,27 +91,13 @@
                           <td>{{$info->coming_from}}</td>
                           <td>{{$info->status==1?"Active":"Inactive"}}</td>
                           <td>{{$info->activity}}</td>
-                          <td>
-                            @forelse ($info->documents as $doc )
-                              
-                            {{$doc->file_name}}
-                            @empty
-                              
-                            @endforelse
-                          </td>
-                          <td>
-                          @forelse ($info->documents as $doc )
-                              
-                          <a href="{{asset($doc->document_file)}}">Show file</a>
-                              @empty
-                                
-                              @endforelse
-                          </td>
-                          
                         
+                          
                         @empty
                           
                         @endforelse
+
+                        
                     
                       </tbody>
                     </table>

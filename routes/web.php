@@ -33,6 +33,7 @@ Route::controller(HomeController::class)->middleware('AuthAdmin')->group(functio
   Route::post('edit/{id}','edit')->name('index/edit');
   Route::post('update/{id}','update')->name('index/update');
   Route::post('delete/{id}','delete')->name('index/delete');
+  Route::get('Home/documents/{id}','document')->name('Home/documents');
 
   Route::get('logout','logout')->name('logout');
 });
@@ -58,6 +59,9 @@ Route::controller(DocumentController::class)->middleware('AuthAdmin')->group(fun
   Route::get("document","index")->name("document");
   Route::get("document/add","shows")->name("document/add");
   Route::post("document/insert","doc_insert")->name("document/insert");
+  Route::post("document/edit/{id}","edit")->name("document/edit");
+  Route::post("document/update/{id}","update")->name("document/update");
+  Route::post("document/delete/{id}","delete")->name("document/delete");
 });
 
 // ------------- Request-----------\\

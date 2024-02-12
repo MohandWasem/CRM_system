@@ -84,14 +84,14 @@
 </select>
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="exampleInputName1">File Name</label>
 <input type="text" name="file_name" class="form-control" id="exampleInputName1" value="{{old('file_name')}}" placeholder="File Name">
 @error("file_name")<div style="color:red;">{{$message}}</div>@enderror
-</div>
+</div> -->
 
 
-<div class="form-group">
+<!-- <div class="form-group">
 <label>Document File</label>
 <input type="file" name="file[]" class="file-upload-default" multiple>
 <div class="input-group col-xs-12">
@@ -101,7 +101,7 @@
 </span>
 </div>
 @error("file")<div style="color:red;">{{$message}}</div>@enderror
-</div>
+</div> -->
 
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>

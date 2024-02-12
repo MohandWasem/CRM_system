@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\document;
+use App\Models\Document;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -24,7 +24,7 @@ class client extends Model
 
     public function documents()
     {
-        return $this->hasMany(document::class,"document_id","id");
+        return $this->hasMany(Document::class,"client_name","id");
     }
 
     protected $appends = ['serial_client'];
