@@ -13,9 +13,9 @@
 <div class="form-group">
 <label for="exampleSelectGender">Client Name</label>
 
-<select class="form-control" name="client_name" id="exampleSelectGender">
+<select class="form-control" name="client_id" id="exampleSelectGender">
 @forelse ($Client as $client )
-<option value="{{$client->contact_person}}" @selected($Documents->client_name==$client->contact_person)>{{$client->contact_person}}</option>
+<option value="{{$client->id}}" @selected($Documents->client_id==$client->id)>{{$client->contact_person}}</option>
 @empty
 
 @endforelse

@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class document extends Model
 {
     use HasFactory;
-    protected $fillable=[ "client_name","file_name","document_file",
+    protected $fillable=[ "client_id","file_name","document_file",
 ];
 
   public function client()
     {
-        return $this->belongsTo(client::class,"id","client_name");
+        return $this->belongsTo(client::class,"client_id");
     }
 
     protected $appends = ['serial_document'];

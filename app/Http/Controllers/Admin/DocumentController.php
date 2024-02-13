@@ -14,7 +14,7 @@ class DocumentController extends Controller
    public function index()
    {
     $id=1;
-    $Documents=document::get();
+    $Documents=document::with('client')->get();
      return view ("document.show",compact('id','Documents'));
    }
 
@@ -40,7 +40,7 @@ class DocumentController extends Controller
               $file->move($path, $filename);
             }
             document::create([
-             "client_name"=>$request->input("client_name"),
+             "client_id"=>$request->input("client_id"),
              "file_name"=>$request->input("file_name"),
              "document_file"=>$path.$filename,
              ]);
@@ -64,7 +64,7 @@ class DocumentController extends Controller
       $cat=document::where('id',$id)->first();
 
       $Documents->update([
-         "client_name"=>$request->input("client_name"),
+         "client_id"=>$request->input("client_id"),
          "file_name"=>$request->input("file_name"),
       ]);
 
@@ -97,9 +97,8 @@ class DocumentController extends Controller
 
           }
 
-         //  $client->delete();
-          $mo=document::where('id',$id)->first();
-          $mo->delete();
+          $do=document::where('id',$id)->first();
+          $do->delete();
 
        return redirect()->route('document');
    }

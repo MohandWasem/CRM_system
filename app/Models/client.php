@@ -24,7 +24,7 @@ class client extends Model
 
     public function documents()
     {
-        return $this->hasMany(Document::class,"client_name","id");
+        return $this->hasMany(Document::class,"client_id","id");
     }
 
     protected $appends = ['serial_client'];

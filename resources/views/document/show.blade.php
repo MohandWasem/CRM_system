@@ -26,7 +26,7 @@
                          
                        <tr class="table-info">
                          <td>{{$Doc->serial_document}}</td>
-                         <td>{{$Doc->client_name}}</td>
+                         <td>{{$Doc->client->contact_person}}</td>
                          <td>{{$Doc->file_name}}</td>
                          <td>
                           

@@ -19,12 +19,13 @@ class HomeController extends Controller
         $id=1;
         $clients=client::all();
         $info=client::get();
-         return view("admin.admin",compact('clients','id','info'));
+        $mo=client::with('documents')->get();
+      return view("admin.admin",compact('clients','id','info'));
     }
 
     public function document($id)
     {
-        $documents=document::where('id',$id)->get("document_file");
+        $documents=document::where('client_id',$id)->get();
         return view ('admin.document',compact('documents'));
     }
 
@@ -71,7 +72,6 @@ class HomeController extends Controller
     {
         $act=activity::all();
         $clients=client::findOrfail($id);
-        // $data=document::where('document_id',$id)->get('file_name');
           return view("admin.edit",compact("clients","act"));
     }
 
