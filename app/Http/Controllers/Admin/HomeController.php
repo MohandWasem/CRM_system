@@ -51,20 +51,7 @@ class HomeController extends Controller
             "activity"=>$request->input("activity_name"),
             
           ]);
-          // if($request->has('file')){
-          //   $file=$request->file('file');
-          //   foreach ($file as  $file) {
-          //     $extension=$file->getClientOriginalName();
-          //     $filename=md5(uniqid()).".".$extension;
-          //     $path='uploads/document/';
-          //     $file->move($path, $filename);
-          //      document::create([
-          //      "document_id"=>$pro->id,
-          //      "file_name"=>$request->input("file_name"),
-          //      "document_file"=>$path.$filename,
-          //      ]);
-          //   }
-          //   }
+         
           return redirect()->route('index')->with("success","Client has been added successfully");
     }
 
@@ -78,9 +65,7 @@ class HomeController extends Controller
     public function update(Request $req , $id)
     {
         $update=client::findOrFail($id);
-        //  $cat=document::where('document_id',$id)->first();
-
-         
+      
          $update->update([
              "comapny_name"=>$req->input("companyname"),
              "contact_person"=>$req->input("contactperson"),
@@ -96,20 +81,6 @@ class HomeController extends Controller
              
             ]);
             
-            // if($req->hasfile('file')){
-            //   if(File::exists($cat->document_file)){
-            //     File::delete($cat->document_file);
-            //   }
-            //    $file=$req->file('file');
-            //    $extension=$file->getClientOriginalName();
-            //    $filename=md5(uniqid()).".".$extension;
-            //    $path='uploads/document/';
-            //    $file->move($path, $filename);
-            //    $cat->file_name = $req->file_name ;
-            //    $cat->document_file = $path.$filename ;
-            //    $cat->save();
-
-            // }
 
             return redirect()->route('index');
     }
