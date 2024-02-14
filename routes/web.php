@@ -80,4 +80,6 @@ Route::controller(RequestController::class)->middleware('AuthAdmin')->group(func
 
 Route::controller(ParameterController::class)->group(function(){
 Route::get('parameter','index')->name('parameter');
+Route::get('parameter/edit/{id}','edit')->name('parameter/edit');
+Route::post('parameter/update/{id}','update')->name('parameter/update');
 });

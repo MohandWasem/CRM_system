@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\client;
 use App\Models\Request;
+use App\Models\Parameter;
 use App\Models\Shipment_type;
 use App\Http\Requests\rateRequest;
 use Illuminate\Support\Facades\DB;
@@ -27,18 +28,20 @@ class RequestController extends Controller
 
     public function info(rateRequest $request)
     {
-      
-            
+      //   request link parameter
+        $parameter = Parameter::where('name','requests')->first(); 
         $direction=$request->input("shipment_direction");
         $type_id=$request->input("shipment_type");
 
-        Request::create([
+        $req=Request::create([
               
               "client_name"=>$request->input("client_name"),
               "shipment_direction"=>$direction,
               "shipment_type"=>$type_id,
+              "serial_number"=>(int)$parameter->last_id,
          ]);
-           
+         $parameter->last_id=(int)$parameter->last_id + 1;
+         $parameter->save();
 
         return   redirect()->route('request')->with("success","successfully Add Request");
     }
