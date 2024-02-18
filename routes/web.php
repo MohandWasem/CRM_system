@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Setup\PortController;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\ActivtyController;
 use App\Http\Controllers\Admin\RequestController;
@@ -83,3 +84,17 @@ Route::get('parameter','index')->name('parameter');
 Route::get('parameter/edit/{id}','edit')->name('parameter/edit');
 Route::post('parameter/update/{id}','update')->name('parameter/update');
 });
+
+
+
+// ------------- Ports -----------\\
+
+Route::controller(PortController::class)->group(function(){
+  Route::get('Ports','index')->name('Ports');
+  Route::get('Ports/add','add')->name('Ports.add');
+  Route::post('Ports/show','show')->name('Ports.show');
+  Route::post('Ports/edit/{id}','edit')->name('Ports.edit');
+  Route::post('Ports/update/{id}','update')->name('Ports.update');
+  Route::post('Ports/delete/{id}','delete')->name('Ports.delete');
+  
+  });
