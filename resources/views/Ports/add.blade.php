@@ -17,9 +17,13 @@
 </div>
 
 <div class="form-group">
-<label for="exampleInputEmail3">Port Type</label>
-<input type="text" name="Port_Type" class="form-control" id="exampleInputEmail3" value="{{old('Port_Type')}}" placeholder="Port Type">
-@error('Port_Type') <span class="text-danger">{{$message}}</span>@enderror
+<label for="exampleSelectGender">Port Type</label>
+<select class="form-control" name="Port_Type" id="exampleSelectGender">
+@forelse($Port_Types as $Port_Type )
+<option value="{{$Port_Type->Port_Type}}">{{$Port_Type->Port_Type}}</option>
+@empty
+@endforelse
+</select>
 </div>
 
 <div class="form-group">
@@ -31,9 +35,13 @@
 
 
 <div class="form-group">
-<label for="exampleInputPassword4">Port Country</label>
-<input type="text" name="Port_Country" class="form-control" id="exampleInputPassword4" placeholder="Port Country" value="{{old('Port_Country')}}">
-@error('Port_Country') <span class="text-danger">{{$message}}</span>@enderror
+<label for="exampleSelectGender">Country Name</label>
+<select class="form-control" name="Country_Name" id="exampleSelectGender">
+@forelse($Countries as $Countries )
+<option value="{{$Countries->id}}">{{$Countries->Country_Name}}</option>
+@empty
+@endforelse
+</select>
 </div>
 
 <div class="form-group">

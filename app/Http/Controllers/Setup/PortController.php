@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Setup;
 
 use App\Models\Port;
+use App\Models\Country;
+use App\Models\Port_Type;
 use Illuminate\Http\Request;
 use App\Http\Requests\PortRequest;
 use App\Http\Controllers\Controller;
@@ -11,22 +13,24 @@ class PortController extends Controller
 {
     public function index()
     {
-        $Ports=Port::get();
-        return view('Ports.show',compact('Ports'));
+         $Ports=Port::with('Country')->get();
+         return view('Ports.show',compact('Ports'));
     }
 
     public function add()
     {
-        return view('Ports.add');
+        $Countries=Country::get();
+        $Port_Types=Port_Type::get();
+        return view('Ports.add',compact('Countries','Port_Types'));
     }
 
     public function show(PortRequest $request)
     {
          Port::create([
              "Port_Name"=>$request->input("Port_Name"),
-             "Port_Type"=>$request->input("Port_Type"),
+             "Port_Type_Id"=>$request->input("Port_Type"),
              "Port_Code"=>$request->input("Port_Code"),
-             "Port_Country"=>$request->input("Port_Country"),
+             "Port_Country"=>$request->input("Country_Name"),
              "Port_Notes"=>$request->input("Port_Notes"),
          ]);
 
@@ -35,9 +39,11 @@ class PortController extends Controller
 
     public function edit($id)
     {
-
+ 
        $Ports=Port::findOrfail($id);
-       return view('Ports.edit',compact('Ports'));
+       $Countries=Country::get();
+        $Port_Types=Port_Type::get();
+       return view('Ports.edit',compact('Ports','Countries','Port_Types'));
     }
 
     public function update(Request $request,$id)
@@ -46,9 +52,9 @@ class PortController extends Controller
              
        $Ports->update([
         "Port_Name"=>$request->input("Port_Name"),
-        "Port_Type"=>$request->input("Port_Type"),
+        "Port_Type_Id"=>$request->input("Port_Type"),
         "Port_Code"=>$request->input("Port_Code"),
-        "Port_Country"=>$request->input("Port_Country"),
+        "Port_Country"=>$request->input("Country_Name"),
         "Port_Notes"=>$request->input("Port_Notes"),
        ]);
 
