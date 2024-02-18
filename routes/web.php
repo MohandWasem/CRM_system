@@ -7,6 +7,7 @@ use App\Http\Controllers\Setup\PortController;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Admin\ActivtyController;
 use App\Http\Controllers\Admin\RequestController;
+use App\Http\Controllers\Setup\CountryController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Setup\ParameterController;
 
@@ -79,7 +80,7 @@ Route::controller(RequestController::class)->middleware('AuthAdmin')->group(func
 
 // ------------- Parameters -----------\\
 
-Route::controller(ParameterController::class)->group(function(){
+Route::controller(ParameterController::class)->middleware('AuthAdmin')->group(function(){
 Route::get('parameter','index')->name('parameter');
 Route::get('parameter/edit/{id}','edit')->name('parameter/edit');
 Route::post('parameter/update/{id}','update')->name('parameter/update');
@@ -89,12 +90,22 @@ Route::post('parameter/update/{id}','update')->name('parameter/update');
 
 // ------------- Ports -----------\\
 
-Route::controller(PortController::class)->group(function(){
+Route::controller(PortController::class)->middleware('AuthAdmin')->group(function(){
   Route::get('Ports','index')->name('Ports');
   Route::get('Ports/add','add')->name('Ports.add');
   Route::post('Ports/show','show')->name('Ports.show');
   Route::post('Ports/edit/{id}','edit')->name('Ports.edit');
   Route::post('Ports/update/{id}','update')->name('Ports.update');
   Route::post('Ports/delete/{id}','delete')->name('Ports.delete');
-  
   });
+
+  // ------------- Countries -----------\\
+
+  Route::controller(CountryController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Country','index')->name('Country');
+    Route::get('Country/add','add')->name('Country.add');
+    Route::post('Country/show','show')->name('Country.show');
+    Route::post('Country/edit/{id}','edit')->name('Country.edit');
+    Route::post('Country/update/{id}','update')->name('Country.update');
+    Route::post('Country/delete/{id}','delete')->name('Country.delete');
+    });

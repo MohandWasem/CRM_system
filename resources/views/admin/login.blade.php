@@ -27,7 +27,7 @@
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
-                  <img src="{{asset('admin/images/company.png')}}">
+                  <img src="{{asset('admin/images/com.png')}}">
                 </div>
                 <h4>Hello! let's get started</h4>
 
