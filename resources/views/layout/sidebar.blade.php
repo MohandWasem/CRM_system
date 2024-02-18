@@ -35,6 +35,7 @@
 <li class="nav-item"> <a class="nav-link" href="{{route('parameter')}}">Parameters</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Ports')}}">Ports</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Country')}}">Countries</a></li>
+<li class="nav-item"> <a class="nav-link" href="{{route('Container')}}">Containers</a></li>
 
 </ul>
 </div>

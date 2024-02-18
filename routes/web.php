@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ActivtyController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Setup\CountryController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Setup\ContainerController;
 use App\Http\Controllers\Setup\ParameterController;
 
 /*
@@ -109,3 +110,15 @@ Route::controller(PortController::class)->middleware('AuthAdmin')->group(functio
     Route::post('Country/update/{id}','update')->name('Country.update');
     Route::post('Country/delete/{id}','delete')->name('Country.delete');
     });
+
+
+    // ------------- Containers -----------\\
+
+   Route::controller(ContainerController::class)->middleware('AuthAdmin')->group(function(){
+     Route::get('Container','index')->name('Container');
+     Route::get('Container/add','add')->name('Container.add');
+     Route::post('Container/show','show')->name('Container.show');
+     Route::post('Container/edit/{id}','edit')->name('Container.edit');
+     Route::post('Container/update/{id}','update')->name('Container.update');
+     Route::post('Container/delete/{id}','delete')->name('Container.delete');
+     });
