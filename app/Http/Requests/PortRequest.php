@@ -24,9 +24,7 @@ class PortRequest extends FormRequest
         return [
             "Port_Name"=>"required|string",
             "Port_Type"=>"required",
-            "Port_Code"=>"required|numeric|min:3|unique:ports",
-            // "Port_Country"=>"required|string",
-            "Port_Notes"=>"required",
+            "Port_Code"=>"required|min:3|unique:ports",
         ];
     }
 }

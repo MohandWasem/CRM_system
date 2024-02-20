@@ -76,15 +76,16 @@ Route::controller(RequestController::class)->middleware('AuthAdmin')->group(func
   Route::post("request/edit/{id}","edit")->name("request/edit");
   Route::post("request/update/{id}","update")->name("request/update");
   Route::post("request/delete/{id}","delete")->name("request/delete");
+  Route::get('all_ports/{type_id}','ports')->name('allports');
 });
 
 
 // ------------- Parameters -----------\\
 
 Route::controller(ParameterController::class)->middleware('AuthAdmin')->group(function(){
-Route::get('parameter','index')->name('parameter');
-Route::get('parameter/edit/{id}','edit')->name('parameter/edit');
-Route::post('parameter/update/{id}','update')->name('parameter/update');
+  Route::get('parameter','index')->name('parameter');
+  Route::get('parameter/edit/{id}','edit')->name('parameter/edit');
+  Route::post('parameter/update/{id}','update')->name('parameter/update');
 });
 
 
@@ -102,23 +103,26 @@ Route::controller(PortController::class)->middleware('AuthAdmin')->group(functio
 
   // ------------- Countries -----------\\
 
-  Route::controller(CountryController::class)->middleware('AuthAdmin')->group(function(){
-    Route::get('Country','index')->name('Country');
-    Route::get('Country/add','add')->name('Country.add');
-    Route::post('Country/show','show')->name('Country.show');
-    Route::post('Country/edit/{id}','edit')->name('Country.edit');
-    Route::post('Country/update/{id}','update')->name('Country.update');
-    Route::post('Country/delete/{id}','delete')->name('Country.delete');
-    });
+Route::controller(CountryController::class)->middleware('AuthAdmin')->group(function(){
+   Route::get('Country','index')->name('Country');
+   Route::get('Country/add','add')->name('Country.add');
+   Route::post('Country/show','show')->name('Country.show');
+   Route::post('Country/edit/{id}','edit')->name('Country.edit');
+   Route::post('Country/update/{id}','update')->name('Country.update');
+   Route::post('Country/delete/{id}','delete')->name('Country.delete');
+   });
 
 
     // ------------- Containers -----------\\
 
-   Route::controller(ContainerController::class)->middleware('AuthAdmin')->group(function(){
-     Route::get('Container','index')->name('Container');
-     Route::get('Container/add','add')->name('Container.add');
-     Route::post('Container/show','show')->name('Container.show');
-     Route::post('Container/edit/{id}','edit')->name('Container.edit');
-     Route::post('Container/update/{id}','update')->name('Container.update');
-     Route::post('Container/delete/{id}','delete')->name('Container.delete');
-     });
+Route::controller(ContainerController::class)->middleware('AuthAdmin')->group(function(){
+   Route::get('Container','index')->name('Container');
+   Route::get('Container/add','add')->name('Container.add');
+   Route::post('Container/show','show')->name('Container.show');
+   Route::post('Container/edit/{id}','edit')->name('Container.edit');
+   Route::post('Container/update/{id}','update')->name('Container.update');
+   Route::post('Container/delete/{id}','delete')->name('Container.delete');
+   });
+
+
+   

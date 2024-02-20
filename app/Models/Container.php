@@ -12,4 +12,12 @@ class Container extends Model
     protected $fillable=[
             "container_type","container_size"
     ];
+
+
+    public function getFullNameAttribute()
+    {
+      
+        $size=$this->container_size . '-' . $this->container_type;
+        return $size ;
+    }
 }

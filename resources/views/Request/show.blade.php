@@ -19,6 +19,9 @@
                       <th> Client Name </th>
                       <th> Shipment Direction </th>
                       <th> Shipment Type </th>
+                      <th> From_port </th>
+                      <th> To_port </th>
+                      <th> Container </th>
                       <th> Action </th>
                     </tr>
                   </thead>
@@ -30,6 +33,9 @@
                       <td>{{$Req->client_name}}</td>
                       <td>{{$Req->shipment_direction==1?"Import":"Export"}}</td>
                       <td>{{$Req->type->type}}</td>
+                      <td>{{$Req->ports->Port_Name}} - {{ $Req->ports->Port_Code}} - {{ $Req->ports->Port_Country}}</td>
+                      <td>{{$Req->ports_1->Port_Name}} - {{ $Req->ports_1->Port_Code}} - {{ $Req->ports_1->Port_Country}}</td>
+                      <td>{{$Req->container_id}}</td>
                       <td>
                       <form action="{{route('request/edit',$Req->id)}}" method="post">
                           @csrf

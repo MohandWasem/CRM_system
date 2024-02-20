@@ -13,12 +13,13 @@ class PortController extends Controller
 {
     public function index()
     {
-         $Ports=Port::with('Country')->get();
+         $Ports=Port::with('Country','Port_Type')->get();
          return view('Ports.show',compact('Ports'));
     }
 
     public function add()
     {
+         $sea=Port::select('Port_Name','Port_Type_Id','Port_Code','Port_Country')->get();
         $Countries=Country::get();
         $Port_Types=Port_Type::get();
         return view('Ports.add',compact('Countries','Port_Types'));

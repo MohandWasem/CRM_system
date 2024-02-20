@@ -30,9 +30,9 @@
                     <tr class="table-info table-responsive-sm">
                       <td></td>
                       <td>{{$Port->Port_Name}}</td>
-                      <td>{{$Port->Port_Type_Id}}</td>
+                      <td>{{$Port->Port_Type->Port_Type}}</td>
                       <td>{{$Port->Port_Code}}</td>
-                      <td>{{$Port->Country->Country_Name}}</td>
+                      <td>{{$Port->Port_Country}}</td>
                       <td>{{$Port->Port_Notes}}</td>
                       <td>
                       <form action="{{route('Ports.edit',$Port->id)}}" method="post">

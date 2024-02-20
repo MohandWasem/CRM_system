@@ -46,9 +46,45 @@
 @error("shipment_type")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
+<div class="form-group">
+<label for="from_port">From</label>
+
+<select class="form-control" name="From_Port" id="from_port">
+
+<option value=""></option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label for="to_port">To</label>
+
+<select class="form-control" name="to_port" id="to_port">
+
+<option value=""></option>
+
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label for="exampleSelectGender">Containers</label>
+<select class="form-control" name="container_id" id="exampleSelectGender">
+ @forelse ($Sizes as $Size )
+        
+<option value="{{$Size}}" @selected($request->container_id==$Size)>{{$Size}}</option>
+ @empty
+        
+ @endforelse
+
+</select>
+
+</div>
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-<button class="btn btn-light">Cancel</button>
+<a href="{{route('request')}}" class="btn btn-light">Cancel</a>
 </form>
 </div>
 </div>

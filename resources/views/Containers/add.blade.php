@@ -10,12 +10,6 @@
 <form class="forms-sample" action="{{route('Container.show')}}" method="post" >
 @csrf
 
-<div class="form-group">
-<label for="exampleInputName1">Container Type</label>
-<input type="text" name="container_type" class="form-control" id="exampleInputName1" value="{{old('container_type')}}" placeholder="Container Type">
-@error('container_type') <span class="text-danger">{{$message}}</span>@enderror
-</div>
-
 
 <div class="form-group">
 <label for="exampleInputPassword4">Container Size</label>
@@ -24,9 +18,16 @@
 
 </div>
 
+<div class="form-group">
+<label for="exampleInputName1">Container Type</label>
+<input type="text" name="container_type" class="form-control" id="exampleInputName1" value="{{old('container_type')}}" placeholder="Container Type">
+@error('container_type') <span class="text-danger">{{$message}}</span>@enderror
+</div>
+
+
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-<button class="btn btn-light">Cancel</button>
+<a href="{{route('Container')}}" class="btn btn-light">Cancel</a>
 </form>
 </div>
 </div>

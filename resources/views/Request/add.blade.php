@@ -33,9 +33,9 @@
 </div>
 
 <div class="form-group">
-<label for="exampleSelectGender">Shipment Type</label>
+<label for="shipment_type">Shipment Type</label>
 
-<select class="form-control" name="shipment_type" id="exampleSelectGender">
+<select class="form-control" name="shipment_type" id="shipment_type">
 @forelse ($type as $type )
 <option value="{{$type->id}}">{{$type->type}}</option>
 @empty
@@ -43,14 +43,122 @@
 @endforelse
 
 </select>
-@error("client_name")<div style="color:red;">{{$message}}</div>@enderror
+@error("shipment_type")<div style="color:red;">{{$message}}</div>@enderror
+</div>
+
+
+<div class="form-group">
+<label for="from_port">From</label>
+
+<select class="form-control" name="from_port" id="from_port">
+
+<option value=""></option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label for="to_port">To</label>
+
+<select class="form-control" name="to_port" id="to_port">
+
+<option value=""></option>
+
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label for="exampleSelectGender">Containers</label>
+<select class="form-control" name="container_id" id="exampleSelectGender">
+ @forelse ($Sizes as $Size )
+        
+<option value="{{$Size}}">{{$Size}}</option>
+ @empty
+        
+ @endforelse
+
+
+
+</select>
+
 </div>
 
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-<button class="btn btn-light">Cancel</button>
+<a href="{{route('request')}}" class="btn btn-light">Cancel</a>
 </form>
 </div>
 </div>
 </div>
 @endsection
+
+
+
+@push('scripts')
+<script>
+//     $(document).on('click','#shipment_type',async function(){
+//         let value = $(this).val();
+//         console.log(value);
+//         const response = await fetch('/all_ports/' + value);
+//   const ports = await response.json();
+//   console.log(ports);
+
+//   let selectInput = $('#from_port');
+//   let toPortSelect = $('#to_port');
+
+//     // Clear existing options
+//     selectInput.empty();
+//     toPortSelect.empty();
+
+//     // Add new options based on the retrieved data
+//     ports.ports.forEach(port => {
+//         // Create a new option element
+//         let option = $('<option>');
+
+//         // Set the value of the option to the port id
+//         option.val(port.id);
+
+//         // Set the text content of the option to the Port_Name
+//         option.text(port.Port_Name);
+
+//         // Append the option to the select input
+//         selectInput.append(option);
+        
+//     });
+//     });
+
+$(document).on('click', '#shipment_type', async function () {
+    let value = $(this).val();
+    console.log(value);
+
+    const response = await fetch('/all_ports/' + value);
+    const ports = await response.json();
+    console.log(ports);
+
+    // Populate 'from_port' select
+    const fromPortSelect = $('#from_port');
+    fromPortSelect.empty(); // Clear existing options
+
+    ports.ports.forEach(port => {
+        fromPortSelect.append($('<option>', {
+            value: port.id,
+            text: `${port.Port_Name} - ${port.Port_Code} - ${port.Port_Country}`
+        }));
+    });
+
+    // Populate 'to_port' select
+    const toPortSelect = $('#to_port');
+    toPortSelect.empty(); // Clear existing options
+
+    ports.ports.forEach(port => {
+        toPortSelect.append($('<option>', {
+            value: port.id,
+            text: `${port.Port_Name} - ${port.Port_Code} - ${port.Port_Country}`
+        }));
+    });
+});
+</script>
+@endpush

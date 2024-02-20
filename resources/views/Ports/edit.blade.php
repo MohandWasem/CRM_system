@@ -20,7 +20,7 @@
 <label for="exampleSelectGender">Port Type</label>
 <select class="form-control" name="Port_Type" id="exampleSelectGender">
 @forelse($Port_Types as $Port_Type )
-<option value="{{$Port_Type->Port_Type}}" @selected($Ports->Port_Type_Id==$Port_Type->Port_Type)>{{$Port_Type->Port_Type}}</option>
+<option value="{{$Port_Type->id}}" @selected($Ports->Port_Type_Id==$Port_Type->id)>{{$Port_Type->Port_Type}}</option>
 @empty
 @endforelse
 </select>
@@ -38,7 +38,7 @@
 <label for="exampleSelectGender">Country Name</label>
 <select class="form-control" name="Country_Name" id="exampleSelectGender">
 @forelse($Countries as $Countries )
-<option value="{{$Countries->id}}" @if($Ports->Country->id==$Countries->id) selected @endif>{{$Countries->Country_Name}}</option>
+<option value="{{$Countries->Country_Name}}" @if($Ports->Port_Country==$Countries->Country_Name) selected @endif>{{$Countries->Country_Name}}</option>
 @empty
 @endforelse
 </select>
@@ -51,7 +51,7 @@
 </div>
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-<button class="btn btn-light">Cancel</button>
+<a href="{{route('Ports')}}" class="btn btn-light">Cancel</a>
 </form>
 </div>
 </div>

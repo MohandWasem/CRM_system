@@ -16,8 +16,8 @@
                   <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
-                      <th> Container_Type </th>
                       <th> Container_Size  </th>
+                      <th> Container_Type </th>
                       <th> Action </th>
                     </tr>
                   </thead>
@@ -27,8 +27,8 @@
                             
                         <tr class="table-info table-responsive-sm">
                           <td></td>
-                          <td>{{$Container->container_type}}</td>
                           <td>{{$Container->container_size}}</td>
+                          <td>{{$Container->container_type}}</td>
                           <td>
                           <form action="{{route('Container.edit',$Container->id)}}" method="post">
                               @csrf
