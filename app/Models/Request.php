@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Port;
+use App\Models\Commodity;
 use App\Models\Container;
 use App\Models\Parameter;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,8 @@ class Request extends Model
     use HasFactory;
 
     protected $fillable=[
-       "client_name","shipment_direction","shipment_type", "serial_number","from_port","to_port","container_id"
+       "client_name","shipment_direction","shipment_type", "serial_number","from_port","to_port",
+       "container_id","commodity_id"
     ];
 
 
@@ -31,11 +33,7 @@ class Request extends Model
     {
         return $this->belongsTo(Container::class ,"container_id","id");
     }
-    // public function ports()
-    // {
-    //     return $this->hasMany(Port::class,"id");
-    // }
-
+   
     public function ports()
     {
         return $this->belongsTo(Port::class,"from_port","id");
@@ -46,6 +44,11 @@ class Request extends Model
     {
         return $this->belongsTo(Port::class,"to_port","id");
         
+    }
+
+    public function commodities()
+    {
+        return $this->belongsTo(Commodity::class,"commodity_id","id");
     }
 
     

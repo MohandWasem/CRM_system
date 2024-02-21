@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Port;
 use App\Models\client;
 use App\Models\Request;
+use App\Models\Commodity;
 use App\Models\Container;
 use App\Models\Parameter;
-use App\Models\Shipment_type;
 use App\Models\Port_Type;
+use App\Models\Shipment_type;
 use App\Http\Requests\rateRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -18,17 +19,17 @@ class RequestController extends Controller
 {
     public function index()
     {
-         $Request=Request::with('type','ports','ports_1')->get();
-        //  $mo=Request::with('ports_1','ports')->get();
-        return view('Request.show',compact('Request'));
+         $Request=Request::with('type','ports','ports_1','commodities')->get();
+        return  view('Request.show',compact('Request'));
     }
 
     public function show()
     {
+        $Commodities=Commodity::get();
         $Sizes= Container::get()->pluck('full_name','id');
         $client=client::all();
         $type=Shipment_type::all();
-        return view('Request.add',compact("client","type","Sizes"));
+        return view('Request.add',compact("client","type","Sizes","Commodities"));
     }
 
     public function info(rateRequest $request)
@@ -47,6 +48,7 @@ class RequestController extends Controller
               "to_port"=>$request->input("to_port"),
               "serial_number"=>(int)$parameter->last_id,
               "container_id"=>$request->input("container_id"),
+              "commodity_id"=>$request->input("commodity_id"),
          ]);
          $parameter->last_id=(int)$parameter->last_id + 1;
          $parameter->save();
@@ -61,9 +63,10 @@ class RequestController extends Controller
         $Ports=Port::get();
         $client=client::all();
         $type=Shipment_type::all();
+        $Commodities=Commodity::get();
         $Sizes= Container::get()->pluck('full_name','id');
         $request=Request::findOrfail($id);
-        return view("Request.edit",compact('request','client','type','Sizes','Ports'));
+        return view("Request.edit",compact('request','client','type','Sizes','Ports','Commodities'));
     }
 
 
@@ -83,6 +86,7 @@ class RequestController extends Controller
         "from_port"=>$request->input("from_port"),
         "to_port"=>$request->input("to_port"),
         "container_id"=>$request->input("container_id"),
+        "commodity_id"=>$request->input("commodity_id"),
    ]);
      
 

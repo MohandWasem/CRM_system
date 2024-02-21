@@ -80,8 +80,20 @@
         
  @endforelse
 
+</select>
 
+</div>
 
+<div class="form-group">
+<label for="exampleSelectGender">Commodity</label>
+<select class="form-control" name="commodity_id" id="exampleSelectGender">
+ @forelse ( $Commodities as $Commodity )
+     
+ <option value="{{$Commodity->id}}">{{$Commodity->commodity_name}}</option>
+ @empty
+     
+ @endforelse       
+ 
 </select>
 
 </div>

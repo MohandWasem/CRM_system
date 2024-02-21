@@ -83,6 +83,20 @@
 
 </div>
 
+<div class="form-group">
+<label for="exampleSelectGender">Commodity</label>
+<select class="form-control" name="commodity_id" id="exampleSelectGender">
+ @forelse ( $Commodities as $Commodity )
+     
+ <option value="{{$Commodity->id}}" @selected($request->commodity_id==$Commodity->id)>{{$Commodity->commodity_name}}</option>
+ @empty
+     
+ @endforelse       
+ 
+</select>
+
+</div>
+
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
 <a href="{{route('request')}}" class="btn btn-light">Cancel</a>
 </form>

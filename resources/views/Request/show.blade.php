@@ -22,6 +22,7 @@
                       <th> From_port </th>
                       <th> To_port </th>
                       <th> Container </th>
+                      <th> commodities </th>
                       <th> Action </th>
                     </tr>
                   </thead>
@@ -36,6 +37,7 @@
                       <td>{{$Req->ports->Port_Name}} - {{ $Req->ports->Port_Code}} - {{ $Req->ports->Port_Country}}</td>
                       <td>{{$Req->ports_1->Port_Name}} - {{ $Req->ports_1->Port_Code}} - {{ $Req->ports_1->Port_Country}}</td>
                       <td>{{$Req->container_id}}</td>
+                      <td>{{$Req->commodities->commodity_name}}</td>
                       <td>
                       <form action="{{route('request/edit',$Req->id)}}" method="post">
                           @csrf

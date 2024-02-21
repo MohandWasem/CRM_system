@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ActivtyController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Setup\CountryController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Setup\CommodityController;
 use App\Http\Controllers\Setup\ContainerController;
 use App\Http\Controllers\Setup\ParameterController;
 
@@ -124,5 +125,14 @@ Route::controller(ContainerController::class)->middleware('AuthAdmin')->group(fu
    Route::post('Container/delete/{id}','delete')->name('Container.delete');
    });
 
+   // ------------- Commodities -----------\\
+   Route::controller(CommodityController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Commodity','index')->name('Commodity');
+    Route::get('Commodity/add','add')->name('Commodity.add');
+    Route::post('Commodity/show','show')->name('Commodity.show');
+    Route::post('Commodity/edit/{id}','edit')->name('Commodity.edit');
+    Route::post('Commodity/update/{id}','update')->name('Commodity.update');
+    Route::post('Commodity/delete/{id}','delete')->name('Commodity.delete');
+    });
 
    
