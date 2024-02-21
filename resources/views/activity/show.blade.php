@@ -7,37 +7,36 @@
 <div class="col-lg-12 stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Persons</h4>
+                    <h4 class="card-title">Activities</h4>
                     @if(Session::has('erfolg'))
                     <div class="alert alert-success">
                          {{Session::get('erfolg')}}</div>
                     @endif
-                    <table class="table table-bordered ">
-                      <thead>
+                <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                  <thead>
                         <tr>
                           <th> Serial_Activity </th>
                           <th> Activity name </th>
-                          <th> created_at </th>
+                          <th> Created_at </th>
                         </tr>
                       </thead>
                       <tbody>
                         
                         @forelse ($activity as $activity )
                           
-                        <tr class="table-info">
+                        <tr>
                           <td>{{$activity->serial_activity}}</td>
                           <td>{{$activity->activity_name}}</td>
                           <td>{{$activity->created_at}}</td>
                       
-                          
-                  
-                         
+                        
                         @empty
                           
                         @endforelse
                     
                       </tbody>
-                    </table>
+      
+                  </table>
                   </div>
                 </div>
               </div>

@@ -10,8 +10,8 @@
                   <div class="card-body">
                     <h4 class="card-title">Documents</h4>
                    
-                    <table class="table table-bordered ">
-                      <thead>
+                <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                <thead>
                         <tr>
                           <th> number </th>
                           <th> Client Name </th>
@@ -22,39 +22,49 @@
                       </thead>
                       <tbody>
                         
-                       @forelse ( $Documents as $Doc )
-                         
-                       <tr class="table-info">
-                         <td>{{$Doc->serial_document}}</td>
-                         <td>{{$Doc->client->contact_person}}</td>
-                         <td>{{$Doc->file_name}}</td>
-                         <td>
+                        @forelse ( $Documents as $Doc )
                           
-                          <a href="{{asset($Doc->document_file)}}">Show file</a>
-                        </td>
-                        
-                        <td>
-                      <form action="{{route('document/edit',$Doc->id)}}" method="post">
-                          @csrf
-                          <input type="submit" class="btn btn-info" value="edit">
-
-                        </form>
-
-                        <form action="{{route('document/delete',$Doc->id)}}" method="post">
-                          @csrf
-                        <input type="submit" class="btn btn-danger" value="delete">
-                        </form>
-                      </td>
-                       @empty
+                        <tr >
+                          <td>{{$Doc->serial_document}}</td>
+                          <td>{{$Doc->client->contact_person}}</td>
+                          <td>{{$Doc->file_name}}</td>
+                          <td>
+                           
+                           <a href="{{asset($Doc->document_file)}}">Show file</a>
+                         </td>
                          
-                       @endforelse
-                      
-                         
-                
-                      </tbody>
-                    </table>
+                         <td>
+                       <form action="{{route('document/edit',$Doc->id)}}" method="post">
+                           @csrf
+                           <input type="submit" class="btn btn-info" value="edit">
+ 
+                         </form>
+ 
+                         <form action="{{route('document/delete',$Doc->id)}}" method="post">
+                           @csrf
+                         <input type="submit" class="btn btn-danger" value="delete">
+                         </form>
+                       </td>
+                        @empty
+                          
+                        @endforelse
+                       
+                       
+                       </tbody>
+      
+                  </table>
                   </div>
                 </div>
               </div>
 
+
+
+
+
+
+
+
+
+
+        
 @endsection

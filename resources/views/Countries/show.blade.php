@@ -12,8 +12,8 @@
                       {{Session::get('success')}}</div>
                 @endif
                 <div class="table-responsive">
-                <table class="table table-bordered table-responsive-sm table-hover ">
-                  <thead>
+                <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
                       <th> Country_Name </th>
@@ -24,7 +24,7 @@
                   <tbody>
                    @forelse ($Countries as $Country )
                      
-                   <tr class="table-info table-responsive-sm">
+                   <tr class="table-responsive-sm">
                      <td></td>
                      <td>{{$Country->Country_Name}}</td>
                      <td>{{$Country->Country_Code}}</td>
@@ -45,14 +45,27 @@
                    @endforelse
                         
                   
-                      
-                      
-                
                   </tbody>
-                </table>
+      
+                  </table>
                 </div>
               </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @endsection

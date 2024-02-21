@@ -19,7 +19,6 @@ class HomeController extends Controller
         $id=1;
         $clients=client::all();
         $info=client::get();
-        $mo=client::with('documents')->get();
       return view("admin.admin",compact('clients','id','info'));
     }
 

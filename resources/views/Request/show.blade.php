@@ -12,8 +12,8 @@
                       {{Session::get('success')}}</div>
                 @endif
                 <div class="table-responsive">
-                <table class="table table-bordered table-responsive-sm table-hover ">
-                  <thead>
+                <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                <thead>
                     <tr class="table-responsive-sm">
                       <th> Serial_Request </th>
                       <th> Client Name </th>
@@ -28,7 +28,7 @@
                   <tbody>
                     @forelse ($Request as $Req )
                       
-                    <tr class="table-info table-responsive-sm">
+                    <tr class="table-responsive-sm">
                       <td>{{$Req->serial_number}}</td>
                       <td>{{$Req->client_name}}</td>
                       <td>{{$Req->shipment_direction==1?"Import":"Export"}}</td>
@@ -52,10 +52,10 @@
                       
                     @endforelse
                   
-                      
-                
+                    
                   </tbody>
-                </table>
+      
+                  </table>
                 </div>
               </div>
             </div>

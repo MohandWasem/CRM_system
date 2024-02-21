@@ -58,11 +58,12 @@ class RequestController extends Controller
 
     public function edit($id)
     {
+        $Ports=Port::get();
         $client=client::all();
         $type=Shipment_type::all();
         $Sizes= Container::get()->pluck('full_name','id');
         $request=Request::findOrfail($id);
-        return view("Request.edit",compact('request','client','type','Sizes'));
+        return view("Request.edit",compact('request','client','type','Sizes','Ports'));
     }
 
 
@@ -79,6 +80,8 @@ class RequestController extends Controller
         "client_name"=>$request->input("client_name"),
         "shipment_direction"=>$direction,
         "shipment_type"=>$type_id,
+        "from_port"=>$request->input("from_port"),
+        "to_port"=>$request->input("to_port"),
         "container_id"=>$request->input("container_id"),
    ]);
      

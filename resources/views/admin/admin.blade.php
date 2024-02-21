@@ -12,8 +12,8 @@
                          {{Session::get('success')}}</div>
                     @endif
                     <div class="table-responsive">
-                    <table class="table table-bordered table-responsive-sm table-hover ">
-                      <thead>
+                    <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                    <thead>
                         <tr class="table-responsive-sm">
                           <th> Serial_Client </th>
                           <th> Company Name </th>
@@ -22,6 +22,12 @@
                           <th> Telephone </th>
                           <th> Mobile </th>
                           <th> Notes </th>
+                          <th> Created_at </th>
+                          <th> Updated_at </th>
+                          <th> Who_Add </th>
+                          <th> Coming_From </th>
+                          <th> Client_Status </th>
+                          <th> Activity </th>
                           <th> Documents </th>
                           <th> Action </th>
                         </tr>
@@ -30,7 +36,7 @@
                         
                         @forelse ($clients as $clients )
                           
-                        <tr class="table-info table-responsive-sm">
+                        <tr class="table-responsive-sm">
                           <td>{{$clients->serial_client}}</td>
                           <td>{{$clients->comapny_name}}</td>
                           <td>{{$clients->contact_person}}</td>
@@ -38,6 +44,12 @@
                           <td>{{$clients->telephone}}</td>
                           <td>{{$clients->mobile}}</td>
                           <td>{{$clients->notes}}</td>
+                          <td>{{$clients->created_at}}</td>
+                          <td>{{$clients->updated_at}}</td>
+                          <td>{{$clients->user_id?"admin":""}}</td>
+                          <td>{{$clients->coming_from}}</td>
+                          <td>{{$clients->status==1?"Active":"Inactive"}}</td>
+                          <td>{{$clients->activity}}</td>
                           <td><a href="{{route('Home/documents',$clients->id)}}">view Documents</a></td>
                           <td>
                           <form action="{{route('index/edit',$clients->id)}}" method="post">
@@ -57,51 +69,9 @@
                         @endforelse
                     
                       </tbody>
-                    </table>
+      
+                  </table>
                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="col-lg-12 stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Information</h4>
-                    <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th> Created_at </th>
-                          <th> Updated_at </th>
-                          <th> Who_Add </th>
-                          <th> Coming_From </th>
-                          <th> Client_Status </th>
-                          <th> Activity </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        
-                        @forelse ($info as $info )
-                          
-                        <tr class="table-info">
-                          <td>{{$info->created_at}}</td>
-                          <td>{{$info->updated_at}}</td>
-                          <td>{{$info->user_id?"admin":""}}</td>
-                          <td>{{$info->coming_from}}</td>
-                          <td>{{$info->status==1?"Active":"Inactive"}}</td>
-                          <td>{{$info->activity}}</td>
-                        
-                          
-                        @empty
-                          
-                        @endforelse
-
-                        
-                    
-                      </tbody>
-                    </table>
-                   </div> 
                   </div>
                 </div>
               </div>

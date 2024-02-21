@@ -99,36 +99,6 @@
 
 @push('scripts')
 <script>
-//     $(document).on('click','#shipment_type',async function(){
-//         let value = $(this).val();
-//         console.log(value);
-//         const response = await fetch('/all_ports/' + value);
-//   const ports = await response.json();
-//   console.log(ports);
-
-//   let selectInput = $('#from_port');
-//   let toPortSelect = $('#to_port');
-
-//     // Clear existing options
-//     selectInput.empty();
-//     toPortSelect.empty();
-
-//     // Add new options based on the retrieved data
-//     ports.ports.forEach(port => {
-//         // Create a new option element
-//         let option = $('<option>');
-
-//         // Set the value of the option to the port id
-//         option.val(port.id);
-
-//         // Set the text content of the option to the Port_Name
-//         option.text(port.Port_Name);
-
-//         // Append the option to the select input
-//         selectInput.append(option);
-        
-//     });
-//     });
 
 $(document).on('click', '#shipment_type', async function () {
     let value = $(this).val();

@@ -49,7 +49,7 @@
 <div class="form-group">
 <label for="from_port">From</label>
 
-<select class="form-control" name="From_Port" id="from_port">
+<select class="form-control" name="from_port" id="from_port">
 
 <option value=""></option>
 
@@ -90,3 +90,49 @@
 </div>
 </div>
 @endsection
+
+
+@push('scripts')
+<script>
+   async function getports(value){
+    const response = await fetch('/all_ports/' + value);
+    const ports = await response.json();
+    console.log(ports);
+
+    // Populate 'from_port' select
+    const fromPortSelect = $('#from_port');
+    fromPortSelect.empty(); // Clear existing options
+
+    ports.ports.forEach(port => {
+        fromPortSelect.append($('<option>', {
+            value: port.id,
+            text: `${port.Port_Name} - ${port.Port_Code} - ${port.Port_Country}`,
+            selected:port.id=={{$request->from_port}}
+            
+        }));
+    });
+
+    // Populate 'to_port' select
+    const toPortSelect = $('#to_port');
+    toPortSelect.empty(); // Clear existing options
+
+    ports.ports.forEach(port => {
+        toPortSelect.append($('<option>', {
+            value: port.id,
+            text: `${port.Port_Name} - ${port.Port_Code} - ${port.Port_Country}`,
+            selected:port.id=={{$request->to_port}}
+        }));
+    });
+  }
+$(document).on('click', '#shipment_type', async function () {
+    let value = $(this).val();
+    console.log(value);
+
+    getports(value);
+
+});
+getports({{$request->shipment_type}});
+</script>
+
+@endpush
+

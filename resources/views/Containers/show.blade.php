@@ -12,8 +12,8 @@
                       {{Session::get('success')}}</div>
                 @endif
                 <div class="table-responsive">
-                <table class="table table-bordered table-responsive-sm table-hover ">
-                  <thead>
+                <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
                       <th> Container_Size  </th>
@@ -23,34 +23,32 @@
                   </thead>
                   <tbody>
                  
-                        @forelse ( $Containers as $Container )
-                            
-                        <tr class="table-info table-responsive-sm">
-                          <td></td>
-                          <td>{{$Container->container_size}}</td>
-                          <td>{{$Container->container_type}}</td>
-                          <td>
-                          <form action="{{route('Container.edit',$Container->id)}}" method="post">
-                              @csrf
-                              <input type="submit" class="btn btn-info" value="edit">
-    
-                            </form>
-    
-                            <form action="{{route('Container.delete',$Container->id)}}" method="post">
-                              @csrf
-                            <input type="submit" class="btn btn-danger" value="delete">
-                            </form>
-                          </td>
-                        @empty
-                            
-                        @endforelse
-                 
-                   
-                  
-                      
-                
-                  </tbody>
-                </table>
+                 @forelse ( $Containers as $Container )
+                     
+                 <tr class="table-responsive-sm">
+                   <td></td>
+                   <td>{{$Container->container_size}}</td>
+                   <td>{{$Container->container_type}}</td>
+                   <td>
+                   <form action="{{route('Container.edit',$Container->id)}}" method="post">
+                       @csrf
+                       <input type="submit" class="btn btn-info" value="edit">
+
+                     </form>
+
+                     <form action="{{route('Container.delete',$Container->id)}}" method="post">
+                       @csrf
+                     <input type="submit" class="btn btn-danger" value="delete">
+                     </form>
+                   </td>
+                 @empty
+                     
+                 @endforelse
+          
+         
+                    </tbody>
+      
+                  </table>
                 </div>
               </div>
             </div>

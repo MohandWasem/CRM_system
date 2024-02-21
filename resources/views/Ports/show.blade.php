@@ -12,8 +12,8 @@
                       {{Session::get('success')}}</div>
                 @endif
                 <div class="table-responsive">
-                <table class="table table-bordered table-responsive-sm table-hover ">
-                  <thead>
+                <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
+                <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
                       <th> Port_Name </th>
@@ -27,7 +27,7 @@
                   <tbody>
                     @forelse ( $Ports as $Port )
                         
-                    <tr class="table-info table-responsive-sm">
+                    <tr class="table-responsive-sm">
                       <td></td>
                       <td>{{$Port->Port_Name}}</td>
                       <td>{{$Port->Port_Type->Port_Type}}</td>
@@ -49,13 +49,10 @@
                     @empty
                         
                     @endforelse
-                      
-                   
-                  
-                      
-                
+                    
                   </tbody>
-                </table>
+      
+                  </table>
                 </div>
               </div>
             </div>
