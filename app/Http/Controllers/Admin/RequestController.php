@@ -32,7 +32,7 @@ class RequestController extends Controller
         return view('Request.add',compact("client","type","Sizes","Commodities"));
     }
 
-    public function info(rateRequest $request)
+    public function info(Request $request)
     {
       //   request link parameter
         $parameter = Parameter::where('name','requests')->first(); 
@@ -70,7 +70,7 @@ class RequestController extends Controller
     }
 
 
-    public function update(rateRequest $request ,$id)
+    public function update(Request $request ,$id)
     {
         
         $direction=$request->input("shipment_direction");

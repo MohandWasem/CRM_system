@@ -20,7 +20,6 @@
 @endforelse
 
 </select>
-@error("client_name")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
 <div class="form-group">

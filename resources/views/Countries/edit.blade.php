@@ -12,15 +12,14 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Country Name</label>
-<input type="text" name="Country_Name" class="form-control" id="exampleInputName1" value="{{$Countries->Country_Name}}" placeholder="Country Name">
-@error('Country_Name') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="Country_Name" class="form-control" id="exampleInputName1" value="{{$Countries->Country_Name}}" placeholder="Country Name" required>
+
 </div>
 
 
 <div class="form-group">
 <label for="exampleInputPassword4">Country Code</label>
-<input type="text" name="Country_Code" class="form-control" id="exampleInputPassword4" value="{{$Countries->Country_Code}}" placeholder="Country Code">
-@error('Country_Code') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="Country_Code" class="form-control" id="exampleInputPassword4" value="{{$Countries->Country_Code}}" placeholder="Country Code" required>
 
 </div>
 

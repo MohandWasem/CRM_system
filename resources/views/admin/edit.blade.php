@@ -12,33 +12,33 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Company Name</label>
-<input type="text" name="companyname" class="form-control" id="exampleInputName1" value="{{$clients->comapny_name}}" placeholder="Company Name">
+<input type="text" name="companyname" class="form-control" id="exampleInputName1" value="{{$clients->comapny_name}}" placeholder="Company Name" required>
 @error('companyname') <span class="text-danger">{{$message}}</span>@enderror
 </div>
 
 <div class="form-group">
 <label for="exampleInputEmail3">Contact Person</label>
-<input type="text" name="contactperson" class="form-control" id="exampleInputEmail3" value="{{$clients->contact_person}}" placeholder="Contact Person">
+<input type="text" name="contactperson" class="form-control" id="exampleInputEmail3" value="{{$clients->contact_person}}" placeholder="Contact Person" required>
 @error('contactperson') <span class="text-danger">{{$message}}</span>@enderror
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Email</label>
-<input type="email" name="email" class="form-control" id="exampleInputPassword4" value="{{$clients->email}}" placeholder="Email">
+<input type="email" name="email" class="form-control" id="exampleInputPassword4" value="{{$clients->email}}" placeholder="Email" required>
 @error('email') <span class="text-danger">{{$message}}</span>@enderror
 
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Telephone</label>
-<input type="text" name="telephone" class="form-control" id="exampleInputPassword4" placeholder="Telephone" value="{{$clients->telephone}}">
+<input type="text" name="telephone" class="form-control" id="exampleInputPassword4" placeholder="Telephone" value="{{$clients->telephone}}" required>
 @error('telephone') <span class="text-danger">{{$message}}</span>@enderror
 
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Mobile</label>
-<input type="phone" name="mobile" class="form-control" id="exampleInputPassword4" placeholder="Mobile" value="{{$clients->mobile}}">
+<input type="phone" name="mobile" class="form-control" id="exampleInputPassword4" placeholder="Mobile" value="{{$clients->mobile}}" required>
 @error('mobile') <span class="text-danger">{{$message}}</span>@enderror
 </div>
 
@@ -50,7 +50,7 @@
 
 <div class="form-group">
 <label for="exampleInputPassword4">coming from</label>
-<input type="text" name="coming_from" class="form-control" id="exampleInputPassword4" placeholder="coming from" value="{{$clients->coming_from}}">
+<input type="text" name="coming_from" class="form-control" id="exampleInputPassword4" placeholder="coming from" value="{{$clients->coming_from}}" required>
 @error('mobile') <span class="text-danger">{{$message}}</span>@enderror
 </div>
 

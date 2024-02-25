@@ -21,7 +21,7 @@ class CountryController extends Controller
 
    }
 
-   public function show(CountryRequest $request)
+   public function show(Request $request)
    {
     Country::create([
             "Country_Name"=>$request->input("Country_Name"),

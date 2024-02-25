@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('admin.add',compact('priv','act'));
     }
 
-    public function info(clientRequest $request)
+    public function info(Request $request)
     {
          $pro=client::create([
             "comapny_name"=>$request->input("companyname"),

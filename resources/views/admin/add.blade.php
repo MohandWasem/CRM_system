@@ -12,46 +12,37 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Company Name</label>
-<input type="text" name="companyname" class="form-control" id="exampleInputName1" value="{{old('companyname')}}" placeholder="Company Name">
-@error('companyname') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="companyname" class="form-control" id="exampleInputName1" value="{{old('companyname')}}" placeholder="Company Name" required>
 </div>
 
 <div class="form-group">
 <label for="exampleInputEmail3">Contact Person</label>
-<input type="text" name="contactperson" class="form-control" id="exampleInputEmail3" value="{{old('contactperson')}}" placeholder="Contact Person">
-@error('contactperson') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="contactperson" class="form-control" id="exampleInputEmail3" value="{{old('contactperson')}}" placeholder="Contact Person" required>
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Email</label>
-<input type="email" name="email" class="form-control" id="exampleInputPassword4" value="{{old('email')}}" placeholder="Email">
-@error('email') <span class="text-danger">{{$message}}</span>@enderror
-
+<input type="email" name="email" class="form-control" id="exampleInputPassword4" value="{{old('email')}}" placeholder="Email" required>
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Telephone</label>
-<input type="text" name="telephone" class="form-control" id="exampleInputPassword4" placeholder="Telephone" value="{{old('telephone')}}">
-@error('telephone') <span class="text-danger">{{$message}}</span>@enderror
-
+<input type="text" name="telephone" class="form-control" id="exampleInputPassword4" placeholder="Telephone" value="{{old('telephone')}}" required>
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Mobile</label>
-<input type="phone" name="mobile" class="form-control" id="exampleInputPassword4" placeholder="Mobile" value="{{old('mobile')}}">
-@error('mobile') <span class="text-danger">{{$message}}</span>@enderror
+<input type="phone" name="mobile" class="form-control" id="exampleInputPassword4" placeholder="Mobile" value="{{old('mobile')}}" required>
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">Notes</label>
 <textarea name="notes" class="form-control"placeholder="Message" id="exampleInputPassword4" cols="30" rows="10"></textarea>
-@error('notes') <span class="text-danger">{{$message}}</span>@enderror
 </div>
 
 <div class="form-group">
 <label for="exampleInputPassword4">coming from</label>
-<input type="text" name="coming_from" class="form-control" id="exampleInputPassword4" placeholder="coming from" value="{{old('coming_from')}}">
-@error('coming_from') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="coming_from" class="form-control" id="exampleInputPassword4" placeholder="coming from" value="{{old('coming_from')}}" required>
 </div>
 
 
@@ -61,7 +52,6 @@
 <option value="1" @selected(old('user_id')==1)>admin</option>
 
 </select>
-@error("user_id")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
 <div class="form-group">
@@ -71,7 +61,6 @@
 <option value="0" @selected(old('status')==0)>Inactive</option>
 
 </select>
-@error("status")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
 <div class="form-group">

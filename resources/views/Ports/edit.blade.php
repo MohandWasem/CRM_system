@@ -12,8 +12,8 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Port Name</label>
-<input type="text" name="Port_Name" class="form-control" id="exampleInputName1" value="{{$Ports->Port_Name}}" placeholder="Port Name">
-@error('Port_Name') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="Port_Name" class="form-control" id="exampleInputName1" value="{{$Ports->Port_Name}}" placeholder="Port Name" required>
+
 </div>
 
 <div class="form-group">
@@ -28,8 +28,7 @@
 
 <div class="form-group">
 <label for="exampleInputPassword4">Port Code</label>
-<input type="text" name="Port_Code" class="form-control" id="exampleInputPassword4" value="{{$Ports->Port_Code}}" placeholder="Port Code">
-@error('Port_Code') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="Port_Code" class="form-control" id="exampleInputPassword4" value="{{$Ports->Port_Code}}" placeholder="Port Code" required>
 
 </div>
 

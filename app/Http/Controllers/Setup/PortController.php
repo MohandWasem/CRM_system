@@ -25,7 +25,7 @@ class PortController extends Controller
         return view('Ports.add',compact('Countries','Port_Types'));
     }
 
-    public function show(PortRequest $request)
+    public function show(Request $request)
     {
          Port::create([
              "Port_Name"=>$request->input("Port_Name"),

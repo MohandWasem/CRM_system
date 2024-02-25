@@ -13,15 +13,15 @@
 
 <div class="form-group">
 <label for="exampleInputPassword4">Container Size</label>
-<input type="text" name="container_size" class="form-control" id="exampleInputPassword4" value="{{old('container_size')}}" placeholder="Container Size">
-@error('container_size') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="container_size" class="form-control" id="exampleInputPassword4" value="{{old('container_size')}}" placeholder="Container Size" required>
+
 
 </div>
 
 <div class="form-group">
 <label for="exampleInputName1">Container Type</label>
-<input type="text" name="container_type" class="form-control" id="exampleInputName1" value="{{old('container_type')}}" placeholder="Container Type">
-@error('container_type') <span class="text-danger">{{$message}}</span>@enderror
+<input type="text" name="container_type" class="form-control" id="exampleInputName1" value="{{old('container_type')}}" placeholder="Container Type" required>
+
 </div>
 
 

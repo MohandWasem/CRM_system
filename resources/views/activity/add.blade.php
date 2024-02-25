@@ -12,7 +12,7 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Activity Name</label>
-<input type="text" name="activity_name" class="form-control" id="exampleInputName1" value="{{old('activity_name')}}" placeholder="Activity Name">
+<input type="text" name="activity_name" class="form-control" id="exampleInputName1" value="{{old('activity_name')}}" placeholder="Activity Name" required>
 
 </div>
 

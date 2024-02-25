@@ -12,7 +12,7 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Commodity Name</label>
-<input type="text" name="commodity_name" class="form-control" id="exampleInputName1" value="{{old('commodity_name')}}" placeholder="Commodity Name">
+<input type="text" name="commodity_name" class="form-control" id="exampleInputName1" value="{{old('commodity_name')}}" placeholder="Commodity Name" required>
 
 </div>
 

@@ -4,7 +4,7 @@
 <div class="col-12 grid-margin stretch-card">
 <div class="card">
 <div class="card-body">
-<h4 class="card-title">Add Commodity</h4>
+<h4 class="card-title">Edit Commodity</h4>
 <br>
 
 <form class="forms-sample" action="{{route('Commodity.update',$Commodities->id)}}" method="post">
@@ -12,7 +12,7 @@
 
 <div class="form-group">
 <label for="exampleInputName1">Commodity Name</label>
-<input type="text" name="commodity_name" class="form-control" id="exampleInputName1" value="{{$Commodities->commodity_name}}" placeholder="Commodity Name">
+<input type="text" name="commodity_name" class="form-control" id="exampleInputName1" value="{{$Commodities->commodity_name}}" placeholder="Commodity Name" required>
 
 </div>
 

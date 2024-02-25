@@ -21,13 +21,13 @@
 @endforelse
 
 </select>
-@error("client_name")<div style="color:red;">{{$message}}</div>@enderror
+
 </div>
 
 
 <div class="form-group">
 <label for="exampleInputName1">File Name</label>
-<input type="text" name="file_name" class="form-control" id="exampleInputName1" value="{{$Documents->file_name}}" placeholder="File Name">
+<input type="text" name="file_name" class="form-control" id="exampleInputName1" value="{{$Documents->file_name}}" placeholder="File Name" required>
 </div>
 
 

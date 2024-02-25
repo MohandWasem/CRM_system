@@ -22,14 +22,13 @@ class clientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "companyname"=>"required|string",
-            "contactperson"=>"required|string",
-            "email"=>"required|email",
-            "telephone"=>"required|numeric",
-            "mobile"=>"required|numeric",
-            "notes"=>"required|string",
-            "coming_from"=>"required",
-            "file_name"=>"string",
+            // "companyname"=>"required|string",
+            // "contactperson"=>"required|string",
+            // "email"=>"required|email",
+            // "telephone"=>"required|numeric",
+            // "mobile"=>"required|numeric",
+            // "coming_from"=>"required",
+            // "file_name"=>"string",
             // "file"=>"mimes:png,jpg,pdf,jpeg,webp|required"
         ];
     }

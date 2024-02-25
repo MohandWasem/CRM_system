@@ -22,9 +22,9 @@ class rateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "client_name"=>"required",
-            "shipment_direction"=>"required",
-            "shipment_type"=>"required",
+            // "client_name"=>"required",
+            // "shipment_direction"=>"required",
+            // "shipment_type"=>"required",
         ];
     }
 }
