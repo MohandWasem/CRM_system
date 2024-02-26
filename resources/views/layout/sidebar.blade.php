@@ -37,6 +37,9 @@
 <li class="nav-item"> <a class="nav-link" href="{{route('Country')}}">Countries</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Container')}}">Containers</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Commodity')}}">Commodities</a></li>
+<li class="nav-item"> <a class="nav-link" href="{{route('Agents')}}">Agents</a></li>
+<li class="nav-item"> <a class="nav-link" href="{{route('Carriers')}}">Carriers</a></li>
+<li class="nav-item"> <a class="nav-link" href="{{route('suppliers')}}">Suppliers</a></li>
 
 </ul>
 </div>
