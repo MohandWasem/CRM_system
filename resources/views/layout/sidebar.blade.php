@@ -40,6 +40,7 @@
 <li class="nav-item"> <a class="nav-link" href="{{route('Agents')}}">Agents</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Carriers')}}">Carriers</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('suppliers')}}">Suppliers</a></li>
+<li class="nav-item"> <a class="nav-link" href="{{route('Currency')}}">Currency</a></li>
 
 </ul>
 </div>
@@ -62,9 +63,30 @@
 
 <li class="nav-item"> <a class="nav-link" href="{{route('request')}}">Requests</a></li>
 
+</ul>
+</div>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+<span class="menu-title">Operation</span>
+<i class="menu-arrow"></i>
+<i class="mdi mdi-contacts menu-icon"></i>
+</a>
+
+
+<div class="collapse" id="ui-basic">
+<ul class="nav flex-column sub-menu">
+<a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+<span class="menu-title">Price List</span>
+<i class="menu-arrow"></i>
+<!-- <i class="mdi mdi-contacts menu-icon"></i> -->
+</a>
+<li class="nav-item"> <a class="nav-link" href="{{route('Rates')}}">Rates</a></li>
 
 </ul>
 </div>
+
 </li>
 
 

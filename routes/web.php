@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Setup\CarrierController;
 use App\Http\Controllers\Setup\CountryController;
 use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Operation\ReadController;
+use App\Http\Controllers\Setup\CurrencyController;
 use App\Http\Controllers\Setup\SupplierController;
 use App\Http\Controllers\Setup\CommodityController;
 use App\Http\Controllers\Setup\ContainerController;
@@ -167,6 +169,29 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post('suppliers/edit/{id}','edit')->name('suppliers.edit');
     Route::post('suppliers/update/{id}','update')->name('suppliers.update');
     Route::post('suppliers/delete/{id}','delete')->name('suppliers.delete');
+  });
+
+   // ------------- Currency -----------\\
+  Route::controller(CurrencyController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Currency','index')->name('Currency');
+    Route::get('Currency/add','add')->name('Currency.add');
+    Route::post('Currency/show','show')->name('Currency.show');
+    Route::post('Currency/edit/{id}','edit')->name('Currency.edit');
+    Route::post('Currency/update/{id}','update')->name('Currency.update');
+    Route::post('Currency/delete/{id}','delete')->name('Currency.delete');
+  });
+
+   // ------------- Rates -----------\\
+
+  Route::controller(ReadController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Rates','index')->name('Rates');
+    Route::get('Rates/add','add')->name('Rates.add');
+    Route::post('Rates/show','show')->name('Rates.show');
+    Route::post('Rates/edit/{id}','edit')->name('Rates.edit');
+    Route::post('Rates/update/{id}','update')->name('Rates.update');
+    Route::post('Rates/delete/{id}','delete')->name('Rates.delete');
+    Route::get('all_ports/{type_id}','ports')->name('allports');
+
   });
 
     
