@@ -31,8 +31,8 @@ class ReadController extends Controller
    public function show(Request $request)
    {
     Read::create([
-        "carrier_name_id"=>$request->input("carrier_name_id"),
         "carrier_type_id"=>$request->input("carrier_type_id"),
+        "carrier_name_id"=>$request->input("carrier_name_id"),
         "pol"=>$request->input("pol"),
         "pod"=>$request->input("pod"),
         "container_type_id"=>$request->input("container_type_id"),
@@ -60,8 +60,8 @@ class ReadController extends Controller
      $rates=Read::findOrfail($id);
 
        $rates->update([
-            "carrier_name_id"=>$request->input("carrier_name_id"),
             "carrier_type_id"=>$request->input("carrier_type_id"),
+            "carrier_name_id"=>$request->input("carrier_name_id"),
             "pol"=>$request->input("pol"),
             "pod"=>$request->input("pod"),
             "container_type_id"=>$request->input("container_type_id"),
@@ -96,4 +96,18 @@ class ReadController extends Controller
 
        return response()->json(compact("ports","shipment_type","port_type"));
     }
+
+
+    public function getAllCarriers($value)
+    {
+      $shipment_type=Carrier_type::where('id',$value)->first();
+      $port_type=Carrier::where('carrier_name',$shipment_type->type)->first();
+      $ports=[];
+        $carriers = Carrier::all();
+
+        return response()->json($carriers);
+    }
+
+
+
 }

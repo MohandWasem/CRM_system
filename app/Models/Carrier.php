@@ -19,4 +19,5 @@ class Carrier extends Model
     {
         return $this->belongsTo(Carrier_type::class,"carrier_type_id","id");
     }
+
 }

@@ -191,7 +191,8 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post('Rates/update/{id}','update')->name('Rates.update');
     Route::post('Rates/delete/{id}','delete')->name('Rates.delete');
     Route::get('all_ports/{type_id}','ports')->name('allports');
-
+    Route::get('/all_carriers/{value}', 'getAllCarriers');
+    // Route::get('all_ports/{type_id}','ports')->name('allports');
   });
 
     

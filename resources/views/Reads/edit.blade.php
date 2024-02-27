@@ -4,11 +4,22 @@
 <div class="col-12 grid-margin stretch-card">
 <div class="card">
 <div class="card-body">
-<h4 class="card-title">Add Rates</h4>
+<h4 class="card-title">Edit Rates</h4>
 <br>
 
 <form class="forms-sample" action="{{route('Rates.update',$rates->id)}}" method="post" >
 @csrf
+
+
+<div class="form-group">
+<label for="carrier_type_id">Carrier Type</label>
+<select class="form-control" name="carrier_type_id" id="carrier_type_id">
+    @forelse($carriers_types as $carriers_type )
+    <option value="{{$carriers_type->id}}" @selected($rates->carrier_type_id==$carriers_type->id)>{{$carriers_type->type}}</option>
+    @empty
+    @endforelse
+</select>
+</div>
 
 <div class="form-group">
 <label for="exampleSelectGender">Carrier Name</label>
@@ -20,15 +31,6 @@
 </select>
 </div>
 
-<div class="form-group">
-<label for="carrier_type_id">Carrier Type</label>
-<select class="form-control" name="carrier_type_id" id="carrier_type_id">
-@forelse($carriers_types as $carriers_type )
-<option value="{{$carriers_type->id}}" @selected($rates->carrier_type_id==$carriers_type->id)>{{$carriers_type->type}}</option>
-@empty
-@endforelse
-</select>
-</div>
 
 <div class="form-group">
 <label for="from_port">Pol</label>
@@ -79,8 +81,8 @@
 </div>
 
 <div class="form-group">
-<label for="exampleInputPassword4">Validitiy Date</label>
-<input type="text" name="validitiy_date" class="form-control" id="exampleInputPassword4" value="{{$rates->validitiy_date}}" placeholder="Validitiy Date" required>
+<label for="time_from">Validity Date</label>
+<input type="text" class="form-control datetimepicker" id="time_from" name="validitiy_date" value="{{$rates->validitiy_date}}" />
 </div>
 
 
@@ -140,3 +142,28 @@ getports({{$rates->carrier_type_id}});
 </script>
 
 @endpush
+
+<!-- @push('scripts')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+@endpush -->
+
+
+<!-- @push('scripts')
+<script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script>
+$('.datetimepicker').datetimepicker({
+format: 'YYYY-MM-DD HH:mm',
+locale: 'en',
+sideBySide: true,
+icons: {
+up: 'fas fa-chevron-up',
+down: 'fas fa-chevron-down',
+previous: 'fas fa-chevron-left',
+next: 'fas fa-chevron-right'
+},
+
+});
+</script>
+@endpush -->

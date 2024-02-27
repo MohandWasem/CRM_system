@@ -16,8 +16,8 @@
                 <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
+                      <th> carrier_type </th>
                       <th> carrier_name </th>
-                      <th> carrier_type  </th>
                       <th> pol </th>
                       <th> pod </th>
                       <th> container_type </th>
@@ -35,8 +35,8 @@
                            
                          <tr class="table-responsive-sm">
                            <td></td>
-                           <td>{{$rate->carrier->carrier_name}}</td>
                            <td>{{$rate->types->type}}</td>
+                           <td>{{$rate->carrier->carrier_name}}</td>
                            <td>{{$rate->ports->Port_Name}} - {{ $rate->ports->Port_Code}} - {{ $rate->ports->Port_Country}}</td>
                            <td>{{$rate->ports_1->Port_Name}} - {{ $rate->ports_1->Port_Code}} - {{ $rate->ports_1->Port_Country}}</td>
                            <td>{{$rate->containers->container_type}}</td>
