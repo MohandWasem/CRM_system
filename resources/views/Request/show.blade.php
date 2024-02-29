@@ -19,8 +19,8 @@
                       <th> Client Name </th>
                       <th> Shipment Direction </th>
                       <th> Shipment Type </th>
-                      <th> From_port </th>
-                      <th> To_port </th>
+                      <th> from_Port </th>
+                      <th> to_port </th>
                       <th> Container </th>
                       <th> commodities </th>
                       <th> Action </th>
