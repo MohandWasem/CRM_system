@@ -27,25 +27,25 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @forelse ($Request as $Req )
+                    @forelse ($Requests as $request )
                       
                     <tr class="table-responsive-sm">
-                      <td>{{$Req->serial_number}}</td>
-                      <td>{{$Req->client_name}}</td>
-                      <td>{{$Req->shipment_direction==1?"Import":"Export"}}</td>
-                      <td>{{$Req->type->type}}</td>
-                      <td></td>
-                      <td>{{$Req->to_port}}</td>
-                      <td>{{$Req->container_id}}</td>
-                      <td>{{$Req->commodities->commodity_name}}</td>
+                      <td>{{$request->serial_number}}</td>
+                      <td>{{$request->client_name}}</td>
+                      <td>{{$request->shipment_direction==1?"Import":"Export"}}</td>
+                      <td>{{$request->type->type}}</td>
+                      <td>{{$request->from_port}}</td>
+                      <td>{{$request->to_port}}</td>
+                      <td>{{$request->container_id}}</td>
+                      <td>{{$request->commodities->commodity_name}}</td>
                       <td>
-                      <form action="{{route('request/edit',$Req->id)}}" method="post">
+                      <form action="{{route('request/edit',$request->id)}}" method="post">
                           @csrf
                           <input type="submit" class="btn btn-info" value="edit">
 
                         </form>
 
-                        <form action="{{route('request/delete',$Req->id)}}" method="post">
+                        <form action="{{route('request/delete',$request->id)}}" method="post">
                           @csrf
                         <input type="submit" class="btn btn-danger" value="delete">
                         </form>

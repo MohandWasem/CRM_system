@@ -70,7 +70,7 @@
 
 <div class="form-group">
 <label for="searchInput">From</label>
-<input type="search" name="search" class="form-control" id="searchInput" placeholder="Search" value="">
+<input type="search" name="search" class="form-control" id="searchInput" placeholder="Search" value="{{$request->from_port}}">
 
 <!-- <input type="text" id="searchInput"> -->
 <ul id="searchResults"></ul>
@@ -78,7 +78,7 @@
 
 <div class="form-group">
 <label for="searchInput2">To</label>
-<input type="search" name="search2" class="form-control" id="searchInput2" placeholder="Search" value="">
+<input type="search" name="search2" class="form-control" id="searchInput2" placeholder="Search" value="{{$request->to_port}}">
 
 <!-- <input type="text" id="searchInput"> -->
 <ul id="searchResults"></ul>

@@ -20,8 +20,8 @@ class RequestController extends Controller
 {
     public function index()
     {
-         $Request=Request::with('type','ports','ports_1','commodities')->get();
-        return  view('Request.show',compact('Request'));
+         $Requests=Request::with('type','commodities')->get();
+        return  view('Request.show',compact('Requests'));
     }
 
     public function show()
