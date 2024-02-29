@@ -14,6 +14,7 @@ use App\Http\Requests\rateRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request as LaravelRequest;
 
 class RequestController extends Controller
 {
@@ -32,20 +33,20 @@ class RequestController extends Controller
         return view('Request.add',compact("client","type","Sizes","Commodities"));
     }
 
-    public function info(Request $request)
+    public function info(LaravelRequest $request)
     {
       //   request link parameter
         $parameter = Parameter::where('name','requests')->first(); 
-        $direction=$request->input("shipment_direction");
-        $type_id=$request->input("shipment_type");
+        // $direction=$request->input("shipment_direction");
+        // $type_id=$request->input("shipment_type");
 
         $req=Request::create([
               
               "client_name"=>$request->input("client_name"),
-              "shipment_direction"=>$direction,
-              "shipment_type"=>$type_id,
-              "from_port"=>$request->input("from_port"),
-              "to_port"=>$request->input("to_port"),
+              "shipment_direction"=>$request->input("shipment_direction"),
+              "shipment_type"=>$request->input("shipment_type"),
+              "from_port"=>$request->input("search"),
+              "to_port"=>$request->input("search2"),
               "serial_number"=>(int)$parameter->last_id,
               "container_id"=>$request->input("container_id"),
               "commodity_id"=>$request->input("commodity_id"),
@@ -70,21 +71,21 @@ class RequestController extends Controller
     }
 
 
-    public function update(Request $request ,$id)
+    public function update(LaravelRequest $request ,$id)
     {
         
-        $direction=$request->input("shipment_direction");
-        $type_id=$request->input("shipment_type");
+        // $direction=$request->input("shipment_direction");
+        // $type_id=$request->input("shipment_type");
        
         
 
         $req=Request::findOrfail($id);
         $req->update([
         "client_name"=>$request->input("client_name"),
-        "shipment_direction"=>$direction,
-        "shipment_type"=>$type_id,
-        "from_port"=>$request->input("from_port"),
-        "to_port"=>$request->input("to_port"),
+        "shipment_direction"=>$request->input("shipment_direction"),
+        "shipment_type"=>$request->input("shipment_type"),
+        "from_port"=>$request->input("search"),
+        "to_port"=>$request->input("search2"),
         "container_id"=>$request->input("container_id"),
         "commodity_id"=>$request->input("commodity_id"),
    ]);
@@ -112,6 +113,20 @@ class RequestController extends Controller
        }
 
        return response()->json(compact("ports","shipment_type","port_type"));
+    }
+
+    public function searchPorts(LaravelRequest $request)
+    {
+        // $query = $request->get('search');
+        $keyWord = $request['search'] ??'';
+
+        //   $query=Port_Type::where('Port_Type',$request)->get();
+              
+        $results = Port::whereHas('Port_Type',function($query) use($keyWord){
+            $query->where('Port_Type', 'like', '%' . $keyWord . '%');
+        })->get();
+
+        return response()->json($results);
     }
     
 }

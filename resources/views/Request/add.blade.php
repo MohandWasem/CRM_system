@@ -47,7 +47,7 @@
 </div>
 
 
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="from_port">From</label>
 
 <select class="form-control" name="from_port" id="from_port">
@@ -56,9 +56,9 @@
 
 </select>
 
-</div>
+</div> -->
 
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="to_port">To</label>
 
 <select class="form-control" name="to_port" id="to_port">
@@ -68,6 +68,22 @@
 
 </select>
 
+</div> -->
+
+<div class="form-group">
+<label for="searchInput">From</label>
+<input type="search" name="search" class="form-control" id="searchInput" placeholder="Search" value="">
+
+<!-- <input type="text" id="searchInput"> -->
+<ul id="searchResults"></ul>
+</div>
+
+<div class="form-group">
+<label for="searchInput2">To</label>
+<input type="search" name="search2" class="form-control" id="searchInput2" placeholder="Search" value="">
+
+<!-- <input type="text" id="searchInput"> -->
+<ul id="searchResults"></ul>
 </div>
 
 <div class="form-group">
@@ -110,7 +126,7 @@
 
 
 @push('scripts')
-<script>
+<!-- <script>
 
 $(document).on('click', '#shipment_type', async function () {
     let value = $(this).val();
@@ -142,5 +158,76 @@ $(document).on('click', '#shipment_type', async function () {
         }));
     });
 });
+</script> -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+    $(document).ready(function () {
+        $('#searchInput').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search-ports',
+                    method: 'GET',
+                    data: {search: request.term},
+
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Port_Name,
+                                value: item.Port_Name,
+                            };
+                        }));
+
+
+                    }
+                });
+            },
+            minLength: 2, // Minimum characters before making a request
+            select: function (event, ui) {
+                // Handle selection, if needed
+                console.log('Selected: ', ui.item);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#searchInput2').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search-ports',
+                    method: 'GET',
+                    data: {search: request.term},
+
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Port_Name,
+                                value: item.Port_Name 
+                            };
+                        }));
+
+
+                    }
+                });
+            },
+            minLength: 2, // Minimum characters before making a request
+            select: function (event, ui) {
+                // Handle selection, if needed
+                console.log('Selected: ', ui.item);
+            }
+        });
+    });
 </script>
 @endpush
+
+
+
+
+
+

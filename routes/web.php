@@ -83,6 +83,7 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post("request/update/{id}","update")->name("request/update");
     Route::post("request/delete/{id}","delete")->name("request/delete");
     Route::get('all_ports/{type_id}','ports')->name('allports');
+    Route::get('/search-ports', 'searchPorts')->name('search.ports');
   });
 
 
@@ -192,7 +193,6 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post('Rates/delete/{id}','delete')->name('Rates.delete');
     Route::get('all_ports/{type_id}','ports')->name('allports');
     Route::get('/all_carriers/{value}', 'getAllCarriers');
-    // Route::get('all_ports/{type_id}','ports')->name('allports');
   });
 
     
