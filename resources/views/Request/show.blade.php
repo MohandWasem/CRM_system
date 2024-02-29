@@ -34,7 +34,7 @@
                       <td>{{$Req->client_name}}</td>
                       <td>{{$Req->shipment_direction==1?"Import":"Export"}}</td>
                       <td>{{$Req->type->type}}</td>
-                      <td>{{$Req->from_port}}</td>
+                      <td></td>
                       <td>{{$Req->to_port}}</td>
                       <td>{{$Req->container_id}}</td>
                       <td>{{$Req->commodities->commodity_name}}</td>
