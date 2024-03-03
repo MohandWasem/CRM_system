@@ -31,18 +31,20 @@
 @error("shipment_direction")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
+
+
+
 <div class="form-group">
-<label for="exampleSelectGender">Shipment Type</label>
+<h6>Shipment Type:</h6>
 
-<select class="form-control" name="shipment_type" id="exampleSelectGender">
-@forelse ($type as $type )
-<option value="{{$type->id}}" @if($request->type->id==$type->id) selected @endif>{{$type->type}}</option>
-@empty
+<input type="radio" id="contactChoice1" name="radio_type" value="sea" {{$request->radio_type == 'sea' ? 'checked' : ''}} />
+<label for="contactChoice1">Sea</label>
 
-@endforelse
+<input type="radio" id="contactChoice1" name="radio_type" value="air" {{$request->radio_type == 'air' ? 'checked' : ''}} />
+<label for="contactChoice1">Air</label>
 
-</select>
-@error("shipment_type")<div style="color:red;">{{$message}}</div>@enderror
+<input type="radio" id="contactChoice1" name="radio_type" value="land" {{$request->radio_type == 'land' ? 'checked' : ''}} />
+<label for="contactChoice1">Land</label>
 </div>
 
 <!-- <div class="form-group">
@@ -180,8 +182,8 @@ getports({{$request->shipment_type}});
                         console.log(data);
                         response($.map(data, function (item) {
                             return {
-                                label: item.Port_Name,
-                                value: item.Port_Name,
+                                label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                                value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
                             };
                         }));
 
@@ -211,8 +213,8 @@ getports({{$request->shipment_type}});
                         console.log(data);
                         response($.map(data, function (item) {
                             return {
-                                label: item.Port_Name,
-                                value: item.Port_Name 
+                                label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                                value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
                             };
                         }));
 

@@ -14,8 +14,8 @@ class Request extends Model
     use HasFactory;
 
     protected $fillable=[
-       "client_name","shipment_direction","shipment_type", "serial_number","from_port","to_port",
-       "container_id","commodity_id"
+       "client_name","shipment_direction","radio_type" , "serial_number"
+       ,"from_port","to_port","container_id","commodity_id"
     ];
 
 

@@ -32,18 +32,19 @@
 @error("shipment_direction")<div style="color:red;">{{$message}}</div>@enderror
 </div>
 
+
+
 <div class="form-group">
-<label for="shipment_type">Shipment Type</label>
+<h6>Shipment Type:</h6>
 
-<select class="form-control" name="shipment_type" id="shipment_type">
-@forelse ($type as $type )
-<option value="{{$type->id}}">{{$type->type}}</option>
-@empty
+<input type="radio" id="contactChoice1" name="radio_type" value="sea" />
+<label for="contactChoice1">Sea</label>
 
-@endforelse
+<input type="radio" id="contactChoice1" name="radio_type" value="air" />
+<label for="contactChoice1">Air</label>
 
-</select>
-@error("shipment_type")<div style="color:red;">{{$message}}</div>@enderror
+<input type="radio" id="contactChoice1" name="radio_type" value="land" />
+<label for="contactChoice1">Land</label>
 </div>
 
 
@@ -74,7 +75,6 @@
 <label for="searchInput">From</label>
 <input type="search" name="search" class="form-control" id="searchInput" placeholder="Search" value="">
 
-<!-- <input type="text" id="searchInput"> -->
 <ul id="searchResults"></ul>
 </div>
 
@@ -82,7 +82,6 @@
 <label for="searchInput2">To</label>
 <input type="search" name="search2" class="form-control" id="searchInput2" placeholder="Search" value="">
 
-<!-- <input type="text" id="searchInput"> -->
 <ul id="searchResults"></ul>
 </div>
 
@@ -176,8 +175,8 @@ $(document).on('click', '#shipment_type', async function () {
                         console.log(data);
                         response($.map(data, function (item) {
                             return {
-                                label: item.Port_Name,
-                                value: item.Port_Name,
+                                label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                                value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
                             };
                         }));
 
@@ -207,8 +206,8 @@ $(document).on('click', '#shipment_type', async function () {
                         console.log(data);
                         response($.map(data, function (item) {
                             return {
-                                label: item.Port_Name,
-                                value: item.Port_Name 
+                                label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                                value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
                             };
                         }));
 

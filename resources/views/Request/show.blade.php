@@ -33,7 +33,7 @@
                       <td>{{$request->serial_number}}</td>
                       <td>{{$request->client_name}}</td>
                       <td>{{$request->shipment_direction==1?"Import":"Export"}}</td>
-                      <td>{{$request->type->type}}</td>
+                      <td>{{$request->radio_type}}</td>
                       <td>{{$request->from_port}}</td>
                       <td>{{$request->to_port}}</td>
                       <td>{{$request->container_id}}</td>

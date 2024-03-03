@@ -44,7 +44,7 @@ class RequestController extends Controller
               
               "client_name"=>$request->input("client_name"),
               "shipment_direction"=>$request->input("shipment_direction"),
-              "shipment_type"=>$request->input("shipment_type"),
+              "radio_type"=>$request->input("radio_type"),
               "from_port"=>$request->input("search"),
               "to_port"=>$request->input("search2"),
               "serial_number"=>(int)$parameter->last_id,
@@ -83,7 +83,7 @@ class RequestController extends Controller
         $req->update([
         "client_name"=>$request->input("client_name"),
         "shipment_direction"=>$request->input("shipment_direction"),
-        "shipment_type"=>$request->input("shipment_type"),
+        "radio_type"=>$request->input("radio_type"),
         "from_port"=>$request->input("search"),
         "to_port"=>$request->input("search2"),
         "container_id"=>$request->input("container_id"),
