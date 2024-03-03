@@ -32,26 +32,19 @@
 
 
 <div class="form-group">
-<label for="from_port">Pol</label>
+<label for="searchInput">Pol</label>
+<input type="search" name="search" class="form-control" id="searchInputRate" placeholder="Search" value="">
 
-<select class="form-control" name="pol" id="pol">
-
-<option value=""></option>
-
-</select>
-
+<!-- <input type="text" id="searchInput"> -->
+<ul id="searchResults"></ul>
 </div>
 
 <div class="form-group">
-<label for="to_port">Pod</label>
+<label for="searchInput2">Pod</label>
+<input type="search" name="search2" class="form-control" id="searchInputRate2" placeholder="Search" value="">
 
-<select class="form-control" name="pod" id="pod">
-
-<option value=""></option>
-
-
-</select>
-
+<!-- <input type="text" id="searchInput"> -->
+<ul id="searchResults"></ul>
 </div>
 
 <div class="form-group">
@@ -101,7 +94,7 @@
 
 @push('scripts')
 
-<script>
+<!-- <script>
     $(document).on('click','#carrier_type_id', async function(){
         let value = $(this).val();
            console.log(value);
@@ -133,6 +126,72 @@
     });
     
 });
+</script> -->
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script>
+    $(document).ready(function () {
+        $('#searchInputRate').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search-rates',
+                    method: 'GET',
+                    data: {search: request.term},
+
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Port_Name,
+                                value: item.Port_Name,
+                            };
+                        }));
+
+
+                    }
+                });
+            },
+            minLength: 2, // Minimum characters before making a request
+            select: function (event, ui) {
+                // Handle selection, if needed
+                console.log('Selected: ', ui.item);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#searchInputRate2').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search-rates',
+                    method: 'GET',
+                    data: {search: request.term},
+
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Port_Name,
+                                value: item.Port_Name 
+                            };
+                        }));
+
+
+                    }
+                });
+            },
+            minLength: 2, // Minimum characters before making a request
+            select: function (event, ui) {
+                // Handle selection, if needed
+                console.log('Selected: ', ui.item);
+            }
+        });
+    });
 </script>
 @endpush
 

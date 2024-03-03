@@ -4,7 +4,7 @@
 <div class="col-12 grid-margin stretch-card">
 <div class="card">
 <div class="card-body">
-<h4 class="card-title">Add Container</h4>
+<h4 class="card-title">Edit Container</h4>
 <br>
 
 <form class="forms-sample" action="{{route('Container.update',$Containers->id)}}" method="post" >

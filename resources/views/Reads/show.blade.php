@@ -37,8 +37,8 @@
                            <td></td>
                            <td>{{$rate->types->type}}</td>
                            <td>{{$rate->carrier->carrier_name}}</td>
-                           <td>{{$rate->ports->Port_Name}} - {{ $rate->ports->Port_Code}} - {{ $rate->ports->Port_Country}}</td>
-                           <td>{{$rate->ports_1->Port_Name}} - {{ $rate->ports_1->Port_Code}} - {{ $rate->ports_1->Port_Country}}</td>
+                           <td>{{$rate->pol}}</td>
+                           <td>{{$rate->pod}}</td>
                            <td>{{$rate->containers->container_type}}</td>
                            <td>{{$rate->price}}</td>
                            <td>{{$rate->free_time}}</td>

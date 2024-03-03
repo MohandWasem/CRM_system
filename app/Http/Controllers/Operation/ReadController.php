@@ -33,8 +33,8 @@ class ReadController extends Controller
     Read::create([
         "carrier_type_id"=>$request->input("carrier_type_id"),
         "carrier_name_id"=>$request->input("carrier_name_id"),
-        "pol"=>$request->input("pol"),
-        "pod"=>$request->input("pod"),
+        "pol"=>$request->input("search"),
+        "pod"=>$request->input("search2"),
         "container_type_id"=>$request->input("container_type_id"),
         "price"=>$request->input("price"),
         "free_time"=>$request->input("free_time"),
@@ -62,8 +62,8 @@ class ReadController extends Controller
        $rates->update([
             "carrier_type_id"=>$request->input("carrier_type_id"),
             "carrier_name_id"=>$request->input("carrier_name_id"),
-            "pol"=>$request->input("pol"),
-            "pod"=>$request->input("pod"),
+            "pol"=>$request->input("search"),
+            "pod"=>$request->input("search2"),
             "container_type_id"=>$request->input("container_type_id"),
             "price"=>$request->input("price"),
             "free_time"=>$request->input("free_time"),
@@ -106,6 +106,20 @@ class ReadController extends Controller
         $carriers = Carrier::all();
 
         return response()->json($carriers);
+    }
+
+    public function searchRates(Request $request)
+    {
+        // $query = $request->get('search');
+        $keyWord = $request['search'] ??'';
+
+        //   $query=Port_Type::where('Port_Type',$request)->get();
+              
+        $results = Port::whereHas('Port_Type',function($query) use($keyWord){
+            $query->where('Port_Name', 'like', '%' . $keyWord . '%');
+        })->get();
+
+        return response()->json($results);
     }
 
 

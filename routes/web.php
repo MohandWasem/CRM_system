@@ -193,6 +193,7 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post('Rates/delete/{id}','delete')->name('Rates.delete');
     Route::get('all_ports/{type_id}','ports')->name('allports');
     Route::get('/all_carriers/{value}', 'getAllCarriers');
+    Route::get('/search-rates', 'searchRates')->name('search.rates');
   });
 
     
