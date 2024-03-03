@@ -123,7 +123,7 @@ class RequestController extends Controller
         //   $query=Port_Type::where('Port_Type',$request)->get();
               
         $results = Port::whereHas('Port_Type',function($query) use($keyWord){
-            $query->where('Port_Type', 'like', '%' . $keyWord . '%');
+            $query->where('Port_Name', 'like', '%' . $keyWord . '%');
         })->get();
 
         return response()->json($results);
