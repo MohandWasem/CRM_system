@@ -49,7 +49,12 @@ class RequestController extends Controller
               "to_port"=>$request->input("search2"),
               "serial_number"=>(int)$parameter->last_id,
               "container_id"=>$request->input("container_id"),
+              "weight"=>$request->input("weight"),
+              "length"=>$request->input("length"),
+              "weight_cm"=>$request->input("weight_cm"),
+              "height"=>$request->input("height"),
               "commodity_id"=>$request->input("commodity_id"),
+              "remarks"=>$request->input("remarks"),
          ]);
          $parameter->last_id=(int)$parameter->last_id + 1;
          $parameter->save();
@@ -87,7 +92,12 @@ class RequestController extends Controller
         "from_port"=>$request->input("search"),
         "to_port"=>$request->input("search2"),
         "container_id"=>$request->input("container_id"),
+        "weight"=>$request->input("weight"),
+        "length"=>$request->input("length"),
+        "weight_cm"=>$request->input("weight_cm"),
+        "height"=>$request->input("height"),
         "commodity_id"=>$request->input("commodity_id"),
+        "remarks"=>$request->input("remarks"),
    ]);
      
 

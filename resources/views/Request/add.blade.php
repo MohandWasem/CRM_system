@@ -37,14 +37,17 @@
 <div class="form-group">
 <h6>Shipment Type:</h6>
 
-<input type="radio" id="contactChoice1" name="radio_type" value="sea" />
+<input type="radio" id="contactChoice1" name="radio_type" value="sea" checked  />
 <label for="contactChoice1">Sea</label>
 
-<input type="radio" id="contactChoice1" name="radio_type" value="air" />
+<input type="radio" id="contactChoice2" name="radio_type" value="air" />
 <label for="contactChoice1">Air</label>
 
-<input type="radio" id="contactChoice1" name="radio_type" value="land" />
+<input type="radio" id="contactChoice3" name="radio_type" value="land" />
 <label for="contactChoice1">Land</label>
+
+<input type="radio" id="contactChoice4" name="radio_type" value="courier" />
+<label for="contactChoice1">Courier</label>
 </div>
 
 
@@ -85,7 +88,7 @@
 <ul id="searchResults"></ul>
 </div>
 
-<div class="form-group">
+<div class="form-group" id="selectContainer">
 <label for="exampleSelectGender">Containers</label>
 <select class="form-control" name="container_id" id="exampleSelectGender">
  @forelse ($Sizes as $Size )
@@ -99,6 +102,20 @@
 
 </div>
 
+<div class="form-group" id="inputContainer" style="display: none;">
+<label for="exampleInputEmail3">Weight</label>
+<input type="text" name="weight" class="form-control" id="exampleInputEmail3" value="" placeholder="Weight" >
+</div>
+
+<div id="checkboxContainer" style="display: none;" class ="form-group">
+    <label for="checkboxField">Dimensions by CM</label>
+     <br>
+    <input type="text" class="form-control" style="width:10%; display:inline-block;" name="length" id="checkboxField">L
+    <input type="text" class="form-control" style="width:10%; display:inline;" name="weight_cm" id="checkboxField">W
+    <input type="text" class="form-control" style="width:10%; display:inline;" name="height" id="checkboxField">H
+ </div>
+<br>
+
 <div class="form-group">
 <label for="exampleSelectGender">Commodity</label>
 <select class="form-control" name="commodity_id" id="exampleSelectGender">
@@ -111,6 +128,11 @@
  
 </select>
 
+</div>
+
+<div class="form-group">
+<label for="exampleInputPassword4">Remarks</label>
+<textarea name="remarks" class="form-control"placeholder="Remarks" id="exampleInputPassword4" cols="30" rows="10"></textarea>
 </div>
 
 
@@ -225,6 +247,52 @@ $(document).on('click', '#shipment_type', async function () {
 </script>
 @endpush
 
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var radioOption1 = document.getElementById('contactChoice1');
+        var radioOption2 = document.getElementById('contactChoice2');
+        var radioOption3 = document.getElementById('contactChoice3');
+        var radioOption4 = document.getElementById('contactChoice4');
+        var inputContainer = document.getElementById('inputContainer');
+        var checkboxContainer = document.getElementById('checkboxContainer');
+        var selectContainer = document.getElementById('selectContainer');
+
+        radioOption1.addEventListener('change', function () {
+            if (radioOption1.checked) {
+                checkboxContainer.style.display = 'none';
+                selectContainer.style.display = 'block';
+                inputContainer.style.display = 'none';
+            }
+        });
+
+        radioOption3.addEventListener('change', function () {
+            if (radioOption3.checked) {
+                checkboxContainer.style.display = 'none';
+                selectContainer.style.display = 'block';
+                inputContainer.style.display = 'none';
+            }
+        });
+
+        radioOption2.addEventListener('change', function () {
+            if (radioOption2.checked) {
+                checkboxContainer.style.display = 'block';
+                selectContainer.style.display = 'none';
+                inputContainer.style.display = 'block';
+            }
+        });
+
+        radioOption4.addEventListener('change', function () {
+            if (radioOption4.checked) {
+                checkboxContainer.style.display = 'block';
+                selectContainer.style.display = 'none';
+                inputContainer.style.display = 'block';
+            }
+        });
+    });
+</script>
+@endpush
 
 
 

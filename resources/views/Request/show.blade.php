@@ -15,6 +15,7 @@
                 <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
                 <thead>
                     <tr class="table-responsive-sm">
+                      <th> # </th>
                       <th> Serial_Request </th>
                       <th> Client Name </th>
                       <th> Shipment Direction </th>
@@ -22,7 +23,10 @@
                       <th> from_Port </th>
                       <th> to_port </th>
                       <th> Container </th>
+                      <th> Weight </th>
+                      <th> Dimensions by CM </th>
                       <th> commodities </th>
+                      <th> Remarks </th>
                       <th> Action </th>
                     </tr>
                   </thead>
@@ -30,6 +34,7 @@
                     @forelse ($Requests as $request )
                       
                     <tr class="table-responsive-sm">
+                      <td></td>
                       <td>{{$request->serial_number}}</td>
                       <td>{{$request->client_name}}</td>
                       <td>{{$request->shipment_direction==1?"Import":"Export"}}</td>
@@ -37,7 +42,10 @@
                       <td>{{$request->from_port}}</td>
                       <td>{{$request->to_port}}</td>
                       <td>{{$request->container_id}}</td>
+                      <td>{{$request->weight}}</td>
+                      <td>{{$request->length}} - {{$request->weight_cm}} - {{$request->height}} </td>
                       <td>{{$request->commodities->commodity_name}}</td>
+                      <td>{{$request->remarks}}</td>
                       <td>
                       <form action="{{route('request/edit',$request->id)}}" method="post">
                           @csrf

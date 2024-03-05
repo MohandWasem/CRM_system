@@ -40,11 +40,14 @@
 <input type="radio" id="contactChoice1" name="radio_type" value="sea" {{$request->radio_type == 'sea' ? 'checked' : ''}} />
 <label for="contactChoice1">Sea</label>
 
-<input type="radio" id="contactChoice1" name="radio_type" value="air" {{$request->radio_type == 'air' ? 'checked' : ''}} />
+<input type="radio" id="contactChoice2" name="radio_type" value="air" {{$request->radio_type == 'air' ? 'checked' : ''}} />
 <label for="contactChoice1">Air</label>
 
-<input type="radio" id="contactChoice1" name="radio_type" value="land" {{$request->radio_type == 'land' ? 'checked' : ''}} />
+<input type="radio" id="contactChoice3" name="radio_type" value="land" {{$request->radio_type == 'land' ? 'checked' : ''}} />
 <label for="contactChoice1">Land</label>
+
+<input type="radio" id="contactChoice4" name="radio_type" value="courier" {{$request->radio_type == 'courier' ? 'checked' : ''}} />
+<label for="contactChoice1">Courier</label>
 </div>
 
 <!-- <div class="form-group">
@@ -86,7 +89,7 @@
 <ul id="searchResults"></ul>
 </div>
 
-<div class="form-group">
+<div class="form-group" id="selectContainer">
 <label for="exampleSelectGender">Containers</label>
 <select class="form-control" name="container_id" id="exampleSelectGender">
  @forelse ($Sizes as $Size )
@@ -100,6 +103,21 @@
 
 </div>
 
+<div class="form-group" id="inputContainer" style="display: none;">
+<label for="exampleInputEmail3">Weight</label>
+<input type="text" name="weight" class="form-control" id="exampleInputEmail3"  placeholder="Weight" value="{{$request->weight}}">
+</div>
+
+<div id="checkboxContainer" style="display: none;" class ="form-group">
+       <!-- <h6>weight</h6> -->
+    <label for="checkboxField">Dimensions by CM</label>
+    <br>
+     <input type="text" class="form-control" value="{{$request->length}}" style="width:10%; display:inline-block;" name="length" id="checkboxField">L
+     <input type="text" class="form-control" value="{{$request->weight_cm}}" style="width:10%; display:inline;" name="weight_cm" id="checkboxField">W
+     <input type="text" class="form-control" value="{{$request->height}}" style="width:10%; display:inline;" name="height" id="checkboxField">H
+ </div>
+<br>
+
 <div class="form-group">
 <label for="exampleSelectGender">Commodity</label>
 <select class="form-control" name="commodity_id" id="exampleSelectGender">
@@ -112,6 +130,11 @@
  
 </select>
 
+</div>
+
+<div class="form-group">
+<label for="exampleInputPassword4">Remarks</label>
+<textarea name="remarks" class="form-control"placeholder="Remarks" id="exampleInputPassword4" cols="30" rows="10" value="{{$request->remarks}}">{{$request->remarks}}</textarea>
 </div>
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
@@ -231,5 +254,51 @@ getports({{$request->shipment_type}});
     });
 </script>
 
+@endpush
+
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var radioOption1 = document.getElementById('contactChoice1');
+        var radioOption2 = document.getElementById('contactChoice2');
+        var radioOption3 = document.getElementById('contactChoice3');
+        var radioOption4 = document.getElementById('contactChoice4');
+        var inputContainer = document.getElementById('inputContainer');
+        var checkboxContainer = document.getElementById('checkboxContainer');
+        var selectContainer = document.getElementById('selectContainer');
+
+
+        function updateVisibility() {
+            if (radioOption1.checked) {
+                checkboxContainer.style.display = 'none';
+                selectContainer.style.display = 'block';
+                inputContainer.style.display = 'none';
+            } else if (radioOption2.checked) {
+                checkboxContainer.style.display = 'block';
+                selectContainer.style.display = 'none';
+                inputContainer.style.display = 'block';
+            }
+
+            if (radioOption3.checked) {
+                checkboxContainer.style.display = 'none';
+                selectContainer.style.display = 'block';
+                inputContainer.style.display = 'none';
+            } else if (radioOption4.checked) {
+                checkboxContainer.style.display = 'block';
+                selectContainer.style.display = 'none';
+                inputContainer.style.display = 'block';
+            }
+        }
+
+        updateVisibility(); // Initial visibility based on the current state
+
+        radioOption1.addEventListener('change', updateVisibility);
+        radioOption2.addEventListener('change', updateVisibility);
+        radioOption3.addEventListener('change', updateVisibility);
+        radioOption4.addEventListener('change', updateVisibility);
+
+    });
+</script>
 @endpush
 

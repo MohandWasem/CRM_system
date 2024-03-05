@@ -15,6 +15,7 @@
                     <table id="example" class="table table-striped table-responsive-sm table-bordered" style="width:100%">
                     <thead>
                         <tr class="table-responsive-sm">
+                          <th> # </th>
                           <th> Serial_Client </th>
                           <th> Company Name </th>
                           <th> Contact Person </th>
@@ -37,6 +38,7 @@
                         @forelse ($clients as $clients )
                           
                         <tr class="table-responsive-sm">
+                          <td></td>
                           <td>{{$clients->serial_client}}</td>
                           <td>{{$clients->comapny_name}}</td>
                           <td>{{$clients->contact_person}}</td>

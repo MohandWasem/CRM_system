@@ -16,11 +16,14 @@
                 <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
+                     
                       <th> carrier_type </th>
                       <th> carrier_name </th>
                       <th> pol </th>
                       <th> pod </th>
                       <th> container_type </th>
+                      <th> Weight </th>
+                      <th> Dimensions by CM </th>
                       <th> price </th>
                       <th> free_time </th>
                       <th> transit_time </th>
@@ -35,11 +38,14 @@
                            
                          <tr class="table-responsive-sm">
                            <td></td>
-                           <td>{{$rate->types->type}}</td>
+                           
+                           <td>{{$rate->radio_carrier_type}}</td>
                            <td>{{$rate->carrier->carrier_name}}</td>
                            <td>{{$rate->pol}}</td>
                            <td>{{$rate->pod}}</td>
                            <td>{{$rate->containers->container_type}}</td>
+                           <td>{{$rate->weight}}</td>
+                           <td>{{$rate->length}} - {{$rate->weight_cm}} - {{$rate->height}} </td>
                            <td>{{$rate->price}}</td>
                            <td>{{$rate->free_time}}</td>
                            <td>{{$rate->transit_time}}</td>

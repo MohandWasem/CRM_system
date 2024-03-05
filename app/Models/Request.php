@@ -15,7 +15,7 @@ class Request extends Model
 
     protected $fillable=[
        "client_name","shipment_direction","radio_type" , "serial_number"
-       ,"from_port","to_port","container_id","commodity_id"
+       ,"from_port","to_port","container_id","weight","length","weight_cm","height","commodity_id","remarks"
     ];
 
 

@@ -32,10 +32,15 @@ class ReadController extends Controller
    {
     Read::create([
         "carrier_type_id"=>$request->input("carrier_type_id"),
+        "radio_carrier_type"=>$request->input("radio_carrier_type"),
         "carrier_name_id"=>$request->input("carrier_name_id"),
         "pol"=>$request->input("search"),
         "pod"=>$request->input("search2"),
         "container_type_id"=>$request->input("container_type_id"),
+        "weight"=>$request->input("weight"),
+        "length"=>$request->input("length"),
+        "weight_cm"=>$request->input("weight_cm"),
+        "height"=>$request->input("height"),
         "price"=>$request->input("price"),
         "free_time"=>$request->input("free_time"),
         "transit_time"=>$request->input("transit_time"),
@@ -61,10 +66,15 @@ class ReadController extends Controller
 
        $rates->update([
             "carrier_type_id"=>$request->input("carrier_type_id"),
+            "radio_carrier_type"=>$request->input("radio_carrier_type"),
             "carrier_name_id"=>$request->input("carrier_name_id"),
             "pol"=>$request->input("search"),
             "pod"=>$request->input("search2"),
             "container_type_id"=>$request->input("container_type_id"),
+            "weight"=>$request->input("weight"),
+            "length"=>$request->input("length"),
+            "weight_cm"=>$request->input("weight_cm"),
+            "height"=>$request->input("height"),
             "price"=>$request->input("price"),
             "free_time"=>$request->input("free_time"),
             "transit_time"=>$request->input("transit_time"),

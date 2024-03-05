@@ -14,7 +14,8 @@ class Read extends Model
     use HasFactory;
 
     protected $fillable=[
-        "carrier_name_id","carrier_type_id","container_type_id","pol","pod"
+        "carrier_name_id","carrier_type_id","radio_carrier_type","container_type_id"
+        ,"weight","length","weight_cm","height","pol","pod"
         ,"price","free_time","transit_time","validitiy_date","notes"
     ];
 
