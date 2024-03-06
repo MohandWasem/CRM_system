@@ -16,7 +16,7 @@ class loginController extends Controller
     public function data(Request $request)
     {
         if(Auth::guard('web')->attempt(["email"=>$request->input("email"),"password"=>$request->input("password")])){
-            return redirect()->route("index");
+            return redirect()->route("home");
            
             }else{ 
             

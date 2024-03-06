@@ -17,14 +17,17 @@
                     <tr class="table-responsive-sm">
                       <th> # </th>
                       <th> Serial_Request </th>
-                      <th> Client Name </th>
+                      <th> Company Name </th>
                       <th> Shipment Direction </th>
                       <th> Shipment Type </th>
                       <th> from_Port </th>
                       <th> to_port </th>
                       <th> Container </th>
+                      <th> Number of Boxes </th>
                       <th> Weight </th>
                       <th> Dimensions by CM </th>
+                      <th> vcweight </th>
+                      <th> grossweight </th>
                       <th> commodities </th>
                       <th> Remarks </th>
                       <th> Action </th>
@@ -36,14 +39,17 @@
                     <tr class="table-responsive-sm">
                       <td></td>
                       <td>{{$request->serial_number}}</td>
-                      <td>{{$request->client_name}}</td>
+                      <td>{{$request->clients->comapny_name}}</td>
                       <td>{{$request->shipment_direction==1?"Import":"Export"}}</td>
                       <td>{{$request->radio_type}}</td>
                       <td>{{$request->from_port}}</td>
                       <td>{{$request->to_port}}</td>
                       <td>{{$request->container_id}}</td>
+                      <td>{{$request->numberBoxe}}</td>
                       <td>{{$request->weight}}</td>
                       <td>{{$request->length}} - {{$request->weight_cm}} - {{$request->height}} </td>
+                      <td>{{$request->vcweight}}</td>
+                      <td>{{$request->grossweight}}</td>
                       <td>{{$request->commodities->commodity_name}}</td>
                       <td>{{$request->remarks}}</td>
                       <td>

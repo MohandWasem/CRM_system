@@ -15,9 +15,15 @@ class Request extends Model
 
     protected $fillable=[
        "client_name","shipment_direction","radio_type" , "serial_number"
-       ,"from_port","to_port","container_id","weight","length","weight_cm","height","commodity_id","remarks"
+       ,"from_port","to_port","container_id","numberBoxe","weight","length","weight_cm"
+       ,"height", "vcweight","grossweight","commodity_id","remarks"
     ];
 
+    public function clients()
+    {
+        return $this->belongsTo(client::class ,"client_name","id");
+    }
+  
 
     public function type()
     {
@@ -57,7 +63,7 @@ class Request extends Model
     public function getSerialNumberAttribute($value)
     {
         $shipmentDir = $this->shipment_direction? 'IM' : 'EX';
-        $shipmentType = $this->type? $this->type->type : '';
+        $shipmentType = $this->radio_type? $this->radio_type : '';
 
         return $shipmentDir .'-'. $shipmentType .'-'. $value;
     }

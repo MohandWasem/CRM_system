@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Setup\PortController;
 use App\Http\Controllers\Admin\loginController;
@@ -33,7 +34,11 @@ use App\Http\Controllers\Setup\ParameterController;
     return view('welcome');
   });
 
+  // ------------- Home -----------\\
 
+  Route::controller(DashboradController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Home','index')->name('home');
+  });
   // ------------- Client -----------\\
   Route::controller(HomeController::class)->middleware('AuthAdmin')->group(function(){
     Route::get('index','index')->name('index');

@@ -21,7 +21,14 @@
 </a>
 </li>
 
+<li class="nav-item">
+<a class="nav-link" href="{{route('home')}}">
+<span class="menu-title">Home</span>
+<i class="mdi mdi-home menu-icon"></i>
+</a>
+</li>
 
+            
 
 <li class="nav-item">
 <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

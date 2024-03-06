@@ -20,7 +20,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-         $Requests=Request::with('type','commodities')->get();
+         $Requests=Request::with('type','commodities','clients')->get();
         return  view('Request.show',compact('Requests'));
     }
 
@@ -40,6 +40,7 @@ class RequestController extends Controller
         // $direction=$request->input("shipment_direction");
         // $type_id=$request->input("shipment_type");
 
+
         $req=Request::create([
               
               "client_name"=>$request->input("client_name"),
@@ -49,15 +50,19 @@ class RequestController extends Controller
               "to_port"=>$request->input("search2"),
               "serial_number"=>(int)$parameter->last_id,
               "container_id"=>$request->input("container_id"),
+              "numberBoxe"=>$request->input("numberBoxes"),
               "weight"=>$request->input("weight"),
               "length"=>$request->input("length"),
               "weight_cm"=>$request->input("weight_cm"),
               "height"=>$request->input("height"),
+              "vcweight"=>$request->input("vcweight"),
+              "grossweight"=>$request->input("grossweight"),
               "commodity_id"=>$request->input("commodity_id"),
               "remarks"=>$request->input("remarks"),
          ]);
          $parameter->last_id=(int)$parameter->last_id + 1;
          $parameter->save();
+                   
 
         return   redirect()->route('request')->with("success","successfully Add Request");
     }
@@ -92,10 +97,13 @@ class RequestController extends Controller
         "from_port"=>$request->input("search"),
         "to_port"=>$request->input("search2"),
         "container_id"=>$request->input("container_id"),
+        "numberBoxe"=>$request->input("numberBoxes"),
         "weight"=>$request->input("weight"),
         "length"=>$request->input("length"),
         "weight_cm"=>$request->input("weight_cm"),
         "height"=>$request->input("height"),
+        "vcweight"=>$request->input("vcweight"),
+        "grossweight"=>$request->input("grossweight"),
         "commodity_id"=>$request->input("commodity_id"),
         "remarks"=>$request->input("remarks"),
    ]);

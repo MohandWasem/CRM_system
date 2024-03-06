@@ -14,7 +14,7 @@
 
 <select class="form-control" name="client_name" id="exampleSelectGender">
 @forelse ($client as $client )
-<option value="{{$client->contact_person}}" @selected($request->client_name==$client->contact_person)>{{$client->contact_person}}</option>
+<option value="{{$client->id}}" @selected($request->client_name==$client->id)>{{$client->comapny_name}}</option>
 @empty
 
 @endforelse
@@ -103,20 +103,34 @@
 
 </div>
 
+<div class="form-group" id="inputContainer2" style="display: none;">
+<label for="numberboxes">number of boxes</label>
+<input type="number" name="numberBoxes" class="form-control" id="numberboxes" value="{{$request->numberBoxe}}" placeholder="number of boxes" >
+</div>
+
 <div class="form-group" id="inputContainer" style="display: none;">
-<label for="exampleInputEmail3">Weight</label>
-<input type="text" name="weight" class="form-control" id="exampleInputEmail3"  placeholder="Weight" value="{{$request->weight}}">
+<label for="weight">Weight</label>
+<input type="text" name="weight" class="form-control" id="weight"  placeholder="Weight" value="{{$request->weight}}">
 </div>
 
 <div id="checkboxContainer" style="display: none;" class ="form-group">
        <!-- <h6>weight</h6> -->
     <label for="checkboxField">Dimensions by CM</label>
     <br>
-     <input type="text" class="form-control" value="{{$request->length}}" style="width:10%; display:inline-block;" name="length" id="checkboxField">L
-     <input type="text" class="form-control" value="{{$request->weight_cm}}" style="width:10%; display:inline;" name="weight_cm" id="checkboxField">W
-     <input type="text" class="form-control" value="{{$request->height}}" style="width:10%; display:inline;" name="height" id="checkboxField">H
+     <input type="text" class="form-control" value="{{$request->length}}" style="width:10%; display:inline-block;" name="length" id="checkboxField1">L
+     <input type="text" class="form-control" value="{{$request->weight_cm}}" style="width:10%; display:inline;" name="weight_cm" id="checkboxField2">W
+     <input type="text" class="form-control" value="{{$request->height}}" style="width:10%; display:inline;" name="height" id="checkboxField3">H
  </div>
-<br>
+
+ <div class="form-group" id="inputnumber" style="display: none;">
+<label for="vcweight">vcweight</label>
+<input type="text" name="vcweight" class="form-control" id="vcweight" value="{{$request->vcweight}}" readonly placeholder="for each box" >
+</div>
+
+<div class="form-group" id="inputnumber2" style="display: none;">
+<label for="vcweight">grossweight</label>
+<input type="text" name="grossweight" class="form-control" id="grossweight" value="{{$request->grossweight}}" readonly placeholder="for each box" >
+</div>
 
 <div class="form-group">
 <label for="exampleSelectGender">Commodity</label>
@@ -265,6 +279,9 @@ getports({{$request->shipment_type}});
         var radioOption3 = document.getElementById('contactChoice3');
         var radioOption4 = document.getElementById('contactChoice4');
         var inputContainer = document.getElementById('inputContainer');
+        var inputContainer2 = document.getElementById('inputContainer2');
+        var inputnumber = document.getElementById('inputnumber');
+        var inputnumber2 = document.getElementById('inputnumber2');
         var checkboxContainer = document.getElementById('checkboxContainer');
         var selectContainer = document.getElementById('selectContainer');
 
@@ -274,20 +291,80 @@ getports({{$request->shipment_type}});
                 checkboxContainer.style.display = 'none';
                 selectContainer.style.display = 'block';
                 inputContainer.style.display = 'none';
+                inputContainer2.style.display = 'none';
+                inputnumber.style.display = 'none';
+                inputnumber2.style.display = 'none';
             } else if (radioOption2.checked) {
                 checkboxContainer.style.display = 'block';
                 selectContainer.style.display = 'none';
                 inputContainer.style.display = 'block';
+                inputContainer2.style.display = 'block';
+                inputnumber.style.display = 'block';
+                inputnumber2.style.display = 'block';
+
+                $(document).ready(function () {
+            // Handle input changes
+            $('#numberboxes, #weight,#checkboxField1,#checkboxField2,#checkboxField3').on('input change', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var taxRate = parseFloat($('#weight').val()) || 0;
+                var length =  parseFloat($('#checkboxField1').val()) || 0;
+                var weight =  parseFloat($('#checkboxField2').val()) || 0;
+                var height =  parseFloat($('#checkboxField3').val()) || 0;
+                // console.log(amount);
+
+                // Calculate tax amount
+                // var taxAmount = (amount * (length / 6000));
+                var taxAmount = (amount * (length * weight * height / 6000));
+
+                // Calculate total including tax
+                var total = amount + taxAmount;
+
+                // Display result
+                // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
+                $('#vcweight').val( taxAmount );
+            });
+        });
             }
 
             if (radioOption3.checked) {
                 checkboxContainer.style.display = 'none';
                 selectContainer.style.display = 'block';
                 inputContainer.style.display = 'none';
+                inputContainer2.style.display = 'none';
+                inputnumber.style.display = 'none';
+                inputnumber2.style.display = 'none';
             } else if (radioOption4.checked) {
                 checkboxContainer.style.display = 'block';
                 selectContainer.style.display = 'none';
                 inputContainer.style.display = 'block';
+                inputContainer2.style.display = 'block';
+                inputnumber.style.display = 'block';
+                inputnumber2.style.display = 'block';
+
+                $(document).ready(function () {
+            // Handle input changes
+            $('#numberboxes, #weight,#checkboxField1,#checkboxField2,#checkboxField3').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var taxRate = parseFloat($('#weight').val()) || 0;
+                var length =  parseFloat($('#checkboxField1').val()) || 0;
+                var weight =  parseFloat($('#checkboxField2').val()) || 0;
+                var height =  parseFloat($('#checkboxField3').val()) || 0;
+                // console.log(amount);
+
+                // Calculate tax amount
+                // var taxAmount = (amount * (length / 6000));
+                var taxAmount = (amount * (length * weight * height / 5000));
+
+                // Calculate total including tax
+                var total = amount + taxAmount;
+
+                // Display result
+                // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
+                $('#vcweight').val( taxAmount );
+            });
+        });
             }
         }
 
@@ -300,5 +377,32 @@ getports({{$request->shipment_type}});
 
     });
 </script>
+@endpush
+
+@push('scripts')
+
+<script>
+        $(document).ready(function () {
+            // Handle input changes
+            $('#numberboxes, #weight').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var taxRate = parseFloat($('#weight').val()) || 0;
+                // console.log(amount);
+
+                // Calculate tax amount
+                var taxAmount = (amount * taxRate );
+                // var taxAmount = (amount * (length * weight * height / 6000));
+
+                // Calculate total including tax
+                // var total = amount + taxAmount;
+
+                // Display result
+                // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
+                $('#grossweight').val( taxAmount );
+            });
+        });
+    </script>
+
 @endpush
 
