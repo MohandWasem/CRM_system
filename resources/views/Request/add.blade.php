@@ -6,7 +6,7 @@
 <div class="card-body">
 <h4 class="card-title">Add Request</h4>
 <br>
-<form class="forms-sample" action="{{route('request/insert')}}" method="post">
+<form class="forms-sample" action="{{route('request/insert')}}" method="post" enctype="multipart/form-data">
 @csrf
 
 <div class="form-group">
@@ -37,7 +37,7 @@
 <div class="form-group">
 <h6>Shipment Type:</h6>
 
-<input type="radio" id="contactChoice1" name="radio_type" value="sea" checked  />
+<input type="radio" id="contactChoice1" name="radio_type" value="sea"   />
 <label for="contactChoice1">Sea</label>
 
 <input type="radio" id="contactChoice2" name="radio_type" value="air" />
@@ -88,6 +88,47 @@
 <ul id="searchResults"></ul>
 </div>
 
+<div id="shippingcheckbox" style="display: none;">
+<label for="enableFile">shipping type:</label>
+    <input type="checkbox" id="shippingType1" value="1" name="shippingType">LCL
+    <input type="checkbox" id="shippingType2" value="2" name="shippingType">FCL
+</div>
+<br>
+
+<div class="form-group" id="inputContainer2" style="display: none;">
+<label for="numberboxes">number of boxes</label>
+<input type="number" name="number_shippingType" class="form-control" id="numberboxes2" value="" placeholder="number of boxes" >
+</div>
+
+<div class="form-group" id="inputContainer" style="display: none;">
+<label for="weight">Weight</label>
+<input type="text" name="weight_shippingType" class="form-control" id="weight2" value="" placeholder="Weight" >
+</div>
+
+<div id="checkboxContainer" style="display: none;" class ="form-group">
+    <label for="checkboxField">Dimensions by CM</label>
+     <br>
+    <input type="text" class="form-control" style="width:10%; display:inline-block;" name="l_shippingType" id="checkboxFields1">L
+    <input type="text" class="form-control" style="width:10%; display:inline;" name="wCM_shippingType" id="checkboxFields2">W
+    <input type="text" class="form-control" style="width:10%; display:inline;" name="h_shippingType" id="checkboxFields3">H
+ </div>
+
+ <div class="form-group" id="inputnumber" style="display: none;">
+<label for="vcweight">CBM</label>
+<input type="text" name="cbm_shippingType" class="form-control" id="vcweight2" value="" readonly placeholder="for each box" >
+</div>
+
+<div class="form-group" id="inputnumber2" style="display: none;">
+<label for="vcweight">grossweight</label>
+<input type="text" name="grossw_shippingType" class="form-control" id="grossweight2" value="" readonly placeholder="for each box" >
+</div>
+
+<div class="form-group" id="numberInputContainer" style="display: none;">
+<label for="numberboxes">quantity</label>
+<input type="number" name="numberInput" class="form-control" id="quantity" value="" placeholder="quantity">
+</div>
+
+<br>
 <div class="form-group" id="selectContainer">
 <label for="exampleSelectGender">Containers</label>
 <select class="form-control" name="container_id" id="exampleSelectGender">
@@ -130,6 +171,16 @@
 <input type="text" name="grossweight" class="form-control" id="grossweight" value="" readonly placeholder="for each box" >
 </div>
 
+<div>
+<label for="enableFile">DG cargo:</label>
+    <input type="checkbox" id="enableFile" value="1" name="checkCargo">
+</div>
+    <br>
+<div id="fileInputContainer" style="display: none;">
+    <label for="fileInput">File:</label>
+    <input type="file" id="fileInput" name="file[]" multiple>
+</div>
+<br>
 <div class="form-group">
 <label for="exampleSelectGender">Commodity</label>
 <select class="form-control" name="commodity_id" id="exampleSelectGender">
@@ -280,10 +331,35 @@ $(document).on('click', '#shipment_type', async function () {
             if (radioOption1.checked) {
                 checkboxContainer.style.display = 'none';
                 selectContainer.style.display = 'block';
+                shippingcheckbox.style.display = 'block';
                 inputContainer.style.display = 'none';
                 inputContainer2.style.display = 'none';
                 inputnumber.style.display = 'none';
                 inputnumber2.style.display = 'none';
+
+                $(document).ready(function () {
+            // Handle input changes
+            $('#numberboxes2, #weight2,#checkboxFields1,#checkboxFields2,#checkboxFields3').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
+                var taxRate = parseFloat($('#weight2').val()) || 0;
+                var length =  parseFloat($('#checkboxFields1').val()) || 0;
+                var weight =  parseFloat($('#checkboxFields2').val()) || 0;
+                var height =  parseFloat($('#checkboxFields3').val()) || 0;
+                // console.log(amount);
+
+                // Calculate tax amount
+                // var taxAmount = (amount * (length / 6000));
+                var taxAmount = (amount * (length * weight * height / 1000000));
+
+                // Calculate total including tax
+                var total = amount + taxAmount;
+
+                // Display result
+                // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
+                $('#vcweight2').val( taxAmount );
+            });
+        });
             }
         });
 
@@ -295,6 +371,7 @@ $(document).on('click', '#shipment_type', async function () {
                 inputContainer2.style.display = 'none';
                 inputnumber.style.display = 'none';
                 inputnumber2.style.display = 'none';
+                shippingcheckbox.style.display = 'none';
             }
         });
 
@@ -306,6 +383,7 @@ $(document).on('click', '#shipment_type', async function () {
                 inputContainer2.style.display = 'block';
                 inputnumber.style.display = 'block';
                 inputnumber2.style.display = 'block';
+                shippingcheckbox.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
@@ -341,6 +419,7 @@ $(document).on('click', '#shipment_type', async function () {
                 inputContainer2.style.display = 'block';
                 inputnumber.style.display = 'block';
                 inputnumber2.style.display = 'block';
+                shippingcheckbox.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
@@ -399,6 +478,92 @@ $(document).on('click', '#shipment_type', async function () {
 
 @endpush
 
+
+@push('scripts')
+<script>
+        $(document).ready(function () {
+            // Handle checkbox change
+            $('#enableFile').change(function () {
+                // Show/hide file input based on checkbox state
+                if ($(this).prop('checked')) {
+                    $('#fileInputContainer').show();
+                } else {
+                    $('#fileInputContainer').hide();
+                }
+            });
+        });
+    </script>
+@endpush
+
+@push('scripts')
+
+<script>
+        $(document).ready(function () {
+            // Toggle text input visibility based on checkbox1
+            $('#shippingType1').change(function () {
+                toggleTextInput();
+            });
+
+            // Toggle number input visibility based on checkbox2
+            $('#shippingType2').change(function () {
+                toggleNumberInput();
+            });
+
+            // Function to toggle text input visibility
+            function toggleTextInput() {
+                if ($('#shippingType1').prop('checked')) {
+                    $('#inputContainer2').show();
+                    $('#inputContainer').show();
+                    $('#checkboxContainer').show();
+                    $('#inputnumber').show();
+                    $('#inputnumber2').show();
+                } else {
+                    $('#inputContainer2').hide();
+                    $('#inputContainer').hide();
+                    $('#checkboxContainer').hide();
+                    $('#inputnumber').hide();
+                    $('#inputnumber2').hide();
+                }
+            }
+
+            // Function to toggle number input visibility
+            function toggleNumberInput() {
+                if ($('#shippingType2').prop('checked')) {
+                    $('#numberInputContainer').show();
+                } else {
+                    $('#numberInputContainer').hide();
+                }
+            }
+        });
+    </script>
+@endpush
+
+@push('scripts')
+
+<script>
+        $(document).ready(function () {
+            // Handle input changes
+            $('#numberboxes2, #weight2').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
+                var taxRate = parseFloat($('#weight2').val()) || 0;
+                // console.log(amount);
+
+                // Calculate tax amount
+                var taxAmount = (amount * taxRate );
+                // var taxAmount = (amount * (length * weight * height / 6000));
+
+                // Calculate total including tax
+                // var total = amount + taxAmount;
+
+                // Display result
+                // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
+                $('#grossweight2').val( taxAmount );
+            });
+        });
+    </script>
+
+@endpush
 
 
 

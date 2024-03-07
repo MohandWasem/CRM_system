@@ -14,6 +14,7 @@ use App\Http\Requests\rateRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request as LaravelRequest;
 
 class RequestController extends Controller
@@ -40,6 +41,15 @@ class RequestController extends Controller
         // $direction=$request->input("shipment_direction");
         // $type_id=$request->input("shipment_type");
 
+        // if($request->has('file')){
+        //     $file=$request->file('file');
+        //     foreach ($file as  $file) {
+        //       $extension=$file->getClientOriginalName();
+        //       $filename=md5(uniqid()).".".$extension;
+        //       $path='uploads/requestFile/';
+        //       $file->move($path, $filename);
+        //     }
+        // }
 
         $req=Request::create([
               
@@ -49,6 +59,15 @@ class RequestController extends Controller
               "from_port"=>$request->input("search"),
               "to_port"=>$request->input("search2"),
               "serial_number"=>(int)$parameter->last_id,
+              "shippingType"=>$request->input("shippingType"),
+              "number_shippingType"=>$request->input("number_shippingType"),
+              "weight_shippingType"=>$request->input("weight_shippingType"),
+              "l_shippingType"=>$request->input("l_shippingType"),
+              "wCM_shippingType"=>$request->input("wCM_shippingType"),
+              "h_shippingType"=>$request->input("h_shippingType"),
+              "cbm_shippingType"=>$request->input("cbm_shippingType"),
+              "grossw_shippingType"=>$request->input("grossw_shippingType"),
+              "quantity"=>$request->input("numberInput"),
               "container_id"=>$request->input("container_id"),
               "numberBoxe"=>$request->input("numberBoxes"),
               "weight"=>$request->input("weight"),
@@ -57,14 +76,18 @@ class RequestController extends Controller
               "height"=>$request->input("height"),
               "vcweight"=>$request->input("vcweight"),
               "grossweight"=>$request->input("grossweight"),
+              "checkCargo"=>$request->input("checkCargo"),
+            //   "fileInput"=>$path.$filename,
               "commodity_id"=>$request->input("commodity_id"),
               "remarks"=>$request->input("remarks"),
          ]);
+        
          $parameter->last_id=(int)$parameter->last_id + 1;
          $parameter->save();
-                   
+                
 
         return   redirect()->route('request')->with("success","successfully Add Request");
+        
     }
 
 
@@ -90,12 +113,23 @@ class RequestController extends Controller
         
 
         $req=Request::findOrfail($id);
+        $cat=Request::where('id',$id)->first();
+
         $req->update([
         "client_name"=>$request->input("client_name"),
         "shipment_direction"=>$request->input("shipment_direction"),
         "radio_type"=>$request->input("radio_type"),
         "from_port"=>$request->input("search"),
         "to_port"=>$request->input("search2"),
+        "shippingType"=>$request->input("shippingType"),
+        "number_shippingType"=>$request->input("number_shippingType"),
+        "weight_shippingType"=>$request->input("weight_shippingType"),
+        "l_shippingType"=>$request->input("l_shippingType"),
+        "wCM_shippingType"=>$request->input("wCM_shippingType"),
+        "h_shippingType"=>$request->input("h_shippingType"),
+        "cbm_shippingType"=>$request->input("cbm_shippingType"),
+        "grossw_shippingType"=>$request->input("grossw_shippingType"),
+        "quantity"=>$request->input("numberInput"),
         "container_id"=>$request->input("container_id"),
         "numberBoxe"=>$request->input("numberBoxes"),
         "weight"=>$request->input("weight"),
@@ -104,9 +138,25 @@ class RequestController extends Controller
         "height"=>$request->input("height"),
         "vcweight"=>$request->input("vcweight"),
         "grossweight"=>$request->input("grossweight"),
+        "checkCargo"=>$request->input("checkCargo"),
         "commodity_id"=>$request->input("commodity_id"),
         "remarks"=>$request->input("remarks"),
    ]);
+
+//    if($request->hasfile('file')){
+//     if(File::exists($cat->fileInput)){
+//       File::delete($cat->fileInput);
+//     }
+//      $file=$request->file('file');
+//      foreach ($file as  $file) {
+//             $extension=$file->getClientOriginalName();
+//             $filename=md5(uniqid()).".".$extension;
+//             $path='uploads/requestFile/';
+//             $file->move($path, $filename);
+//       $cat->fileInput = $path.$filename ;
+//       $cat->save();
+//      }
+//   }
      
 
      return redirect()->route('request');

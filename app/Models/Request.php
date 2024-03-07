@@ -15,8 +15,10 @@ class Request extends Model
 
     protected $fillable=[
        "client_name","shipment_direction","radio_type" , "serial_number"
-       ,"from_port","to_port","container_id","numberBoxe","weight","length","weight_cm"
-       ,"height", "vcweight","grossweight","commodity_id","remarks"
+       ,"from_port","to_port","shippingType","number_shippingType","weight_shippingType","l_shippingType"
+       ,"wCM_shippingType","h_shippingType","cbm_shippingType","grossw_shippingType"
+       ,"quantity","container_id","numberBoxe","weight","length","weight_cm"
+       ,"height", "vcweight","grossweight","checkCargo","fileInput","commodity_id","remarks"
     ];
 
     public function clients()

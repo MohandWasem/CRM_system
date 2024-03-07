@@ -22,12 +22,22 @@
                       <th> Shipment Type </th>
                       <th> from_Port </th>
                       <th> to_port </th>
+                      <th> shippingType </th>
+                      <th> number_shippingType </th>
+                      <th> weight_shippingType </th>
+                      <th> l_shippingType </th>
+                      <th> w_shippingType </th>
+                      <th> h_shippingType </th>
+                      <th> cbm_shippingType </th>
+                      <th> grossw_shippingType </th>
+                      <th> quantity </th>
                       <th> Container </th>
                       <th> Number of Boxes </th>
                       <th> Weight </th>
                       <th> Dimensions by CM </th>
                       <th> vcweight </th>
                       <th> grossweight </th>
+                      <th> File </th>
                       <th> commodities </th>
                       <th> Remarks </th>
                       <th> Action </th>
@@ -44,12 +54,30 @@
                       <td>{{$request->radio_type}}</td>
                       <td>{{$request->from_port}}</td>
                       <td>{{$request->to_port}}</td>
+                      <td>{{$request->shippingType==1 ? 'LCL' : 'FCL'}}</td>
+                      <td>{{$request->number_shippingType}}</td>
+                      <td>{{$request->weight_shippingType}}</td>
+                      <td>{{$request->l_shippingType}}</td>
+                      <td>{{$request->wCM_shippingType}}</td>
+                      <td>{{$request->h_shippingType}}</td>
+                      <td>{{$request->cbm_shippingType}}</td>
+                      <td>{{$request->grossw_shippingType}}</td>
+                      <td>{{$request->quantity}}</td>
                       <td>{{$request->container_id}}</td>
                       <td>{{$request->numberBoxe}}</td>
                       <td>{{$request->weight}}</td>
                       <td>{{$request->length}} - {{$request->weight_cm}} - {{$request->height}} </td>
                       <td>{{$request->vcweight}}</td>
                       <td>{{$request->grossweight}}</td>
+                      <td>
+                          @if(file_exists($request->fileInput))
+                              {{-- File exists, display it --}}
+                                 <a href="{{asset($request->fileInput)}}">Show file</a>
+                          @else
+                              {{-- File doesn't exist, don't display anything --}}
+                               <p>File not found.</p>
+                          @endif
+                      </td>
                       <td>{{$request->commodities->commodity_name}}</td>
                       <td>{{$request->remarks}}</td>
                       <td>
