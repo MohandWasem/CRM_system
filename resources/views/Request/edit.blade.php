@@ -164,7 +164,7 @@
      <input type="text" class="form-control" value="{{$request->height}}" style="width:10%; display:inline;" name="height" id="checkboxField3">H
  </div>
 
- <div class="form-group" id="inputnumber" style="display: none;">
+ <div class="form-group" id="inputnumber3" style="display: none;">
 <label for="vcweight">vcweight</label>
 <input type="text" name="vcweight" class="form-control" id="vcweight" value="{{$request->vcweight}}" readonly placeholder="for each box" >
 </div>
@@ -335,9 +335,11 @@ getports({{$request->shipment_type}});
         var inputContainer2 = document.getElementById('inputContainer2');
         var inputnumber = document.getElementById('inputnumber');
         var inputnumber2 = document.getElementById('inputnumber2');
+        var inputnumber3 = document.getElementById('inputnumber3');
         var checkboxContainer = document.getElementById('checkboxContainer');
         var selectContainer = document.getElementById('selectContainer');
         var shippingcheckbox = document.getElementById('shippingcheckbox');
+        var numberInputContainer = document.getElementById('numberInputContainer');
 
 
         function updateVisibility() {
@@ -349,6 +351,7 @@ getports({{$request->shipment_type}});
                 inputContainer2.style.display = 'block';
                 inputnumber.style.display = 'block';
                 inputnumber2.style.display = 'block';
+                inputnumber3.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
@@ -379,19 +382,20 @@ getports({{$request->shipment_type}});
                 selectContainer.style.display = 'none';
                 inputContainer.style.display = 'block';
                 inputContainer2.style.display = 'block';
-                inputnumber.style.display = 'block';
+                inputnumber.style.display = 'none';
                 inputnumber2.style.display = 'block';
+                inputnumber3.style.display = 'block';
                 shippingcheckbox.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
-            $('#numberboxes, #weight,#checkboxField1,#checkboxField2,#checkboxField3').on('input change', function () {
+            $('#numberboxes2, #weight,#checkboxFields1,#checkboxFields2,#checkboxFields3').on('input change', function () {
                 // Get input values
-                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
                 var taxRate = parseFloat($('#weight').val()) || 0;
-                var length =  parseFloat($('#checkboxField1').val()) || 0;
-                var weight =  parseFloat($('#checkboxField2').val()) || 0;
-                var height =  parseFloat($('#checkboxField3').val()) || 0;
+                var length =  parseFloat($('#checkboxFields1').val()) || 0;
+                var weight =  parseFloat($('#checkboxFields2').val()) || 0;
+                var height =  parseFloat($('#checkboxFields3').val()) || 0;
                 // console.log(amount);
 
                 // Calculate tax amount
@@ -421,19 +425,20 @@ getports({{$request->shipment_type}});
                 selectContainer.style.display = 'none';
                 inputContainer.style.display = 'block';
                 inputContainer2.style.display = 'block';
-                inputnumber.style.display = 'block';
+                inputnumber.style.display = 'none';
                 inputnumber2.style.display = 'block';
+                inputnumber3.style.display = 'block';
                 shippingcheckbox.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
-            $('#numberboxes, #weight,#checkboxField1,#checkboxField2,#checkboxField3').on('input', function () {
+            $('#numberboxes2, #weight,#checkboxFields1,#checkboxFields2,#checkboxFields3').on('input', function () {
                 // Get input values
-                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
                 var taxRate = parseFloat($('#weight').val()) || 0;
-                var length =  parseFloat($('#checkboxField1').val()) || 0;
-                var weight =  parseFloat($('#checkboxField2').val()) || 0;
-                var height =  parseFloat($('#checkboxField3').val()) || 0;
+                var length =  parseFloat($('#checkboxFields1').val()) || 0;
+                var weight =  parseFloat($('#checkboxFields2').val()) || 0;
+                var height =  parseFloat($('#checkboxFields3').val()) || 0;
                 // console.log(amount);
 
                 // Calculate tax amount
@@ -549,7 +554,12 @@ getports({{$request->shipment_type}});
                 if ($('#shippingType2').prop('checked')) {
                     $('#numberInputContainer').show();
                 } else {
-                    $('#numberInputContainer').hide();
+                    // $('#numberInputContainer').hide();
+                    $('#inputContainer2').hide();
+                    $('#inputContainer').hide();
+                    $('#checkboxContainer').hide();
+                    $('#inputnumber').hide();
+                    $('#inputnumber2').hide();
                 }
             }
         });

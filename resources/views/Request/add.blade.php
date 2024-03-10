@@ -102,25 +102,25 @@
 
 <div class="form-group" id="inputContainer" style="display: none;">
 <label for="weight">Weight</label>
-<input type="text" name="weight_shippingType" class="form-control" id="weight2" value="" placeholder="Weight" >
+<input type="text" name="weight_shippingType" class="form-control" id="weight2" value="" placeholder="for each box" >
 </div>
 
 <div id="checkboxContainer" style="display: none;" class ="form-group">
     <label for="checkboxField">Dimensions by CM</label>
      <br>
-    <input type="text" class="form-control" style="width:10%; display:inline-block;" name="l_shippingType" id="checkboxFields1">L
-    <input type="text" class="form-control" style="width:10%; display:inline;" name="wCM_shippingType" id="checkboxFields2">W
-    <input type="text" class="form-control" style="width:10%; display:inline;" name="h_shippingType" id="checkboxFields3">H
+    <input type="text" class="form-control" style="width:10%; display:inline-block;" placeholder="for each box" name="l_shippingType" id="checkboxFields1">L
+    <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="wCM_shippingType" id="checkboxFields2">W
+    <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="h_shippingType" id="checkboxFields3">H
  </div>
 
  <div class="form-group" id="inputnumber" style="display: none;">
 <label for="vcweight">CBM</label>
-<input type="text" name="cbm_shippingType" class="form-control" id="vcweight2" value="" readonly placeholder="for each box" >
+<input type="text" name="cbm_shippingType" class="form-control" id="vcweight" value="" readonly placeholder="" >
 </div>
 
 <div class="form-group" id="inputnumber2" style="display: none;">
 <label for="vcweight">grossweight</label>
-<input type="text" name="grossw_shippingType" class="form-control" id="grossweight2" value="" readonly placeholder="for each box" >
+<input type="text" name="grossw_shippingType" class="form-control" id="grossweight2" value="" readonly placeholder="" >
 </div>
 
 <div class="form-group" id="numberInputContainer" style="display: none;">
@@ -156,19 +156,19 @@
 <div id="checkboxContainer" style="display: none;" class ="form-group">
     <label for="checkboxField">Dimensions by CM</label>
      <br>
-    <input type="text" class="form-control" style="width:10%; display:inline-block;" name="length" id="checkboxField1">L
-    <input type="text" class="form-control" style="width:10%; display:inline;" name="weight_cm" id="checkboxField2">W
-    <input type="text" class="form-control" style="width:10%; display:inline;" name="height" id="checkboxField3">H
+    <input type="text" class="form-control" style="width:10%; display:inline-block;" placeholder="for each box" name="length" id="checkboxField1">L
+    <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="weight_cm" id="checkboxField2">W
+    <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="height" id="checkboxField3">H
  </div>
 
- <div class="form-group" id="inputnumber" style="display: none;">
-<label for="vcweight">vcweight</label>
-<input type="text" name="vcweight" class="form-control" id="vcweight" value="" readonly placeholder="for each box" >
+ <div class="form-group" id="inputnumber3" style="display: none;">
+<label for="vcweights1">vcweight</label>
+<input type="text" name="vcweight" class="form-control" id="vcweights1" value="" readonly placeholder="" >
 </div>
 
 <div class="form-group" id="inputnumber2" style="display: none;">
 <label for="vcweight">grossweight</label>
-<input type="text" name="grossweight" class="form-control" id="grossweight" value="" readonly placeholder="for each box" >
+<input type="text" name="grossweight" class="form-control" id="grossweight" value="" readonly placeholder="" >
 </div>
 
 <div>
@@ -314,6 +314,7 @@ $(document).on('click', '#shipment_type', async function () {
 
 
 @push('scripts')
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var radioOption1 = document.getElementById('contactChoice1');
@@ -323,6 +324,7 @@ $(document).on('click', '#shipment_type', async function () {
         var inputContainer = document.getElementById('inputContainer');
         var inputContainer2 = document.getElementById('inputContainer2');
         var inputnumber = document.getElementById('inputnumber');
+        var inputnumber3 = document.getElementById('inputnumber3');
         var inputnumber2 = document.getElementById('inputnumber2');
         var checkboxContainer = document.getElementById('checkboxContainer');
         var selectContainer = document.getElementById('selectContainer');
@@ -336,6 +338,7 @@ $(document).on('click', '#shipment_type', async function () {
                 inputContainer2.style.display = 'none';
                 inputnumber.style.display = 'none';
                 inputnumber2.style.display = 'none';
+                inputnumber3.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
@@ -357,7 +360,7 @@ $(document).on('click', '#shipment_type', async function () {
 
                 // Display result
                 // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
-                $('#vcweight2').val( taxAmount );
+                $('#vcweight').val( taxAmount );
             });
         });
             }
@@ -372,6 +375,7 @@ $(document).on('click', '#shipment_type', async function () {
                 inputnumber.style.display = 'none';
                 inputnumber2.style.display = 'none';
                 shippingcheckbox.style.display = 'none';
+                inputnumber3.style.display = 'none';
             }
         });
 
@@ -381,31 +385,33 @@ $(document).on('click', '#shipment_type', async function () {
                 selectContainer.style.display = 'none';
                 inputContainer.style.display = 'block';
                 inputContainer2.style.display = 'block';
-                inputnumber.style.display = 'block';
+                inputnumber3.style.display = 'block';
+                // inputnumber.style.display = 'block';
                 inputnumber2.style.display = 'block';
                 shippingcheckbox.style.display = 'none';
 
-                $(document).ready(function () {
+            $(document).ready(function () {
             // Handle input changes
-            $('#numberboxes, #weight,#checkboxField1,#checkboxField2,#checkboxField3').on('input', function () {
+            $('#numberboxes2, #weight,#checkboxFields1,#checkboxFields2,#checkboxFields3').on('input', function () {
                 // Get input values
-                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
                 var taxRate = parseFloat($('#weight').val()) || 0;
-                var length =  parseFloat($('#checkboxField1').val()) || 0;
-                var weight =  parseFloat($('#checkboxField2').val()) || 0;
-                var height =  parseFloat($('#checkboxField3').val()) || 0;
+                var length =  parseFloat($('#checkboxFields1').val()) || 0;
+                var weight =  parseFloat($('#checkboxFields2').val()) || 0;
+                var height =  parseFloat($('#checkboxFields3').val()) || 0;
                 // console.log(amount);
 
                 // Calculate tax amount
                 // var taxAmount = (amount * (length / 6000));
                 var taxAmount = (amount * (length * weight * height / 6000));
+                // var taxAmount = (amount * taxRate );
 
                 // Calculate total including tax
-                var total = amount + taxAmount;
+                // var total = amount + taxAmount;
 
                 // Display result
                 // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
-                $('#vcweight').val( taxAmount );
+                $('#vcweights1').val( taxAmount );
             });
         });
             }
@@ -417,19 +423,20 @@ $(document).on('click', '#shipment_type', async function () {
                 selectContainer.style.display = 'none';
                 inputContainer.style.display = 'block';
                 inputContainer2.style.display = 'block';
-                inputnumber.style.display = 'block';
+                inputnumber.style.display = 'none';
+                inputnumber3.style.display = 'block';
                 inputnumber2.style.display = 'block';
                 shippingcheckbox.style.display = 'none';
 
                 $(document).ready(function () {
             // Handle input changes
-            $('#numberboxes, #weight,#checkboxField1,#checkboxField2,#checkboxField3').on('input', function () {
+            $('#numberboxes2, #weight,#checkboxFields1,#checkboxFields2,#checkboxFields3').on('input', function () {
                 // Get input values
-                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
                 var taxRate = parseFloat($('#weight').val()) || 0;
-                var length =  parseFloat($('#checkboxField1').val()) || 0;
-                var weight =  parseFloat($('#checkboxField2').val()) || 0;
-                var height =  parseFloat($('#checkboxField3').val()) || 0;
+                var length =  parseFloat($('#checkboxFields1').val()) || 0;
+                var weight =  parseFloat($('#checkboxFields2').val()) || 0;
+                var height =  parseFloat($('#checkboxFields3').val()) || 0;
                 // console.log(amount);
 
                 // Calculate tax amount
@@ -441,7 +448,7 @@ $(document).on('click', '#shipment_type', async function () {
 
                 // Display result
                 // $('#vcweight').val('Amount: ' + amount.toFixed(2) + ', Tax: ' + taxAmount.toFixed(2) + ', Total: ' + total.toFixed(2));
-                $('#vcweight').val( taxAmount );
+                $('#vcweights1').val( taxAmount );
             });
         });
             }
