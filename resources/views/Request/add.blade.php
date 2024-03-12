@@ -256,7 +256,10 @@ $(document).on('click', '#shipment_type', async function () {
                 $.ajax({
                     url: '/search-ports',
                     method: 'GET',
-                    data: {search: request.term},
+                    data: {
+                          search: request.term ,
+                        shipping_type : $('input[name=radio_type]:checked').val()
+                          },
 
                     success: function (data) {
                         console.log(data);
