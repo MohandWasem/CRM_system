@@ -185,13 +185,23 @@ class RequestController extends Controller
 
     public function searchPorts(LaravelRequest $request)
     {
-        // $query = $request->get('search');
-        $keyWord = $request['search'] ??'';
+       $keyWord = $request['search'] ??'';
+        $shipping_type = $request['shipping_type'] ??'';
 
         //   $query=Port_Type::where('Port_Type',$request)->get();
+         
               
-        $results = Port::whereHas('Port_Type',function($query) use($keyWord){
-            $query->where('Port_Name', 'like', '%' . $keyWord . '%');
+        $results = Port::where('Port_Name', 'like', '%' . $keyWord . '%')->whereHas('Port_Type',function($query) use($shipping_type) {
+            // $query->where('Port_Type', 'like', '%' . $shipping_type . '%');
+              if($shipping_type == 'land'){
+                  $query->whereIn('Port_Type',['sea','dry']);
+                 }else if($shipping_type == 'courier'){
+                  $query->whereIn('Port_Type',['air']);
+                 }else{
+                  $query->where('Port_Type', 'like', '%' . $shipping_type . '%');
+                    }
+            
+
         })->get();
 
         return response()->json($results);
