@@ -266,7 +266,10 @@ getports({{$request->shipment_type}});
                 $.ajax({
                     url: '/search-ports',
                     method: 'GET',
-                    data: {search: request.term},
+                    data: {
+                        search: request.term ,
+                        shipping_type : $('input[name=radio_type]:checked').val()
+                    },
 
                     success: function (data) {
                         console.log(data);
@@ -297,7 +300,10 @@ getports({{$request->shipment_type}});
                 $.ajax({
                     url: '/search-ports',
                     method: 'GET',
-                    data: {search: request.term},
+                    data: {
+                        search: request.term ,
+                        shipping_type : $('input[name=radio_type]:checked').val()
+                    },
 
                     success: function (data) {
                         console.log(data);
