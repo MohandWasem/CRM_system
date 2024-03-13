@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\client;
+use App\Models\AdminRole;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_role_id',
     ];
 
     /**
@@ -47,5 +49,10 @@ class User extends Authenticatable
     public function client()
     {
         return $this->belongsTo(client::class,"user_id","id");
+    }
+
+    public function Roles()
+    {
+        return $this->belongsTo(AdminRole::class ,"user_role_id","id");
     }
 }

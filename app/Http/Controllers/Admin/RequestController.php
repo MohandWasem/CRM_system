@@ -115,6 +115,20 @@ class RequestController extends Controller
         $req=Request::findOrfail($id);
         $cat=Request::where('id',$id)->first();
 
+        if($request->hasfile('file')){
+            if(File::exists($req->fileInput)){
+              File::delete($req->fileInput);
+            }
+             $file=$request->file('file');
+             $extension=$file->getClientOriginalName();
+             $filename=md5(uniqid()).".".$extension;
+             $path='uploads/requestFile/';
+             $file->move($path, $filename);
+              $req->fileInput = $path.$filename ;
+              $req->save();
+             
+          }
+
         $req->update([
         "client_name"=>$request->input("client_name"),
         "shipment_direction"=>$request->input("shipment_direction"),
@@ -143,20 +157,7 @@ class RequestController extends Controller
         "remarks"=>$request->input("remarks"),
    ]);
 
-//    if($request->hasfile('file')){
-//     if(File::exists($cat->fileInput)){
-//       File::delete($cat->fileInput);
-//     }
-//      $file=$request->file('file');
-//      foreach ($file as  $file) {
-//             $extension=$file->getClientOriginalName();
-//             $filename=md5(uniqid()).".".$extension;
-//             $path='uploads/requestFile/';
-//             $file->move($path, $filename);
-//       $cat->fileInput = $path.$filename ;
-//       $cat->save();
-//      }
-//   }
+   
      
 
      return redirect()->route('request');
@@ -185,13 +186,24 @@ class RequestController extends Controller
 
     public function searchPorts(LaravelRequest $request)
     {
-        // $query = $request->get('search');
+        
         $keyWord = $request['search'] ??'';
+        $shipping_type = $request['shipping_type'] ??'';
 
         //   $query=Port_Type::where('Port_Type',$request)->get();
+         
               
-        $results = Port::whereHas('Port_Type',function($query) use($keyWord){
-            $query->where('Port_Name', 'like', '%' . $keyWord . '%');
+        $results = Port::where('Port_Name', 'like', '%' . $keyWord . '%')->whereHas('Port_Type',function($query) use($shipping_type) {
+            // $query->where('Port_Type', 'like', '%' . $shipping_type . '%');
+              if($shipping_type == 'land'){
+                  $query->whereIn('Port_Type',['sea','dry']);
+                 }else if($shipping_type == 'courier'){
+                  $query->whereIn('Port_Type',['air']);
+                 }else{
+                  $query->where('Port_Type', 'like', '%' . $shipping_type . '%');
+                    }
+            
+
         })->get();
 
         return response()->json($results);

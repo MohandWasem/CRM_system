@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Setup\PortController;
+use App\Http\Controllers\Setup\UserController;
 use App\Http\Controllers\Admin\loginController;
 use App\Http\Controllers\Setup\AgentController;
 use App\Http\Controllers\Admin\ActivtyController;
@@ -199,6 +200,17 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::get('all_ports/{type_id}','ports')->name('allports');
     Route::get('/all_carriers/{value}', 'getAllCarriers');
     Route::get('/search-rates', 'searchRates')->name('search.rates');
+  });
+
+     // ------------- Users -----------\\
+
+  Route::controller(UserController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Users','index')->name('Users');
+    Route::get('Users/add','add')->name('Users.add');
+    Route::post('Users/show','show')->name('Users.show');
+    Route::post('Users/edit/{id}','edit')->name('Users.edit');
+    Route::post('Users/update/{id}','update')->name('Users.update');
+    Route::post('Users/delete/{id}','delete')->name('Users.delete');
   });
 
     

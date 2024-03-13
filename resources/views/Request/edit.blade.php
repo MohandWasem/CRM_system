@@ -91,40 +91,42 @@
 
 <div id="shippingcheckbox" style="display: none;">
 <label for="enableFile">shipping type:</label>
-    <input type="checkbox" id="shippingType1" value="1" name="shippingType" {{ $request->shippingType==1 ? 'checked' : '' }}>LCL
-    <input type="checkbox" id="shippingType2" value="2" name="shippingType" {{ $request->shippingType==2 ? 'checked' : '' }}>FCL
+    <input type="checkbox" id="shippingType1" value="1" name="shippingType">LCL
+    <input type="checkbox" id="shippingType2" value="2" name="shippingType">FCL
 </div>
 <br>
+<div style="display: none;" id='shippingtype_lcl'>
 
-<div class="form-group" id="inputContainer2" style="display: none;">
-<label for="numberboxes">number of boxes</label>
-<input type="number" name="number_shippingType" class="form-control" id="numberboxes2" value="{{$request->number_shippingType}}" placeholder="number of boxes" >
+ <div class="form-group" id="inputContainer2" >
+    <label for="numberboxes">number of boxes</label>
+    <input type="number" name="number_shippingType" class="form-control" id="numberboxes2" value="{{$request->number_shippingType}}" placeholder="number of boxes" >
+    </div>
+    
+    <div class="form-group" id="inputContainer" >
+    <label for="weight">Weight</label>
+    <input type="text" name="weight_shippingType" class="form-control" id="weight2" value="{{$request->weight_shippingType}}" placeholder="for each box" >
+    </div>
+    
+    <div id="checkboxContainer"  class ="form-group">
+        <label for="checkboxField">Dimensions by CM</label>
+         <br>
+        <input type="text" class="form-control" style="width:10%; display:inline-block;" value="{{$request->l_shippingType}}" placeholder="for each box" name="l_shippingType" id="checkboxFields1">L
+        <input type="text" class="form-control" style="width:10%; display:inline;" value="{{$request->wCM_shippingType}}" placeholder="for each box" name="wCM_shippingType" id="checkboxFields2">W
+        <input type="text" class="form-control" style="width:10%; display:inline;" value="{{$request->h_shippingType}}" placeholder="for each box" name="h_shippingType" id="checkboxFields3">H
+     </div>
+    
+     <div class="form-group" id="inputnumber" >
+    <label for="vcweight">CBM</label>
+    <input type="text" name="cbm_shippingType" class="form-control" id="vcweight" value="{{$request->cbm_shippingType}}" readonly placeholder="" >
+    </div>
+    
+    <div class="form-group" id="inputnumber2">
+    <label for="vcweight">grossweight</label>
+    <input type="text" name="grossw_shippingType" class="form-control" id="grossweight2" value="{{$request->grossw_shippingType}}" readonly placeholder="" >
+    </div>
 </div>
 
-<div class="form-group" id="inputContainer" style="display: none;">
-<label for="weight">Weight</label>
-<input type="text" name="weight_shippingType" class="form-control" id="weight2" value="{{$request->weight_shippingType}}" placeholder="Weight" >
-</div>
-
-<div id="checkboxContainer" style="display: none;" class ="form-group">
-    <label for="checkboxField">Dimensions by CM</label>
-     <br>
-    <input type="text" class="form-control" style="width:10%; display:inline-block;" value="{{$request->l_shippingType}}" name="l_shippingType" id="checkboxFields1">L
-    <input type="text" class="form-control" style="width:10%; display:inline;" value="{{$request->wCM_shippingType}}" name="wCM_shippingType" id="checkboxFields2">W
-    <input type="text" class="form-control" style="width:10%; display:inline;" value="{{$request->h_shippingType}}" name="h_shippingType" id="checkboxFields3">H
- </div>
-
- <div class="form-group" id="inputnumber" style="display: none;">
-<label for="vcweight">CBM</label>
-<input type="text" name="cbm_shippingType" class="form-control" value="{{$request->cbm_shippingType}}" id="vcweight2" value="" readonly placeholder="for each box" >
-</div>
-
-<div class="form-group" id="inputnumber2" style="display: none;">
-<label for="vcweight">grossweight</label>
-<input type="text" name="grossw_shippingType" class="form-control" value="{{$request->grossw_shippingType}}" id="grossweight2" value="" readonly placeholder="for each box" >
-</div>
-
-<div class="form-group" id="numberInputContainer" style="display: none;">
+<div class="form-group" id="shippingtype_fcl" style="display: none;">
 <label for="numberboxes">quantity</label>
 <input type="number" name="numberInput" class="form-control" id="quantity" value="{{$request->quantity}}" placeholder="quantity">
 </div>
@@ -145,33 +147,35 @@
 
 </div>
 
-<div class="form-group" id="inputContainer2" style="display: none;">
-<label for="numberboxes">number of boxes</label>
-<input type="number" name="numberBoxes" class="form-control" id="numberboxes" value="{{$request->numberBoxe}}" placeholder="number of boxes" >
-</div>
+<div id="inputContainerair" style="display: none;">
 
-<div class="form-group" id="inputContainer" style="display: none;">
-<label for="weight">Weight</label>
-<input type="text" name="weight" class="form-control" id="weight"  placeholder="Weight" value="{{$request->weight}}">
-</div>
-
-<div id="checkboxContainer" style="display: none;" class ="form-group">
-       <!-- <h6>weight</h6> -->
-    <label for="checkboxField">Dimensions by CM</label>
-    <br>
-     <input type="text" class="form-control" value="{{$request->length}}" style="width:10%; display:inline-block;" name="length" id="checkboxField1">L
-     <input type="text" class="form-control" value="{{$request->weight_cm}}" style="width:10%; display:inline;" name="weight_cm" id="checkboxField2">W
-     <input type="text" class="form-control" value="{{$request->height}}" style="width:10%; display:inline;" name="height" id="checkboxField3">H
- </div>
-
- <div class="form-group" id="inputnumber3" style="display: none;">
-<label for="vcweight">vcweight</label>
-<input type="text" name="vcweight" class="form-control" id="vcweight" value="{{$request->vcweight}}" readonly placeholder="for each box" >
-</div>
-
-<div class="form-group" id="inputnumber2" style="display: none;">
-<label for="vcweight">grossweight</label>
-<input type="text" name="grossweight" class="form-control" id="grossweight" value="{{$request->grossweight}}" readonly placeholder="for each box" >
+    <div class="form-group" id="inputContainer5" >
+    <label for="numberboxes">number of boxes</label>
+    <input type="number" name="numberBoxes" class="form-control" id="numberboxes" value="{{$request->numberBoxe}}" placeholder="number of boxes" >
+    </div>
+    
+    <div class="form-group" id="inputContainer7" >
+    <label for="weight">Weight</label>
+    <input type="text" name="weight" class="form-control" id="weight" value="{{$request->weight}}" placeholder="Weight" >
+    </div>
+    
+    <div id="checkboxContainer"  class ="form-group">
+        <label for="checkboxField">Dimensions by CM</label>
+         <br>
+        <input type="text" class="form-control" value="{{$request->length}}" style="width:10%; display:inline-block;" placeholder="for each box" name="length" id="checkboxField1">L
+        <input type="text" class="form-control" value="{{$request->weight_cm}}" style="width:10%; display:inline;" placeholder="for each box" name="weight_cm" id="checkboxField2">W
+        <input type="text" class="form-control" value="{{$request->height}}" style="width:10%; display:inline;" placeholder="for each box" name="height" id="checkboxField3">H
+     </div>
+    
+     <div class="form-group" id="inputnumber3" >
+    <label for="vcweights1">vcweight</label>
+    <input type="text" name="vcweight" class="form-control" id="vcweights1" value="{{$request->vcweight}}" readonly placeholder="" >
+    </div>
+    
+    <div class="form-group" id="inputnumber2" >
+    <label for="vcweight">grossweight</label>
+    <input type="text" name="grossweight" class="form-control" id="grossweight" value="{{$request->grossweight}}" readonly placeholder="" >
+    </div>
 </div>
 
 <div>
@@ -266,7 +270,10 @@ getports({{$request->shipment_type}});
                 $.ajax({
                     url: '/search-ports',
                     method: 'GET',
-                    data: {search: request.term},
+                    data: {
+                        search: request.term ,
+                        shipping_type : $('input[name=radio_type]:checked').val()
+                    },
 
                     success: function (data) {
                         console.log(data);
@@ -297,7 +304,10 @@ getports({{$request->shipment_type}});
                 $.ajax({
                     url: '/search-ports',
                     method: 'GET',
-                    data: {search: request.term},
+                    data: {
+                        search: request.term ,
+                        shipping_type : $('input[name=radio_type]:checked').val()
+                    },
 
                     success: function (data) {
                         console.log(data);
@@ -321,10 +331,135 @@ getports({{$request->shipment_type}});
     });
 </script>
 
+
+<script>
+    $(document).ready(function () {
+
+        $('input[name=radio_type] : checked').on('change',function(){
+             let value  = $(this).val();
+             console.log(value);
+             let shippingcheckbox = document.getElementById('shippingcheckbox');
+             let inputContainerair = document.getElementById('inputContainerair');
+             let selectContainer = document.getElementById('selectContainer');
+             if(value.checked=='sea'){
+                
+    
+                shippingcheckbox.style.display = 'block';
+                inputContainerair.style.display = 'none';
+                selectContainer.style.display = 'block';
+             }else if(value.checked=='air'){
+                shippingcheckbox.style.display = 'none';
+                inputContainerair.style.display = 'block';
+                selectContainer.style.display = 'none';
+             }
+
+             if(value=='land'){
+                
+    
+                shippingcheckbox.style.display = 'none';
+                inputContainerair.style.display = 'none';
+                selectContainer.style.display = 'block';
+             }else if(value=='courier'){
+                shippingcheckbox.style.display = 'none';
+                inputContainerair.style.display = 'block';
+                selectContainer.style.display = 'none';
+
+                $('#checkboxField1,#checkboxField2,#checkboxField3').on('input', function () {
+                // Air Checked
+                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var checkboxField1 = parseFloat($('#checkboxField1').val()) || 0;
+                var checkboxField2 = parseFloat($('#checkboxField2').val()) || 0;
+                var checkboxField3 = parseFloat($('#checkboxField3').val()) || 0;
+
+                 $('#vcweights1').val( amount * (checkboxField1 * checkboxField2 * checkboxField3 / 5000) );
+            });
+             }
+        });
+
+        $('input[name=shippingType]').on('change',function(){
+             let value  = $(this).val();
+             console.log($(this).prop('checked'));
+
+             let shippingtype_lcl = document.getElementById('shippingtype_lcl');
+             let shippingtype_fcl = document.getElementById('shippingtype_fcl');
+                 if($(this).prop('checked')){
+                        if(value=='1'){
+                        shippingtype_lcl.style.display = 'block';
+                        shippingtype_fcl.style.display = 'none';
+                         }else if(value=='2'){
+                         shippingtype_lcl.style.display = 'none';
+                         shippingtype_fcl.style.display = 'block';
+                         }
+                }else{
+                  shippingtype_lcl.style.display = 'none';
+                  shippingtype_fcl.style.display = 'none';
+             }
+        });
+
+            $('#weight').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var taxRate = parseFloat($(this).val()) || 0;
+
+                 $('#grossweight').val( amount * taxRate );
+            });
+
+            $('#checkboxField1,#checkboxField2,#checkboxField3').on('input', function () {
+                // Air Checked
+                var amount = parseFloat($('#numberboxes').val()) || 0;
+                var checkboxField1 = parseFloat($('#checkboxField1').val()) || 0;
+                var checkboxField2 = parseFloat($('#checkboxField2').val()) || 0;
+                var checkboxField3 = parseFloat($('#checkboxField3').val()) || 0;
+
+                 $('#vcweights1').val( amount * (checkboxField1 * checkboxField2 * checkboxField3 / 6000) );
+            });
+
+                //  sea-shipping_type // 
+            $('#checkboxFields1,#checkboxFields2,#checkboxFields3').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
+                var checkboxFields1 = parseFloat($('#checkboxFields1').val()) || 0;
+                var checkboxFields2 = parseFloat($('#checkboxFields2').val()) || 0;
+                var checkboxFields3 = parseFloat($('#checkboxFields3').val()) || 0;
+
+                 $('#vcweight').val( amount * (checkboxFields1 * checkboxFields2 * checkboxFields3 / 1000000) );
+            });
+
+            $('#weight2').on('input', function () {
+                // Get input values
+                var amount = parseFloat($('#numberboxes2').val()) || 0;
+                var taxRate = parseFloat($(this).val()) || 0;
+
+                 $('#grossweight2').val( amount * taxRate );
+            });
+    });
+</script>
+@endpush
+
+     <!-- document-sea-enablefile-DB-cargo -->
+@push('scripts')
+<script>
+        $(document).ready(function () {
+            // Handle checkbox change
+            $('#enableFile').change(function () {
+                // Show/hide file input based on checkbox state
+                if ($(this).prop('checked')) {
+                    $('#fileInputContainer').show();
+                } else {
+                    $('#fileInputContainer').hide();
+                }
+            });
+        });
+    </script>
 @endpush
 
 
-@push('scripts')
+
+
+
+
+
+<!-- @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var radioOption1 = document.getElementById('contactChoice1');
@@ -465,9 +600,9 @@ getports({{$request->shipment_type}});
 
     });
 </script>
-@endpush
+@endpush -->
 
-@push('scripts')
+<!-- @push('scripts')
 
 <script>
         $(document).ready(function () {
@@ -492,10 +627,10 @@ getports({{$request->shipment_type}});
         });
     </script>
 
-@endpush
+@endpush -->
 
 
-@push('scripts')
+<!-- @push('scripts')
 <script>
         $(document).ready(function () {
             // Initial state
@@ -516,9 +651,9 @@ getports({{$request->shipment_type}});
             }
         });
     </script>
-@endpush
+@endpush -->
 
-@push('scripts')
+<!-- @push('scripts')
 
 <script>
         $(document).ready(function () {
@@ -564,9 +699,9 @@ getports({{$request->shipment_type}});
             }
         });
     </script>
-@endpush
+@endpush -->
 
-@push('scripts')
+<!-- @push('scripts')
 
 <script>
         $(document).ready(function () {
@@ -591,5 +726,5 @@ getports({{$request->shipment_type}});
         });
     </script>
 
-@endpush
+@endpush -->
 

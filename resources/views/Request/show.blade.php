@@ -23,20 +23,20 @@
                       <th> from_Port </th>
                       <th> to_port </th>
                       <th> shippingType </th>
-                      <th> number of Boxes </th>
-                      <th> weight </th>
-                      <th> lenght </th>
-                      <th> weight_cm </th>
-                      <th> height </th>
+                      <th> number of Boxes_shippingType </th>
+                      <th> weight_shippingType </th>
+                      <th> lenght_shippingType </th>
+                      <th> weight_cm_shippingType </th>
+                      <th> height_shippingType </th>
                       <th> CBM </th>
-                      <th> vcweight </th>
-                      <th> grossweight </th>
+                      <th> grossweight_shippingType </th>
                       <th> quantity </th>
                       <th> Container </th>
-                      <!-- <th> Number of Boxes </th> -->
-                      <!-- <th> Weight </th> -->
-                      <!-- <th> Dimensions by CM </th> -->
-                      <!-- <th> grossweight </th> -->
+                      <th> Number of Boxes </th>
+                      <th> Weight </th>
+                      <th> Dimensions by CM </th>
+                      <th> vcweight </th>
+                      <th> grossweight </th>
                       <th> File </th>
                       <th> commodities </th>
                       <th> Remarks </th>
@@ -64,22 +64,21 @@
                       <td>{{$request->wCM_shippingType}}</td>
                       <td>{{$request->h_shippingType}}</td>
                       <td>{{$request->cbm_shippingType}}</td>
-                      <td>{{$request->vcweight}}</td>
                       <td>{{$request->grossw_shippingType}}</td>
                       <td>{{$request->quantity}}</td>
                       <td>{{$request->container_id}}</td>
-                      <!-- <td>{{$request->numberBoxe}}</td>
+                      <td>{{$request->numberBoxe}}</td>
                       <td>{{$request->weight}}</td>
                       <td>{{$request->length}} - {{$request->weight_cm}} - {{$request->height}} </td>
                       <td>{{$request->vcweight}}</td>
-                      <td>{{$request->grossweight}}</td> -->
+                      <td>{{$request->grossweight}}</td>
                       <td>
                           @if(file_exists($request->fileInput))
                               {{-- File exists, display it --}}
                                  <a href="{{asset($request->fileInput)}}">Show file</a>
                           @else
                               {{-- File doesn't exist, don't display anything --}}
-                               <p>File not found.</p>
+                               <p>Document empty.</p>
                           @endif
                       </td>
                       <td>{{$request->commodities->commodity_name}}</td>

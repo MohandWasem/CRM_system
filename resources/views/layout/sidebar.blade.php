@@ -48,6 +48,7 @@
 <li class="nav-item"> <a class="nav-link" href="{{route('Carriers')}}">Carriers</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('suppliers')}}">Suppliers</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Currency')}}">Currency</a></li>
+<li class="nav-item"> <a class="nav-link" href="{{route('Users')}}">Users</a></li>
 
 </ul>
 </div>
