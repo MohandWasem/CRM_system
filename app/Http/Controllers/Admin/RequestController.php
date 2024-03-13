@@ -186,9 +186,8 @@ class RequestController extends Controller
 
     public function searchPorts(LaravelRequest $request)
     {
-        
+        // $query = $request->get('search');
         $keyWord = $request['search'] ??'';
-        $shipping_type = $request['shipping_type'] ??'';
 
         //   $query=Port_Type::where('Port_Type',$request)->get();
          
