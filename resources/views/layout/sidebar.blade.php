@@ -22,13 +22,11 @@
 </li>
 
 <li class="nav-item">
-<a class="nav-link" href="{{route('home')}}">
+<a class="nav-link" href="{{route('home.dash')}}">
 <span class="menu-title">Home</span>
 <i class="mdi mdi-home menu-icon"></i>
 </a>
 </li>
-
-            
 
 <li class="nav-item">
 <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -48,7 +46,9 @@
 <li class="nav-item"> <a class="nav-link" href="{{route('Carriers')}}">Carriers</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('suppliers')}}">Suppliers</a></li>
 <li class="nav-item"> <a class="nav-link" href="{{route('Currency')}}">Currency</a></li>
-<li class="nav-item"> <a class="nav-link" href="{{route('Users')}}">Users</a></li>
+@if (Auth::guard('web')->user()->user_role_id == 1 ) 
+ <li class="nav-item"> <a class="nav-link" href="{{route('Users')}}">Users</a></li>
+@endif
 
 </ul>
 </div>

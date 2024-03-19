@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Port;
+use App\Models\Task;
+use App\Models\User;
 use App\Models\Commodity;
 use App\Models\Container;
 use App\Models\Parameter;
@@ -18,7 +20,8 @@ class Request extends Model
        ,"from_port","to_port","shippingType","number_shippingType","weight_shippingType","l_shippingType"
        ,"wCM_shippingType","h_shippingType","cbm_shippingType","grossw_shippingType"
        ,"quantity","container_id","numberBoxe","weight","length","weight_cm"
-       ,"height", "vcweight","grossweight","checkCargo","fileInput","commodity_id","remarks"
+       ,"height", "vcweight","grossweight","checkCargo","fileInput","commodity_id","remarks","sales_user_id"
+       ,"title","approved"
     ];
 
     public function clients()
@@ -57,6 +60,16 @@ class Request extends Model
     public function commodities()
     {
         return $this->belongsTo(Commodity::class,"commodity_id","id");
+    }
+
+    public function salesUser()
+    {
+        return $this->belongsTo(User::class, 'sales_user_id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 
     

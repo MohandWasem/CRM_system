@@ -160,18 +160,18 @@
     
     <div id="checkboxContainer"  class ="form-group">
         <label for="checkboxField">Dimensions by CM</label>
-         <br>
-        <input type="text" class="form-control" style="width:10%; display:inline-block;" placeholder="for each box" name="length" id="checkboxField1">L
-        <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="weight_cm" id="checkboxField2">W
-        <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="height" id="checkboxField3">H
+    <br>
+    <input type="text" class="form-control" style="width:10%; display:inline-block;" placeholder="for each box" name="length" id="checkboxField1">L
+     <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="weight_cm" id="checkboxField2">W
+    <input type="text" class="form-control" style="width:10%; display:inline;" placeholder="for each box" name="height" id="checkboxField3">H
      </div>
     
-     <div class="form-group" id="inputnumber3" >
+<div class="form-group" id="inputnumber3" >
     <label for="vcweights1">vcweight</label>
     <input type="text" name="vcweight" class="form-control" id="vcweights1" value="" readonly placeholder="" >
     </div>
     
-    <div class="form-group" id="inputnumber2" >
+<div class="form-group" id="inputnumber2" >
     <label for="vcweight">grossweight</label>
     <input type="text" name="grossweight" class="form-control" id="grossweight" value="" readonly placeholder="" >
     </div>
@@ -205,6 +205,11 @@
 <label for="exampleInputPassword4">Remarks</label>
 <textarea name="remarks" class="form-control"placeholder="Remarks" id="exampleInputPassword4" cols="30" rows="10"></textarea>
 </div>
+
+<div class="form-group">
+  <input type="hidden" name="title" class="form-control" id="title" value="request"  placeholder="title" >
+</div>
+
 
 
 <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>

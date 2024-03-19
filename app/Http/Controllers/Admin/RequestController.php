@@ -31,6 +31,7 @@ class RequestController extends Controller
         $Sizes= Container::get()->pluck('full_name','id');
         $client=client::all();
         $type=Shipment_type::all();
+       
         return view('Request.add',compact("client","type","Sizes","Commodities"));
     }
 
@@ -50,7 +51,7 @@ class RequestController extends Controller
         //       $file->move($path, $filename);
         //     }
         // }
-
+        $id_user=Auth::guard('web')->user()->id;
         $req=Request::create([
               
               "client_name"=>$request->input("client_name"),
@@ -80,8 +81,9 @@ class RequestController extends Controller
             //   "fileInput"=>$path.$filename,
               "commodity_id"=>$request->input("commodity_id"),
               "remarks"=>$request->input("remarks"),
+              "sales_user_id"=>$id_user,
+              "title"=>$request->input('title'),
          ]);
-        
          $parameter->last_id=(int)$parameter->last_id + 1;
          $parameter->save();
                 
@@ -188,8 +190,9 @@ class RequestController extends Controller
     {
         // $query = $request->get('search');
         $keyWord = $request['search'] ??'';
+        $shipping_type=$request['shipping_type'] ??'';
 
-        //   $query=Port_Type::where('Port_Type',$request)->get();
+          $query=Port_Type::where('Port_Type',$request)->get();
          
               
         $results = Port::where('Port_Name', 'like', '%' . $keyWord . '%')->whereHas('Port_Type',function($query) use($shipping_type) {
