@@ -215,8 +215,14 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post('Users/delete/{id}','delete')->name('Users.delete');
   });
 
+     // ------------- RequestsApproved -----------\\
+
+  Route::controller(TaskController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('RequestsApproved','index')->name('Request.Approved');
+  });
+
   
-  // Route::get('/tasks/{task}/approve', [TaskController::class, 'approve'])->name('tasks.approve');
+ 
 
     
 

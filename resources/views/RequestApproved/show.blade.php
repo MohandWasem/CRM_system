@@ -1,31 +1,11 @@
 @extends("layout.index")
 
 @section("content")
-<div class="alert alert-dark" role="alert">
-  Home
-</div class="form-group">
-{{-- @if(Session::has('success'))
-<div class="alert alert-success">
-      {{Session::get('success')}}</div>
-@endif
-@if (Auth::guard('web')->user()->user_role_id == 4 || Auth::guard('web')->user()->user_role_id == 1 ) 
-@foreach($Requests as $request)
-    <div>
-        <p>{{ $request->title }} - Added by: {{ $request->salesUser->name }} </p>
-        @if (!$request->tasks->contains('operation_user_id', auth()->id()))
-            <form action="{{ route('tasks.approve', $request->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <button type="submit">Approve</button>
-            </form>
-        @endif
-    </div>
-@endforeach --}}
 @if (Auth::guard('web')->user()->user_role_id == 4 || Auth::guard('web')->user()->user_role_id == 1 ) 
 <div class="col-lg-12 stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Tasks</h4>
+        <h4 class="card-title">RequestApproved</h4>
         @if(Session::has('success'))
         <div class="alert alert-success">
               {{Session::get('success')}}</div>
@@ -42,7 +22,7 @@
               <th> Shipment Type </th>
               <th> from_Port </th>
               <th> to_port </th>
-              <th> Approved:  </th>
+              <th> Status </th>
             </tr>
           </thead>
           <tbody>
@@ -57,15 +37,7 @@
            <td>{{$request->radio_type}}</td>
            <td>{{$request->from_port}}</td>
            <td>{{$request->to_port}}</td>
-           <td>
-            @if (!$request->tasks->contains('operation_user_id', auth()->id()))
-            <form action="{{ route('tasks.approve', $request->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <button type="submit">Approve</button>
-            </form>
-        @endif
-           </td>
+           <td>{{$request->approved==1 ? 'Approved' : ''}}</td>
          @empty
              
          @endforelse

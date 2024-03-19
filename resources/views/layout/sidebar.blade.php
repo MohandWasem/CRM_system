@@ -27,6 +27,14 @@
 <i class="mdi mdi-home menu-icon"></i>
 </a>
 </li>
+@if (Auth::guard('web')->user()->user_role_id == 1 || Auth::guard('web')->user()->user_role_id == 4 ) 
+<li class="nav-item">
+    <a class="nav-link" href="{{route('Request.Approved')}}">
+    <span class="menu-title">RequestApproved</span>
+    <i class="mdi mdi-bell-ring menu-icon"></i>
+    </a>
+</li>
+@endif
 
 <li class="nav-item">
 <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

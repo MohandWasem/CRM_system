@@ -12,7 +12,7 @@ class DashboradController extends Controller
     {
          $user=Auth::guard('web')->user()->user_role_id;
         // if ($user == 4 || $user==1 || $user==5 ) {}
-         $Requests=Request::where('approved',0)->with('salesUser','tasks')->get();
+         $Requests=Request::where('approved',0)->with('salesUser','tasks','clients')->get();
             return view("Home.show",compact('Requests'));
     }
 
