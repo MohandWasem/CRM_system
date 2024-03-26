@@ -36,6 +36,17 @@
 </li>
 @endif
 
+@if (Auth::guard('web')->user()->user_role_id == 1 || Auth::guard('web')->user()->user_role_id == 5 ) 
+<li class="nav-item">
+    <a class="nav-link" href="{{route('Replay.Request')}}">
+    <span class="menu-title">ReplayRequests</span>
+    <i class="mdi mdi-bell-ring menu-icon"></i>
+    </a>
+</li>
+@endif
+
+
+
 <li class="nav-item">
 <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
 <span class="menu-title">Setup</span>

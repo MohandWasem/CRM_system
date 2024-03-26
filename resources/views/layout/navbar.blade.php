@@ -12,8 +12,8 @@
 <!-- DataTable -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.css">
-
 <!-- endinject -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
@@ -37,6 +37,42 @@
 </button>
 
 <ul class="navbar-nav navbar-nav-right">
+    <li class="nav-item dropdown">
+        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+          <i class="mdi mdi-bell-outline"></i>
+          @if (auth()->user()->unreadNotifications->count())
+            
+          <span class="badge badge-light bg-primary" style="color:black;">{{auth()->user()->unreadNotifications->count()}}</span>
+          @endif
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+          <h6 class="p-3 mb-0">Notifications</h6>
+          <div class="dropdown-divider"></div>
+          @foreach (auth()->user()->unreadNotifications as $notification )
+          <a href="{{ route('mark-notification', ['notifiable_id' => $notification->notifiable_id]) }}" class="dropdown-item preview-item">
+            <div class="preview-thumbnail">
+              <div class="preview-icon bg-success">
+                <i class="mdi mdi-calendar"></i>
+              </div>
+            </div>
+            
+            <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+              <h6 class="preview-subject font-weight-normal mb-1">Request</h6>
+              <p class="text-gray ellipsis mb-0"> 
+
+                {{$notification->data['message']}}
+              </p>
+            </div>
+          </a>
+          @endforeach
+          <div class="dropdown-divider"></div>
+       
+          <div class="dropdown-divider"></div>
+          
+          <div class="dropdown-divider"></div>
+          <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+        </div>
+      </li>
 <li class="nav-item nav-profile dropdown">
 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
 <div class="nav-profile-img">
@@ -51,6 +87,7 @@
 @endif
 
 </a>
+
 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
 <a class="dropdown-item" href="{{route('logout')}}">
 <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>

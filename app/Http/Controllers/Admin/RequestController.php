@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Notifications\UserNotification;
 use App\Models\Port;
 use App\Models\client;
 use App\Models\Request;
 use App\Models\Commodity;
 use App\Models\Container;
+use App\Models\User;
 use App\Models\Parameter;
 use App\Models\Port_Type;
 use App\Models\Shipment_type;
@@ -83,13 +85,20 @@ class RequestController extends Controller
               "remarks"=>$request->input("remarks"),
               "sales_user_id"=>$id_user,
               "title"=>$request->input('title'),
+              "trucking"=>$request->input("trucking"),
+              "from_trucking"=>$request->input("search_trucking"),
+              "to_trucking"=>$request->input("search2_trucking"),
+              "Clearance"=>$request->input("clearance"),
          ]);
          $parameter->last_id=(int)$parameter->last_id + 1;
          $parameter->save();
                 
-
-        return   redirect()->route('request')->with("success","successfully Add Request");
+       $users=User::where('user_role_id',4)->get();
+       foreach ($users as $user) {
         
+        $user->notify(new UserNotification());
+       }
+        return   redirect()->route('request')->with("success","successfully Add Request");
     }
 
 
@@ -157,6 +166,10 @@ class RequestController extends Controller
         "checkCargo"=>$request->input("checkCargo"),
         "commodity_id"=>$request->input("commodity_id"),
         "remarks"=>$request->input("remarks"),
+        "trucking"=>$request->input("trucking"),
+        "from_trucking"=>$request->input("search_trucking"),
+        "to_trucking"=>$request->input("search2_trucking"),
+        "Clearance"=>$request->input("clearance"),
    ]);
 
    
@@ -209,6 +222,25 @@ class RequestController extends Controller
         })->get();
 
         return response()->json($results);
+    }
+
+    public function searchTrucking(LaravelRequest $request)
+    {
+      $keyWord = $request['search'] ??'';
+      $shipping_type=$request['shipping_type'] ??'';
+
+        $query=Port_Type::where('Port_Type',$request)->get();
+       
+            
+      $results = Port::where('Port_Name', 'like', '%' . $keyWord . '%')->whereHas('Port_Type',function($query) use($shipping_type) {
+          // $query->where('Port_Type', 'like', '%' . $shipping_type . '%');
+            if($shipping_type == 'Trucking'){
+                $query->whereIn('Port_Type',['sea','dry']);
+               }
+          
+      })->get();
+
+      return response()->json($results);
     }
     
 }

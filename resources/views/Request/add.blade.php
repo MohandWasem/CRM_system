@@ -6,7 +6,7 @@
 <div class="card-body">
 <h4 class="card-title">Add Request</h4>
 <br>
-<form class="forms-sample" action="{{route('request/insert')}}" method="post" enctype="multipart/form-data">
+<form class="forms-sample" id="add-sale-form" action="{{route('request/insert')}}" method="post" enctype="multipart/form-data">
 @csrf
 
 <div class="form-group">
@@ -201,6 +201,32 @@
 
 </div>
 
+<div >
+    <label for="feature1">Type:</label>
+    
+    <input type="checkbox" id="Trucking" name="trucking" value="Trucking">
+    <label for="feature2">Trucking</label>
+
+    <input type="checkbox" id="Clearance" name="clearance" value="Clearance">
+    <label for="feature2">Clearance</label>
+
+</div>
+<br>
+<div class="form-group" style="display: none;" id="input-trucking">
+    <div class="form-group">
+        <label for="searchInput">From</label>
+        <input type="search" name="search_trucking" class="form-control" id="searchTrucking" placeholder="Search" value="">
+        
+        <ul id="searchResults"></ul>
+        </div>
+        
+        <div class="form-group">
+        <label for="searchInput2">To</label>
+        <input type="search" name="search2_trucking" class="form-control" id="searchTrucking2" placeholder="Search" value="">
+        
+        <ul id="searchResults"></ul>
+        </div>
+</div>
 <div class="form-group">
 <label for="exampleInputPassword4">Remarks</label>
 <textarea name="remarks" class="form-control"placeholder="Remarks" id="exampleInputPassword4" cols="30" rows="10"></textarea>
@@ -444,6 +470,83 @@ $(document).on('click', '#shipment_type', async function () {
             });
         });
     </script>
+       <!-- Type-trucking --> 
+       <script>
+        $(document).ready(function () {
+            $('#Trucking').change(function () {
+                if ($(this).prop('checked')) {
+                    $('#input-trucking').show();
+                } else {
+                    $('#input-trucking').hide();
+                }
+            });
+        });
+
+        $(document).ready(function () {
+        $('#searchTrucking').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search-trucking',
+                    method: 'GET',
+                    data: {
+                        search: request.term ,
+                        shipping_type : $('input[name=trucking]:checked').val()
+                    },
+
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                                value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                            };
+                        }));
+
+
+                    }
+                });
+            },
+            minLength: 2, // Minimum characters before making a request
+            select: function (event, ui) {
+                // Handle selection, if needed
+                console.log('Selected: ', ui.item);
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#searchTrucking2').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search-trucking',
+                    method: 'GET',
+                    data: {
+                        search: request.term ,
+                        shipping_type : $('input[name=trucking]:checked').val()
+                    },
+
+                    success: function (data) {
+                        console.log(data);
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                                value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                            };
+                        }));
+
+
+                    }
+                });
+            },
+            minLength: 2, // Minimum characters before making a request
+            select: function (event, ui) {
+                // Handle selection, if needed
+                console.log('Selected: ', ui.item);
+            }
+        });
+    });
+    </script>
+    
 @endpush
 
 
@@ -692,7 +795,39 @@ $(document).on('click', '#shipment_type', async function () {
         // });
     </script>
 
+
+<script>
+
+//         // Add Sale via AJAX
+// $('#add-sale-form').on('submit', function(e) {
+//     e.preventDefault();
+//     var formData = $(this).serialize();
+//     $.ajax({
+//         type: 'POST',
+//         url: '{{ route("request/insert") }}',
+//         data: formData,
+//         success: function(response) {
+//             // If sale added successfully, update sales data
+//             displayNotification(response.message);
+//             displaySales(response.sale);
+//         },
+//         error: function(xhr, status, error) {
+//             console.error("Error adding sale:", error);
+//         }
+//     });
+// });
+
+// // Display Notification
+// function displayNotification(message) {
+//     // You can customize the notification style here
+//     alert(message);
+// }
+//     </script>
+
 @endpush
+
+
+
 
 
 

@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\ReplayController;
 use App\Http\Controllers\DashboradController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Setup\PortController;
 use App\Http\Controllers\Setup\UserController;
 use App\Http\Controllers\Admin\loginController;
@@ -41,6 +43,8 @@ use App\Http\Controllers\Setup\ParameterController;
   Route::controller(DashboradController::class)->middleware('AuthAdmin')->group(function(){
     Route::get('Home','index')->name('home.dash');
     Route::put('/tasks/{approve}/approve', [DashboradController::class, 'approve'])->name('tasks.approve');
+    Route::get('/mark-notification/{notifiable_id}', 'markNotificationAsRead')->name('mark-notification');
+    Route::get('Replay', 'show')->name('replay.show');
   });
   // ------------- Client -----------\\
   Route::controller(HomeController::class)->middleware('AuthAdmin')->group(function(){
@@ -92,6 +96,7 @@ use App\Http\Controllers\Setup\ParameterController;
     Route::post("request/delete/{id}","delete")->name("request/delete");
     Route::get('all_ports/{type_id}','ports')->name('allports');
     Route::get('/search-ports', 'searchPorts')->name('search.ports');
+    Route::get('/search-trucking', 'searchTrucking')->name('search.trucking');
   });
 
 
@@ -219,6 +224,15 @@ use App\Http\Controllers\Setup\ParameterController;
 
   Route::controller(TaskController::class)->middleware('AuthAdmin')->group(function(){
     Route::get('RequestsApproved','index')->name('Request.Approved');
+    Route::POST('RequestsApproved/store','store')->name('Request.Approved.store');
+  });
+
+
+   // ------------- ReplayApproved -----------\\
+
+   Route::controller(ReplayController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('ReplayRequest','index')->name('Replay.Request');
+    
   });
 
   

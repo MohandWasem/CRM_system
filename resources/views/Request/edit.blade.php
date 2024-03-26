@@ -203,6 +203,33 @@
 
 </div>
 
+<div >
+    <label for="feature1">Type:</label>
+    
+    <input type="checkbox" id="Trucking" name="trucking" value="Trucking" {{$request->trucking == 'Trucking' ? 'checked' : ''}}>
+    <label for="feature2">Trucking</label>
+
+    <input type="checkbox" id="Clearance" name="clearance" value="Clearance" {{$request->Clearance == 'Clearance' ? 'checked' : ''}}>
+    <label for="feature2">Clearance</label>
+
+</div>
+<br>
+<div class="form-group" style="display: none;" id="input-trucking">
+    <div class="form-group">
+        <label for="searchInput">From</label>
+        <input type="search" name="search_trucking" class="form-control" id="searchTrucking" placeholder="Search" value="{{$request->from_trucking}}">
+        
+        <ul id="searchResults"></ul>
+        </div>
+        
+        <div class="form-group">
+        <label for="searchInput2">To</label>
+        <input type="search" name="search2_trucking" class="form-control" id="searchTrucking2" placeholder="Search" value="{{$request->to_trucking}}">
+        
+        <ul id="searchResults"></ul>
+        </div>
+</div>
+
 <div class="form-group">
 <label for="exampleInputPassword4">Remarks</label>
 <textarea name="remarks" class="form-control"placeholder="Remarks" id="exampleInputPassword4" cols="30" rows="10" value="{{$request->remarks}}">{{$request->remarks}}</textarea>
@@ -232,7 +259,7 @@
         fromPortSelect.append($('<option>', {
             value: port.id,
             text: `${port.Port_Name} - ${port.Port_Code} - ${port.Port_Country}`,
-            selected:port.id=={{$request->from_port}}
+            {{-- selected:port.id=={{$request->from_port}} --}}
             
         }));
     });
@@ -245,7 +272,7 @@
         toPortSelect.append($('<option>', {
             value: port.id,
             text: `${port.Port_Name} - ${port.Port_Code} - ${port.Port_Country}`,
-            selected:port.id=={{$request->to_port}}
+            {{-- selected:port.id=={{$request->to_port}} --}}
         }));
     });
   }
@@ -256,7 +283,7 @@ $(document).on('click', '#shipment_type', async function () {
     getports(value);
 
 });
-getports({{$request->shipment_type}});
+{{-- getports({{$request->shipment_type}}); --}}
 </script> -->
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -334,8 +361,7 @@ getports({{$request->shipment_type}});
 
 <script>
     $(document).ready(function () {
-
-        $('input[name=radio_type] : checked').on('change',function(){
+        $('input[name=radio_type]:checked').on('change',function(){
              let value  = $(this).val();
              console.log(value);
              let shippingcheckbox = document.getElementById('shippingcheckbox');
@@ -451,6 +477,97 @@ getports({{$request->shipment_type}});
             });
         });
     </script>
+
+</script>
+<!-- Type-trucking --> 
+<script>
+//  $(document).ready(function () {
+//      $('#Trucking ').change(function () {
+//          if ($(this).prop('checked')) {
+//              $('#input-trucking').show();
+//          } else {
+//              $('#input-trucking').hide();
+//          }
+//      });
+//  });
+
+        const checkbox = document.getElementById('Trucking');
+        const textInput = document.getElementById('input-trucking');
+
+        // Add event listener to checkbox
+        checkbox.addEventListener('change', function() {
+            // If checkbox is checked, show the text input; otherwise, hide it
+            if (checkbox.checked) {
+                textInput.style.display = 'block';
+            } else {
+                textInput.style.display = 'none';
+            }
+        });
+
+ $(document).ready(function () {
+ $('#searchTrucking').autocomplete({
+     source: function (request, response) {
+         $.ajax({
+             url: '/search-trucking',
+             method: 'GET',
+             data: {
+                 search: request.term ,
+                 shipping_type : $('input[name=trucking]:checked').val()
+             },
+
+             success: function (data) {
+                 console.log(data);
+                 response($.map(data, function (item) {
+                     return {
+                         label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                         value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                     };
+                 }));
+
+
+             }
+         });
+     },
+     minLength: 2, // Minimum characters before making a request
+     select: function (event, ui) {
+         // Handle selection, if needed
+         console.log('Selected: ', ui.item);
+     }
+ });
+});
+
+$(document).ready(function () {
+ $('#searchTrucking2').autocomplete({
+     source: function (request, response) {
+         $.ajax({
+             url: '/search-trucking',
+             method: 'GET',
+             data: {
+                 search: request.term ,
+                 shipping_type : $('input[name=trucking]:checked').val()
+             },
+
+             success: function (data) {
+                 console.log(data);
+                 response($.map(data, function (item) {
+                     return {
+                         label: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                         value: item.Port_Name + ' ,' + item.Port_Code + ', ' + item.Port_Country + '',
+                     };
+                 }));
+
+
+             }
+         });
+     },
+     minLength: 2, // Minimum characters before making a request
+     select: function (event, ui) {
+         // Handle selection, if needed
+         console.log('Selected: ', ui.item);
+     }
+ });
+});
+</script>
 @endpush
 
 
@@ -600,6 +717,7 @@ getports({{$request->shipment_type}});
 
     });
 </script>
+
 @endpush -->
 
 <!-- @push('scripts')

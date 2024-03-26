@@ -39,6 +39,10 @@
                       <th> grossweight </th>
                       <th> File </th>
                       <th> commodities </th>
+                      <th> Trucking </th>
+                      <th> From_Trucking </th>
+                      <th> To_Trucking </th>
+                      <th> Clearance </th>
                       <th> Remarks </th>
                       <th> Action </th>
                     </tr>
@@ -82,6 +86,10 @@
                           @endif
                       </td>
                       <td>{{$request->commodities->commodity_name}}</td>
+                      <td>{{$request->trucking}}</td>
+                      <td>{{$request->from_trucking}}</td>
+                      <td>{{$request->to_trucking}}</td>
+                      <td>{{$request->Clearance}}</td>
                       <td>{{$request->remarks}}</td>
                       <td>
                       <form action="{{route('request/edit',$request->id)}}" method="post">

@@ -16,7 +16,7 @@ class ReadController extends Controller
    public function index()
    {
        $rates=Read::with("carrier","types","containers",'ports','ports_1',)->get();
-     return view("Reads.show",compact("rates"));
+      return view("Reads.show",compact("rates"));
    }
 
    public function add()

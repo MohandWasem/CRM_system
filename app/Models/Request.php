@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Port;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Replay;
 use App\Models\Commodity;
 use App\Models\Container;
 use App\Models\Parameter;
@@ -21,7 +22,7 @@ class Request extends Model
        ,"wCM_shippingType","h_shippingType","cbm_shippingType","grossw_shippingType"
        ,"quantity","container_id","numberBoxe","weight","length","weight_cm"
        ,"height", "vcweight","grossweight","checkCargo","fileInput","commodity_id","remarks","sales_user_id"
-       ,"title","approved"
+       ,"title","trucking","from_trucking","to_trucking","Clearance","approved"
     ];
 
     public function clients()
@@ -70,6 +71,11 @@ class Request extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class);
+    }
+
+    public function replay()
+    {
+        return $this->hasOne(Replay::class);
     }
 
     

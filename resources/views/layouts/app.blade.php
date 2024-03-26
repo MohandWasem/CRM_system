@@ -13,6 +13,7 @@
 <!-- endinject -->
 <!-- Plugin css for this page -->
 <!-- End plugin css for this page -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- inject:css -->
 <!-- endinject -->
 <!-- Layout styles -->
