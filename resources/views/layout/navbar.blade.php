@@ -18,6 +18,7 @@
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <!-- endinject -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <!-- Layout styles -->
 <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
 <!-- End layout styles -->
@@ -37,6 +38,7 @@
 </button>
 
 <ul class="navbar-nav navbar-nav-right">
+  
     <li class="nav-item dropdown">
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
           <i class="mdi mdi-bell-outline"></i>

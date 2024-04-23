@@ -16,7 +16,8 @@
                 <thead>
                     <tr class="table-responsive-sm">
                       <th>  # </th>
-                      <th>  title </th>
+                      <th>  ID </th>
+                      <th>  Title </th>
                       <th>  Added by: </th>
                       <th> Company Name </th>
                       <th> Shipment Direction </th>
@@ -40,7 +41,8 @@
                              
                            <tr class="table-responsive-sm">
                              <td></td>
-                      
+        
+                             <td>{{$replay->request->id}}</td>
                              <td>{{$replay->request->title}}</td>
                              <td>{{$replay->request->salesUser->name}}</td>
                              <td>{{$replay->request->clients->comapny_name}}</td>

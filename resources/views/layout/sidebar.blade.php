@@ -45,6 +45,15 @@
 </li>
 @endif
 
+@if (Auth::guard('web')->user()->user_role_id == 1 || Auth::guard('web')->user()->user_role_id == 5 ) 
+<li class="nav-item">
+    <a class="nav-link" href="{{route('Quotations')}}">
+    <span class="menu-title">quotations </span>
+    <i class="mdi mdi-bell-ring menu-icon"></i>
+    </a>
+</li>
+@endif
+
 
 
 <li class="nav-item">

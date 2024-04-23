@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Replay;
+use App\Events\ReplayEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -23,7 +24,13 @@ class AjaxController extends Controller
         $replay->price = $request->input('price');
         $replay->save();
 
-        // Return a response indicating success
+        $data=[
+            'request_id'=>$request->input('request_id'),
+            'price'=>$request->input('price'),
+            'free_time'=>$request->input('free_time'),
+        ];
+
+       event(new ReplayEvent($data));
         return response()->json(['message' => 'Replay stored successfully'], 200);
     }
 }

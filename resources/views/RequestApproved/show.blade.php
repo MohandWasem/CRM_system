@@ -15,6 +15,7 @@
         <thead>
             <tr class="table-responsive-sm">
               <th>  # </th>
+              <th>  ID </th>
               <th>  title </th>
               <th>  Added by: </th>
               <th> Company Name </th>
@@ -35,6 +36,7 @@
              
          <tr class="table-responsive-sm">
            <td></td>
+           <td>{{$request->id}}</td>
            <td>{{$request->title}}</td>
            <td>{{$request->salesUser->name}}</td>
            <td>{{$request->clients->comapny_name}}</td>

@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Operation\ReadController;
 use App\Http\Controllers\Setup\CurrencyController;
 use App\Http\Controllers\Setup\SupplierController;
+use App\Http\Controllers\Sales\QuotationController;
 use App\Http\Controllers\Setup\CommodityController;
 use App\Http\Controllers\Setup\ContainerController;
 use App\Http\Controllers\Setup\ParameterController;
@@ -230,10 +231,19 @@ use App\Http\Controllers\Setup\ParameterController;
 
    // ------------- ReplayApproved -----------\\
 
-   Route::controller(ReplayController::class)->middleware('AuthAdmin')->group(function(){
+  Route::controller(ReplayController::class)->middleware('AuthAdmin')->group(function(){
     Route::get('ReplayRequest','index')->name('Replay.Request');
     
   });
+
+     // ------------- quotations -----------\\
+
+  Route::controller(QuotationController::class)->middleware('AuthAdmin')->group(function(){
+    Route::get('Quotations','index')->name('Quotations');
+    Route::post('Quotations/edit/{id}','edit')->name('Quotations.edit');
+    Route::post('Quotations/update/{id}','update')->name('Quotations.update');
+      
+    });
 
   
  
